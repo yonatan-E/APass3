@@ -6,7 +6,8 @@
 namespace operation {
 
     Operation::Operation(std::string info) 
-        : _info(std::move(info)), _cachePath(std::move(std::string(_info).replace(_info.find(" "), sizeof(_info), "_"))) {}
+        : _info(std::move(info)), 
+        _cachePath(std::move("cache/" + std::string(_info).replace(_info.find(" "), sizeof(_info), "_"))) {}
 
     void Operation::deleteOperationFileFromCache() const {
         if (remove(_cachePath.c_str()) != 0) {
