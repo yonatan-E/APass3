@@ -1,4 +1,4 @@
-#pragme once
+#pragma once
 
 #include <string>
 
@@ -6,10 +6,10 @@ namespace operation {
 
     class Operation {
 
-        // the path to the file in the cache
-        std::string _cachePath;
         // the time and the date when the operation happened
         std::string _info;
+        // the path to the file in the cache
+        std::string _cachePath;
 
         public:
 
