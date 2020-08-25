@@ -13,9 +13,9 @@ namespace operation {
 
             Operation(std::string info);
             
-            virtual void writeOperationToFile(const std::string& outputPath) = 0;
+            virtual void writeOperationToOutputFile(const std::string& outputPath) const = 0;
 
-            virtual void writeOperationFileToCache() const = 0;
+            virtual void addOperationFileToCache() const = 0;
 
             virtual void deleteOperationFileFromCache() const final;
 
