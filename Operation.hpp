@@ -10,6 +10,8 @@ namespace operation {
         std::string _info;
 
         public:
+
+            Operation(std::string info);
             
             virtual void writeOperationToFile(const std::string& outputPath) = 0;
 
