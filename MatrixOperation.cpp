@@ -22,7 +22,7 @@ namespace operation {
         }
 
         // writing the result matrix into the output file
-        writeMatrixToOfstream(outputFile, _result);
+        writeMatrixToOfStream(outputFile, _result);
 
         // closing the ofstream
         outputFile.close();
@@ -38,13 +38,13 @@ namespace operation {
         }
 
         // writing the left operand matrix into the cache file
-        writeMatrixToOfstream(cacheFile, _leftOperand);
+        writeMatrixToOfStream(cacheFile, _leftOperand);
 
         // writing the right operand matrix into the cache file
-        writeMatrixToOfstream(cacheFile, _rightOperand);
+        writeMatrixToOfStream(cacheFile, _rightOperand);
 
         // writing the result matrix into the output file
-        writeMatrixToOfstream(cacheFile, _result);
+        writeMatrixToOfStream(cacheFile, _result);
 
         // closing the ofstream
         cacheFile.close();
