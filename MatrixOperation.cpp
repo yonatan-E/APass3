@@ -22,17 +22,46 @@ namespace operation {
         }
 
         // writing the result matrix into the output file
-        for (uint32_t i = 0; i < _result.getHeight(); i++) {
-            for (uint32_t j = 0; j < _result.getWidth(); j++) {
-                outputFile << _result(i, j);
-                if (j != _result.getWidth() - 1) {
-                    outputFile << ",";
-                }
-            }
-            outputFile << '\n';
-        }
+        writeMatrixToOfstream(outputFile, _result);
 
         // closing the ofstream
         outputFile.close();
     }
+
+    void MatrixOperation::addOperationFileToCache() const {
+        // opening the cache file using ofstream
+        std::ofstream cacheFile(getCachePath());
+        
+        // checking if an error has occured while opening the file
+        if (!cacheFile.is_open()) {
+            throw exceptions::FileOpenException();
+        }
+
+        // writing the left operand matrix into the cache file
+        writeMatrixToOfstream(cacheFile, _leftOperand);
+
+        // writing the right operand matrix into the cache file
+        writeMatrixToOfstream(cacheFile, _rightOperand);
+
+        // writing the result matrix into the output file
+        writeMatrixToOfstream(cacheFile, _result);
+
+        // closing the ofstream
+        cacheFile.close();
+    }
+
+    void MatrixOperation::writeMatrixToOfStream(std::ofstream& stream, const matrix::Matrix& matrix) {
+        // writing the matrix with the stream
+        for (uint32_t i = 0; i < matrix.getHeight(); i++) {
+            for (uint32_t j = 0; j < matrix.getWidth(); j++) {
+                stream << matrix(i, j);
+                if (j != matrix.getWidth() - 1) {
+                    stream << ",";
+                }
+            }
+            stream << '\n';
+        }
+        stream << '\n';
+    }
+
 }

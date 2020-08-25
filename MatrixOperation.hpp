@@ -2,6 +2,7 @@
 
 #include "Operation.hpp"
 #include "Matrix.hpp"
+#include <fstream>
 
 namespace operation {
 
@@ -14,11 +15,17 @@ namespace operation {
         // the output matrix
         matrix::Matrix _result;
 
-        MatrixOperation(std::string info, const matrix::Matrix& leftOperand, 
-            const matrix::Matrix& rightOperand, const matrix::Matrix& result);
+        public:
 
-        virtual void writeOperationToOutputFile(const std::string& outputPath) const override;
+            MatrixOperation(std::string info, const matrix::Matrix& leftOperand, 
+                const matrix::Matrix& rightOperand, const matrix::Matrix& result);
 
-        virtual void addOperationFileToCache() const override;
-    }
+            virtual void writeOperationToOutputFile(const std::string& outputPath) const override;
+
+            virtual void addOperationFileToCache() const override;
+
+        private:
+
+            static void writeMatrixToOfStream(std::ofstream& stream, const matrix::Matrix& matrix);
+    };
 }
