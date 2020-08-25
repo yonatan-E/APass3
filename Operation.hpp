@@ -13,8 +13,10 @@ namespace operation {
             
             virtual void writeOperationToFile(const std::string& outputPath) = 0;
 
-            virtual void deleteOperationFile() const final;
+            virtual void writeOperationFileToCache() const = 0;
 
-            virtual const std::string& getPath() const final; 
+            virtual void deleteOperationFileFromCache() const final;
+
+            virtual const std::string& getCachePath() const final; 
     };
 }
