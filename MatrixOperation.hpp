@@ -12,7 +12,7 @@ namespace operation {
         // the output matrix
         Matrix _output;
 
-        MatrixOperation(const Matrix& leftOperand, const Matrix& rightOperand, const Matrix& output, std::string info);
+        MatrixOperation(std::string info, const Matrix& leftOperand, const Matrix& rightOperand, const Matrix& output);
 
         virtual void writeOperationToOutputFile(const std::string& outputPath) const override;
 
