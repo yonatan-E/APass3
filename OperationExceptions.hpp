@@ -1,3 +1,5 @@
+#pragme once
+
 #include <stdexcept>
 
 namespace operation {
