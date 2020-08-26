@@ -15,5 +15,8 @@ namespace operation {
 
         FileReadException::FileReadException()
             : std::runtime_error("Error while reading from file") {}
+
+        FileFormatException::FileFormatException() 
+            : std::runtime_error("Invalid file format") {}
     }
 }

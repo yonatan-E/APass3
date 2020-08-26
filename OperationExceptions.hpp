@@ -32,5 +32,12 @@ namespace operation {
 
                 FileReadException();
         };
+
+        class FileFormatException : public std::runtime_error {
+
+            public:
+
+                FileFormatException();
+        };
     }
 }
