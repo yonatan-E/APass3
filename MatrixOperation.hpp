@@ -24,8 +24,6 @@ namespace operation {
 
         private:
 
-            static void writeMatrixToOfStream(std::ofstream& stream, const matrix::Matrix& matrix);
-
             // the left argument matrix
             matrix::Matrix _leftArg;
             // the right argument matrix
