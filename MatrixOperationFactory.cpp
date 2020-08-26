@@ -66,6 +66,10 @@ namespace operation {
                 matrix.setAt(i, j, line.at(j / 2));
             }
         }
+
+        // closing the ifstream
+        matrixFile.close();
+
         return std::move(matrix);
     }
 }
