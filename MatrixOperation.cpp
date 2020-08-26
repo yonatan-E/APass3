@@ -24,7 +24,7 @@ namespace operation {
         matrix::Matrix result = (_type == OperationType::add) ? _leftArg + _rightArg : _leftArg * _rightArg;
 
         // writing the result matrix into the output file
-        writeMatrixToOfStream(outputFile, result);
+        outputFile << result;
 
         // closing the ofstream
         outputFile.close();
@@ -40,12 +40,10 @@ namespace operation {
         }
 
         // writing the left operand matrix into the cache file
-        writeMatrixToOfStream(cacheFile, _leftArg);
-        cacheFile << '\n';
+        cacheFile << _leftArg << '\n';
 
         // writing the right operand matrix into the cache file
-        writeMatrixToOfStream(cacheFile, _rightArg);
-        cacheFile << '\n';
+        cacheFile << _rightArg << '\n';
  
         // writing the operation type into the cache file
         if (_type == OperationType::add) {
@@ -56,18 +54,5 @@ namespace operation {
 
         // closing the ofstream
         cacheFile.close();
-    }
-
-    void MatrixOperation::writeMatrixToOfStream(std::ofstream& stream, const matrix::Matrix& matrix) {
-        // writing the matrix with the stream
-        for (uint32_t i = 0; i < matrix.getHeight(); i++) {
-            for (uint32_t j = 0; j < matrix.getWidth(); j++) {
-                stream << matrix(i, j);
-                if (j != matrix.getWidth() - 1) {
-                    stream << ",";
-                }
-            }
-            stream << '\n';
-        }
     }
 }
