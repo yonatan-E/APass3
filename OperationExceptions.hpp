@@ -18,5 +18,12 @@ namespace operation {
             
                 FileOpenException();
         };
+
+        class FileWriteException : public std::runtime_error {
+
+            public:
+
+                FileWriteException();
+        };
     }
 }
