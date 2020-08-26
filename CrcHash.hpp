@@ -7,9 +7,11 @@ namespace hash{
 
         std::string _input;
 
-        CrcHash(const std::string input);
+        public:
 
-        std::string applyAlgorithm();
+            CrcHash(const std::string input);
+
+            std::string applyAlgorithm();
 
     };
 }
