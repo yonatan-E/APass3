@@ -1,4 +1,3 @@
-#include "Matrix.h"
 #include "Matrix.hpp"
 #include "ErrorCode.hpp"
 #include <utility>
@@ -126,5 +125,18 @@ namespace matrix {
         }
         *this = std::move(turned);
         return *this;
-    } 
+    }
+
+    std::ostream& operator<<(std::ostream& stream, const Matrix& matrix) {
+        // writing the matrix with the stream
+        for (uint32_t i = 0; i < matrix.getHeight(); i++) {
+            for (uint32_t j = 0; j < matrix.getWidth(); j++) {
+                stream << matrix(i, j);
+                if (j != matrix.getWidth() - 1) {
+                    stream << ",";
+                }
+            }
+            stream << '\n';
+        }
+    }
 }
