@@ -22,8 +22,6 @@ class Bitmap: public BitAdjuster {
     BitmapDIBHeader _dibHeader;
     // the bitmap array
     BitmapArray _bitmapArray;
-    // the path to the output file
-    std::string _outputPath;
 
     public:
 
@@ -31,9 +29,8 @@ class Bitmap: public BitAdjuster {
          * @brief Construct a new Bitmap object
          * 
          * @param inputPath the path to the input file
-         * @param outputPath the path to the output file
          */
-        explicit Bitmap(const std::string& inputPath, const std::string& outputPath);
+        explicit Bitmap(const std::string& inputPath);
 
         /**
          * @brief The copy constructor
@@ -90,6 +87,13 @@ class Bitmap: public BitAdjuster {
          */
         virtual void gray() override;
 
+        /**
+         * @brief write the data string to an output file
+         * 
+         * @param outputPath the path to the output file
+         */
+        void writeToFile(const std::string& outputPath) const;
+
     private:
         
         /**
@@ -99,14 +103,6 @@ class Bitmap: public BitAdjuster {
          * @return std::string the content of the file
          */
         std::string readFileContent(const std::string& path);
-
-        /**
-         * @brief write the content to a file
-         * 
-         * @param filePath the path to the file
-         * @param content the content to write in the file
-         */
-        void writeFileContent(const std::string& filePath, const std::string& content);
 };
 
 }
