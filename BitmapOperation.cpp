@@ -31,6 +31,7 @@ namespace operation {
 		cacheFile.write(_input.getData().data(), static_cast<std::streamsize>(_input.getData().length()));
         // checking if an error has occured while writing to the file
 		if (!cacheFile) {
+            cacheFile.close();
 			throw exceptions::FileWriteException();
 		}
 
@@ -41,6 +42,7 @@ namespace operation {
 		cacheFile.write(_output.getData().data(), static_cast<std::streamsize>(_output.getData().length()));
         // checking if an error has occured while writing to the file
 		if (!cacheFile) {
+            cacheFile.close();
 			throw exceptions::FileWriteException();
 		}
 
