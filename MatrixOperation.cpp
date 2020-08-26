@@ -5,11 +5,11 @@
 
 namespace operation {
     
-    MatrixOperation::MatrixOperation(std::string info, const matrix::Matrix& leftOperand, 
-        const matrix::Matrix& rightOperand, const matrix::Matrix& result)
+    MatrixOperation::MatrixOperation(std::string info, const matrix::Matrix& leftArg, 
+        const matrix::Matrix& rightArg, const matrix::Matrix& result)
         : Operation(info), 
-        _leftOperand(leftOperand), 
-        _rightOperand(rightOperand), 
+        _leftArg(leftArg), 
+        _rightArg(rightArg), 
         _result(result) {}
 
     void MatrixOperation::writeOperationToOutputFile(const std::string& outputPath) const {
@@ -38,10 +38,10 @@ namespace operation {
         }
 
         // writing the left operand matrix into the cache file
-        writeMatrixToOfStream(cacheFile, _leftOperand);
+        writeMatrixToOfStream(cacheFile, _leftArg);
 
         // writing the right operand matrix into the cache file
-        writeMatrixToOfStream(cacheFile, _rightOperand);
+        writeMatrixToOfStream(cacheFile, _rightArg);
 
         // writing the result matrix into the output file
         writeMatrixToOfStream(cacheFile, _result);
