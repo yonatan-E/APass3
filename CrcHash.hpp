@@ -13,5 +13,7 @@ namespace hash{
 
             std::string applyAlgorithm();
 
+            std::string getInput();
+
     };
 }
