@@ -27,6 +27,19 @@ namespace operation{
 
     }
 
+    void HashOperation::addOperationFileToCache() const{
+
+        std::ofstream cacheFile(getCachePath());
+
+         // checking if an error has occured while opening the file
+        if (!cacheFile.is_open()) {
+            throw exceptions::FileOpenException();
+        }
+
+        cacheFile << _input.getInput();
+
+    }
+
 
 
 
