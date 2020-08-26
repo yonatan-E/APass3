@@ -2,6 +2,7 @@
 #include "OperationExceptions.hpp"
 #include <fstream>
 #include <cstdint>
+#include <iostream>
 
 namespace operation {
     
@@ -13,21 +14,28 @@ namespace operation {
         _type(type) {}
 
     void MatrixOperation::writeOperationToOutputFile(const std::string& outputPath) const {
-        // opening the output file using ofstream
-        std::ofstream outputFile(outputPath);
-        
-        // checking if an error has occured while opening the file
-        if (!outputFile.is_open()) {
-            throw exceptions::FileOpenException();
-        }
-
+        // getting the result matrix
         matrix::Matrix result = (_type == OperationType::add) ? _leftArg + _rightArg : _leftArg * _rightArg;
 
-        // writing the result matrix into the output file
-        outputFile << result;
+        // if the outputPath is "stdout", writing to the screen
+        if (outputPath == "stdout") {
+            std::cout << result;
+            // else, writing to the file in outputPath
+        } else {
+            // opening the output file using ofstream
+            std::ofstream outputFile(outputPath);
+            
+            // checking if an error has occured while opening the file
+            if (!outputFile.is_open()) {
+                throw exceptions::FileOpenException();
+            }
 
-        // closing the ofstream
-        outputFile.close();
+            // writing the result matrix into the output file
+            outputFile << result;
+
+            // closing the ofstream
+            outputFile.close();
+        }
     }
 
     void MatrixOperation::addOperationFileToCache() const {
