@@ -39,9 +39,11 @@ namespace operation {
 
         // writing the left operand matrix into the cache file
         writeMatrixToOfStream(cacheFile, _leftArg);
+        cacheFile << '\n';
 
         // writing the right operand matrix into the cache file
         writeMatrixToOfStream(cacheFile, _rightArg);
+        cacheFile << '\n';
 
         // writing the result matrix into the output file
         writeMatrixToOfStream(cacheFile, _result);
@@ -61,7 +63,5 @@ namespace operation {
             }
             stream << '\n';
         }
-        stream << '\n';
     }
-
 }
