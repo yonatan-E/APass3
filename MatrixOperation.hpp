@@ -11,8 +11,8 @@ namespace operation {
         public:
         
             enum class OperationType {
-                Add,
-                Mult
+                add,
+                multiply
             };
 
             MatrixOperation(std::string info, const matrix::Matrix& leftArg, 

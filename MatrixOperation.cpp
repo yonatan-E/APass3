@@ -21,7 +21,7 @@ namespace operation {
             throw exceptions::FileOpenException();
         }
 
-        matrix::Matrix result = _type == OperationType::Add ? _leftArg + _rightArg : _leftArg * _rightArg;
+        matrix::Matrix result = (_type == OperationType::add) ? _leftArg + _rightArg : _leftArg * _rightArg;
 
         // writing the result matrix into the output file
         writeMatrixToOfStream(outputFile, result);
@@ -48,10 +48,10 @@ namespace operation {
         cacheFile << '\n';
  
         // writing the operation type into the cache file
-        if (_type == OperationType::Add) {
-            cacheFile << "Add";
+        if (_type == OperationType::add) {
+            cacheFile << "add";
         } else {
-            cacheFile << "Mult";
+            cacheFile << "multiply";
         }
 
         // closing the ofstream
