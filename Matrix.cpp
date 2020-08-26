@@ -138,5 +138,6 @@ namespace matrix {
             }
             stream << '\n';
         }
+        return stream;
     }
 }
