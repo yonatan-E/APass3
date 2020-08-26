@@ -12,5 +12,8 @@ namespace operation {
 
         FileWriteException::FileWriteException()
             : std::runtime_error("Error while writing to file") {}
+
+        FileReadException::FileReadException()
+            : std::runtime_error("Error while reading from file") {}
     }
 }

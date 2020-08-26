@@ -25,5 +25,12 @@ namespace operation {
 
                 FileWriteException();
         };
+
+        class FileReadException : public std::runtime_error {
+
+            public:
+
+                FileReadException();
+        };
     }
 }
