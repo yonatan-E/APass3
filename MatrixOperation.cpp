@@ -6,11 +6,11 @@
 namespace operation {
     
     MatrixOperation::MatrixOperation(std::string info, const matrix::Matrix& leftArg, 
-        const matrix::Matrix& rightArg, const matrix::Matrix& result)
+        const matrix::Matrix& rightArg, OperationType type)
         : Operation(info), 
         _leftArg(leftArg), 
         _rightArg(rightArg), 
-        _result(result) {}
+        _type(type) {}
 
     void MatrixOperation::writeOperationToOutputFile(const std::string& outputPath) const {
         // opening the output file using ofstream
@@ -21,8 +21,10 @@ namespace operation {
             throw exceptions::FileOpenException();
         }
 
+        matrix::Matrix result = (_type == OperationType::add) ? _leftArg + _rightArg : _leftArg * _rightArg;
+
         // writing the result matrix into the output file
-        writeMatrixToOfStream(outputFile, _result);
+        writeMatrixToOfStream(outputFile, result);
 
         // closing the ofstream
         outputFile.close();
@@ -44,9 +46,13 @@ namespace operation {
         // writing the right operand matrix into the cache file
         writeMatrixToOfStream(cacheFile, _rightArg);
         cacheFile << '\n';
-
-        // writing the result matrix into the output file
-        writeMatrixToOfStream(cacheFile, _result);
+ 
+        // writing the operation type into the cache file
+        if (_type == OperationType::add) {
+            cacheFile << "add";
+        } else {
+            cacheFile << "multiply";
+        }
 
         // closing the ofstream
         cacheFile.close();

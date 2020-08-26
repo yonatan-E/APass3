@@ -7,18 +7,16 @@
 namespace operation {
 
     class MatrixOperation : public Operation {
-        
-        // the left operand matrix
-        matrix::Matrix _leftArg;
-        // the right operand matrix
-        matrix::Matrix _rightArg;
-        // the output matrix
-        matrix::Matrix _result;
 
         public:
+        
+            enum class OperationType {
+                add,
+                multiply
+            };
 
             MatrixOperation(std::string info, const matrix::Matrix& leftArg, 
-                const matrix::Matrix& rightArg, const matrix::Matrix& result);
+                const matrix::Matrix& rightArg, OperationType type);
 
             virtual void writeOperationToOutputFile(const std::string& outputPath) const override;
 
@@ -27,5 +25,12 @@ namespace operation {
         private:
 
             static void writeMatrixToOfStream(std::ofstream& stream, const matrix::Matrix& matrix);
+
+            // the left argument matrix
+            matrix::Matrix _leftArg;
+            // the right argument matrix
+            matrix::Matrix _rightArg;
+            // the operation type
+            OperationType _type;
     };
 }
