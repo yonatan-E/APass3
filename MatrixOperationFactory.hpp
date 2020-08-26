@@ -14,5 +14,9 @@ namespace operation {
         protected:
 
             virtual bool isValidCommand(const std::string command[]) const override;
+
+        private:
+
+            static const matrix::Matrix readMatrixFromFile(const std::string& pathToFile);
     };
 }
