@@ -1,5 +1,6 @@
 #include "BitmapOperation.hpp"
 #include "OperationExceptions.hpp"
+#include <stdexcept>
 
 namespace operation {
 
@@ -7,4 +8,16 @@ namespace operation {
         : Operation(info),
         _input(input),
         _output(output) {} 
+
+    void BitmapOperation::writeOperationToOutputFile(const std::string& outputPath) const {
+        try {
+            _output.writeToFile(outputPath);
+        } catch (...) {
+            throw exceptions::FileWriteException();
+        }
+    }
+
+    void BitmapOperation::addOperationFileToCache() const {
+        
+    }
 }
