@@ -34,5 +34,5 @@
 # the build files directory
 build/
 
-#the vscode files directory
+# the vscode files directory
 .vscode/
