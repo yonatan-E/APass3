@@ -53,10 +53,15 @@ namespace operation {
  
         // writing the operation type into the cache file
         if (_type == OperationType::add) {
-            cacheFile << "add";
+            cacheFile << "add" << '\n';
         } else {
-            cacheFile << "multiply";
+            cacheFile << "multiply" << '\n';
         }
+
+        // getting the result matrix
+        matrix::Matrix result = (_type == OperationType::add) ? _leftArg + _rightArg : _leftArg * _rightArg;
+        // writing the result matrix to the cache file
+        cacheFile << result;
 
         // closing the ofstream
         cacheFile.close();
