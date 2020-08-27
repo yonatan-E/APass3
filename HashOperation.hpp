@@ -7,7 +7,7 @@ namespace operation {
 
     class HashOperation : public Operation {
 
-            HashOperation(std::string info, const hash::CrcHash& input);
+            HashOperation(const hash::CrcHash& input);
 
             virtual void writeOperationToOutputFile(const std::string& outputPath) const override;
 

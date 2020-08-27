@@ -1,14 +1,12 @@
 #include "HashOperation.hpp"
 #include "OperationExceptions.hpp"
-#include "fstream"
+#include <fstream>
 
-namespace operation{
+namespace operation {
 
-    HashOperation::HashOperation(std::string info, const hash::CrcHash& input)
-    :Operation(info),
-    _input(input){}
+    HashOperation::HashOperation(const hash::CrcHash& input) : _input(input) {}
 
-    void HashOperation::writeOperationToOutputFile(const std::string& outputPath) const{
+    void HashOperation::writeOperationToOutputFile(const std::string& outputPath) const {
 
         // opening the output file using ofstream
         std::ofstream outputFile(outputPath);
@@ -37,11 +35,5 @@ namespace operation{
         }
 
         cacheFile << _input.getInput();
-
     }
-
-
-
-
-
 }
