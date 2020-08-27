@@ -15,9 +15,12 @@ namespace operation {
         BitmapOperation::OperationType type = command[1] == "rotate" ? 
             BitmapOperation::OperationType::rotate : BitmapOperation::OperationType::convert;
         // getting the input bitmap file
-        bitmap::Bitmap input(command[2]);
-
-        return std::make_unique<Operation>(input, type);
+        try {
+            bitmap::Bitmap input(command[2]);
+            return std::make_unique<Operation>(input, type);
+        } catch (...) {
+            throw exceptions::FileReadException();
+        }
     }
 
     bool BitmapOperationFactory::isValidCommand(const std::string command[]) const {
