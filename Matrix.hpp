@@ -98,6 +98,15 @@ namespace matrix {
             uint32_t getWidth() const;
 
             /**
+             * @brief The matrix compare operator
+             * 
+             * @param other the matrix which the current matrix is compared to
+             * @return true if the matrices are equal
+             * @return false if the matrices aren't equal
+             */
+            bool operator==(const Matrix& other) const;
+
+            /**
              * @brief The adding operator for matrices
              * 
              * @param other the matrix we add to the current marix

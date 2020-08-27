@@ -81,6 +81,17 @@ namespace matrix {
         return width;
     }
 
+    bool Matrix::operator==(const Matrix& other) const {
+        for (uint32_t i = 0; i < getHeight(); i++) {
+            for (uint32_t j = 0; j < getWidth(); j++) {
+                if ((*this)(i, j) != other(i, j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     Matrix Matrix::operator+(const Matrix& other) const {
         Matrix sum;
         ErrorCode error = matrix_add(&sum._decorated, this->_decorated, other._decorated);
