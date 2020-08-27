@@ -15,8 +15,7 @@ namespace operation {
                 multiply
             };
 
-            MatrixOperation(std::string info, const matrix::Matrix& leftArg, 
-                const matrix::Matrix& rightArg, OperationType type);
+            MatrixOperation(const matrix::Matrix& leftArg, const matrix::Matrix& rightArg, OperationType type);
 
             virtual void writeOperationToOutputFile(const std::string& outputPath) const override;
 

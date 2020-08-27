@@ -6,10 +6,8 @@
 
 namespace operation {
     
-    MatrixOperation::MatrixOperation(std::string info, const matrix::Matrix& leftArg, 
-        const matrix::Matrix& rightArg, OperationType type)
-        : Operation(info), 
-        _leftArg(leftArg), 
+    MatrixOperation::MatrixOperation(const matrix::Matrix& leftArg, const matrix::Matrix& rightArg, OperationType type)
+        :_leftArg(leftArg), 
         _rightArg(rightArg), 
         _type(type) {}
 
