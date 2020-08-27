@@ -3,7 +3,6 @@
 #ifdef __cplusplus
 extern "C" {
 
-
 #include <sys/param.h>
 #include <sys/systm.h>
 
