@@ -7,45 +7,38 @@
 
 namespace operation{
 
-    const Operation& HashOperationFactory::createOperation(const std::string command[]) const {
+    std::unique_ptr<Operation> HashOperationFactory::createOperation(const std::string command[]) const {
 
-        if(!isValidCommand(command)) {
-            throw exceptions::OperationUnvalidException();
+        if (!isValidCommand(command)) {
+            throw exceptions::InvalidCommandException();
         }
 
-        std::string info = "";
-        for(uint32_t i = 0 ; i < command->size() ; i++){
-            info += command[i];
-        }
+        return std::make_unique<Operation>(readHashFromFile(command[2]));
+    }
 
-        HashOperation hash(info, readHashFromFile(command[2]));
+    bool HashOperationFactory::isValidCommand(const std::string command[]) const {
 
-        return std::move(hash);
-     }
-
-     bool HashOperationFactory::isValidCommand(const std::string command[]) const{
-
-        if(command->size() != 4){
+        if (command->size() != 4) {
             return false;
         }
 
-        if(command[0].compare("hash") != 0 ){
+        if (command[0] == "hash" != 0) {
             return false;
         }
 
-        if(command[1].compare("crc32") != 0 ){
+        if (command[1] == "crc32" != 0) {
             return false;
         }
 
         return true;
-     }
+    }
 
-     const hash::CrcHash HashOperationFactory::readHashFromFile(const std::string& pathToFile){
+    const hash::CrcHash HashOperationFactory::readHashFromFile(const std::string& pathToFile) {
 
-         std::ifstream hashFile(pathToFile);
+        std::ifstream hashFile(pathToFile);
 
-         // checking if an error has occured while opening the file
-         if (!hashFile.is_open()) {
+        // checking if an error has occured while opening the file
+        if (!hashFile.is_open()) {
             throw exceptions::FileOpenException();
         }
 
@@ -59,7 +52,7 @@ namespace operation{
 
         hash::CrcHash hash(content);
 
-        return hash;   
-     }
+        return std::move(hash);   
+    }
 
 }
