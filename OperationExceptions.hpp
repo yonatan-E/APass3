@@ -40,11 +40,11 @@ namespace operation {
                 FileFormatException();
         };
 
-        class OperationUnvalidException : public std::runtime_error{
+        class InvalidCommandException : public std::runtime_error {
 
             public:
 
-                OperationUnvalidException();
+                InvalidCommandException();
         };
     }
 }

@@ -4,10 +4,10 @@
 namespace operation {
     namespace exceptions {
         
-        FileDeleteException::FileDeleteException() 
+        FileDeleteException::FileDeleteException()
             : std::runtime_error("Error while deleting file") {}
 
-        FileOpenException::FileOpenException() 
+        FileOpenException::FileOpenException()
             : std::runtime_error("Error while opening file") {}
 
         FileWriteException::FileWriteException()
@@ -16,10 +16,10 @@ namespace operation {
         FileReadException::FileReadException()
             : std::runtime_error("Error while reading from file") {}
 
-        FileFormatException::FileFormatException() 
+        FileFormatException::FileFormatException()
             : std::runtime_error("Invalid file format") {}
 
-         OperationUnvalidException::OperationUnvalidException() 
-            : std::runtime_error("Invalid Operation command") {}
+        InvalidCommandException::InvalidCommandException()
+            : std::runtime_error("Invalid command") {}
     }
 }
