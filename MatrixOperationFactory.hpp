@@ -9,7 +9,7 @@ namespace operation {
 
         public:
 
-            virtual const Operation& createOperation(const std::string command[]) const override;
+            virtual std::unique_ptr<Operation> createOperation(const std::string command[]) const override;
 
         protected:
 

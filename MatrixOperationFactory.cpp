@@ -7,8 +7,21 @@
 
 namespace operation {
 
-    const Operation& MatrixOperationFactory::createOperation(const std::string command[]) const {
+    std::unique_ptr<Operation> MatrixOperationFactory::createOperation(const std::string command[]) const {
+        // checking if the command is valid
+        if (!isValidCommand(command)) {
+            throw exceptions::InvalidCommandException();
+        }
 
+        // getting the operation type
+        MatrixOperation::OperationType type = command[1] == "add" ? 
+            MatrixOperation::OperationType::add : MatrixOperation::OperationType::multiply;
+        // getting the left argument matrix
+        matrix::Matrix leftArg(readMatrixFromFile(command[2]));
+        // getting the right argument matrix
+        matrix::Matrix rightArg(readMatrixFromFile(command[3]));
+
+        return std::make_unique<Operation>(leftArg, rightArg, type);
     }
 
     bool MatrixOperationFactory::isValidCommand(const std::string command[]) const {
