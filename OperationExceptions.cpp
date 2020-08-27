@@ -18,5 +18,8 @@ namespace operation {
 
         FileFormatException::FileFormatException() 
             : std::runtime_error("Invalid file format") {}
+
+         OperationUnvalidException::OperationUnvalidException() 
+            : std::runtime_error("Invalid Operation command") {}
     }
 }

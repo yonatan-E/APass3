@@ -39,5 +39,12 @@ namespace operation {
 
                 FileFormatException();
         };
+
+        class OperationUnvalidException : public std::runtime_error{
+
+            public:
+
+                OperationUnvalidException();
+        };
     }
 }
