@@ -12,13 +12,8 @@ namespace operation {
     void BitmapOperation::writeOperationToOutputFile(const std::string& outputPath) const {
         // creating a copy of the input object to not affect him with turn() or gray()
         bitmap::Bitmap result(_input);
-
         // doing the operation on the copy to get the correct result object
-        if (_type == OperationType::rotate) {
-            result.turn();
-        } else {
-            result.gray();
-        }
+        _type == OperationType::rotate ? result.turn() : result.gray();
 
         // writing the result object to the output file
         try {
@@ -45,15 +40,22 @@ namespace operation {
 			throw exceptions::FileWriteException();
 		}
 
-        // line seperator
-        cacheFile << '\n';
-
         // writing the operation type into the cache file
-        if (_type == OperationType::rotate) {
-            cacheFile << "rotate";
-        } else {
-            cacheFile << "convert";
-        }
+        _type == OperationType::rotate ? cacheFile << '\n' << "rotate" << '\n' : cacheFile << '\n' << "convert" << '\n';
+
+        // getting the result bitmap
+        // creating a copy of the input object to not affect him with turn() or gray()
+        bitmap::Bitmap result(_input);
+        // doing the operation on the copy to get the correct result object
+        _type == OperationType::rotate ? result.turn() : result.gray();
+
+        // writing the data string of the input bitmap file into the cache file
+		cacheFile.write(_input.getData().data(), static_cast<std::streamsize>(_input.getData().length()));
+        // checking if an error has occured while writing to the file
+		if (!cacheFile) {
+            cacheFile.close();
+			throw exceptions::FileWriteException();
+		}
 
         // closing the ofstream
         cacheFile.close();
