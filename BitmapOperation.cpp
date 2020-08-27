@@ -49,7 +49,7 @@ namespace operation {
         // doing the operation on the copy to get the correct result object
         _type == OperationType::rotate ? result.turn() : result.gray();
 
-        // writing the data string of the input bitmap file into the cache file
+        // writing the data string of the result bitmap file into the cache file
 		cacheFile.write(_input.getData().data(), static_cast<std::streamsize>(_input.getData().length()));
         // checking if an error has occured while writing to the file
 		if (!cacheFile) {
