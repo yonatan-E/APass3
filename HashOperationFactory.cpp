@@ -7,36 +7,35 @@
 
 namespace operation{
 
-     const Operation& HashOperationFactory::createOperation(const std::string command[]) const{
+    const Operation& HashOperationFactory::createOperation(const std::string command[]) const {
 
-         if(!isValidCommand(command)){
-             throw exceptions::OperationUnvalidException();
-         }
+        if(!isValidCommand(command)) {
+            throw exceptions::OperationUnvalidException();
+        }
 
-         std::string info = "";
-         for(uint32_t i = 0 ; i < command->size() ; i++){
-             info += command[i];
-         }
+        std::string info = "";
+        for(uint32_t i = 0 ; i < command->size() ; i++){
+            info += command[i];
+        }
 
         HashOperation hash(info, readHashFromFile(command[2]));
 
-        return static_cast<Operation>(hash);
-
+        return std::move(hash);
      }
 
      bool HashOperationFactory::isValidCommand(const std::string command[]) const{
 
-         if(command->size() != 4){
-             return false;
-         }
+        if(command->size() != 4){
+            return false;
+        }
 
-         if(command[0].compare("hash") != 0 ){
-             return false;
-         }
+        if(command[0].compare("hash") != 0 ){
+            return false;
+        }
 
-         if(command[1].compare("crc32") != 0 ){
-             return false;
-         }
+        if(command[1].compare("crc32") != 0 ){
+            return false;
+        }
 
         return true;
      }
