@@ -14,7 +14,7 @@ namespace operation {
                 convert
             };
 
-            BitmapOperation(std::string info, const bitmap::Bitmap& input, OperationType type);
+            BitmapOperation(const bitmap::Bitmap& input, OperationType type);
 
             virtual void writeOperationToOutputFile(const std::string& outputPath) const override;
 

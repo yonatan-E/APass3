@@ -5,9 +5,8 @@
 
 namespace operation {
 
-    BitmapOperation::BitmapOperation(std::string info, const bitmap::Bitmap& input, OperationType type)
-        : Operation(info),
-        _input(input),
+    BitmapOperation::BitmapOperation(const bitmap::Bitmap& input, OperationType type)
+        :_input(input),
         _type(type) {} 
 
     void BitmapOperation::writeOperationToOutputFile(const std::string& outputPath) const {
