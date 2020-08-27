@@ -83,9 +83,20 @@ namespace operation {
             }
             // removing the spaces from the line string
             line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
-            for (uint32_t j = 0; j < numColumns; j += 2) {
-                // writing the current value into the matrix
-                matrix.setAt(i, j, line.at(j / 2));
+            // j will run on the string line, colIndex will run on the matrix columns
+            uint32_t j = 0, colIndex = 0;
+            // iterating over the line string and initializing the matrix
+            while (j < line.size()) {
+                int k = line.find(',', j);
+                // if k == npos, it means that there aren't more ',' in the line, so the current number
+                // is the last number in the line
+                if (k == std::string::npos) {
+                    k = line.size();
+                }
+                // setting the value in the matrix
+                matrix.setAt(i, colIndex, std::stoi(line.substr(j, k - j + 1)));
+                j = k + 1;
+                colIndex++;
             }
         }
 
