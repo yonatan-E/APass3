@@ -1,19 +1,18 @@
 #pragma once
 #include "string"
 
-namespace hash{
+namespace hash {
 
-    class CrcHash{
+    class CrcHash {
 
         std::string _input;
 
         public:
 
-            CrcHash(const std::string input);
+            CrcHash(std::string input);
 
-            std::string applyAlgorithm();
+            std::string applyAlgorithm() const;
 
-            std::string getInput();
-
+            const std::string& getInput() const;
     };
 }

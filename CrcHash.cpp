@@ -1,16 +1,16 @@
 #include "CrcHash.hpp"
-#include "string"
 #include "crc32.h"
+#include <string>
 
-namespace hash{
+namespace hash {
 
-    CrcHash::CrcHash(const std::string input) : _input(input){}
+    CrcHash::CrcHash(std::string input) : _input(std::move(input)) {}
 
-    std::string CrcHash::applyAlgorithm(){
-        return calculate_crc32c(0, (char*) _input, _input.size());
+    std::string CrcHash::applyAlgorithm() const {
+        return std::move(calculate_crc32c(0, (char*) _input, _input.size()));
     }
 
-    std::string CrcHash::getInput(){
+    const std::string& CrcHash::getInput() const {
         return _input;
     }
 }
