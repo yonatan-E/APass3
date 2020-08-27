@@ -39,5 +39,12 @@ namespace operation {
 
                 FileFormatException();
         };
+
+        class InvalidCommandException : public std::runtime_error {
+
+            public:
+
+                InvalidCommandException();
+        };
     }
 }
