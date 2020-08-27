@@ -12,8 +12,6 @@ namespace operation {
         std::string _cachePath;
 
         public:
-
-            Operation(std::string info);
             
             virtual void writeOperationToOutputFile(const std::string& outputPath) const = 0;
 
@@ -21,6 +19,9 @@ namespace operation {
 
             virtual void deleteOperationFileFromCache() const final;
 
+            virtual const std::string& getInfo() const final;
+
             virtual const std::string& getCachePath() const final; 
+
     };
 }
