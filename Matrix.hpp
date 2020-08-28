@@ -17,12 +17,6 @@ namespace matrix {
         public:   
 
             /**
-             * @brief The default constructor
-             * 
-             */
-            Matrix() = default;
-
-            /**
              * @brief The first constructor, that creates matrix by height and width
              * 
              * @param height the height of the new matrix
