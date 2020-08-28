@@ -17,6 +17,6 @@ namespace operation {
 
         private:
 
-            static const matrix::Matrix readMatrixFromFile(const std::string& pathToFile);
+            static matrix::Matrix readMatrixFromFile(const std::string& pathToFile);
     };
 }

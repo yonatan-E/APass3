@@ -17,9 +17,9 @@ namespace operation {
         MatrixOperation::OperationType type = command[1] == "add" ? 
             MatrixOperation::OperationType::add : MatrixOperation::OperationType::multiply;
         // getting the left argument matrix
-        matrix::Matrix leftArg(readMatrixFromFile(command[2]));
+        matrix::Matrix leftArg(std::move(readMatrixFromFile(command[2])));
         // getting the right argument matrix
-        matrix::Matrix rightArg(readMatrixFromFile(command[3]));
+        matrix::Matrix rightArg(std::move(readMatrixFromFile(command[3])));
 
         return std::make_unique<Operation>(leftArg, rightArg, type);
     }
@@ -37,7 +37,7 @@ namespace operation {
         return true;
     }
 
-    const matrix::Matrix MatrixOperationFactory::readMatrixFromFile(const std::string& pathToFile) {
+    matrix::Matrix MatrixOperationFactory::readMatrixFromFile(const std::string& pathToFile) {
         // opening the matrix file using ifstream
         std::ifstream matrixFile(pathToFile);
 
