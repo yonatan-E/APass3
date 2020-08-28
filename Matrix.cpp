@@ -82,6 +82,12 @@ namespace matrix {
     }
 
     bool Matrix::operator==(const Matrix& other) const {
+        // if the matrices don't have the same sizes, they aren't equal
+        if (getHeight() != other.getHeight() || getWidth() != other.getWidth()) {
+            return false;
+        }
+
+        // comparing every element of the matrices
         for (uint32_t i = 0; i < getHeight(); i++) {
             for (uint32_t j = 0; j < getWidth(); j++) {
                 if ((*this)(i, j) != other(i, j)) {
