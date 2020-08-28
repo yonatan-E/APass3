@@ -12,6 +12,8 @@ namespace operation {
         std::string _cachePath;
 
         public:
+
+            Operation();
             
             virtual void writeOperationToOutputFile(const std::string& outputPath) const = 0;
 

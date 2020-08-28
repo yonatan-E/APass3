@@ -21,7 +21,7 @@ namespace operation {
         // getting the right argument matrix
         matrix::Matrix rightArg(std::move(readMatrixFromFile(command[3])));
 
-        return std::make_unique<Operation>(leftArg, rightArg, type);
+        return std::make_unique<MatrixOperation>(leftArg, rightArg, type);
     }
 
     bool MatrixOperationFactory::isValidCommand(const std::string command[]) const {
