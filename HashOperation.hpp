@@ -13,9 +13,10 @@ namespace operation {
 
             virtual void addOperationFileToCache() const override;
 
+            virtual bool operator==(const Operation& other) const;
+
         private:
 
             hash::CrcHash _input;
-
     };
 }
