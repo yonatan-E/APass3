@@ -104,21 +104,21 @@ class BitmapDIBHeader : public BitAdjuster {
          * 
          * @return uint16_t the bits per pixel
          */
-        uint16_t getBitsPerPixel();
+        uint16_t getBitsPerPixel() const;
 
         /**
          * @brief Get the height of the bmp file
          * 
          * @return uint32_t the height 
          */
-        uint32_t getHeight();
+        uint32_t getHeight() const;
 
         /**
          * @brief Get the width of the bmp file
          * 
          * @return uint32_t the width 
          */
-        uint32_t getWidth();
+        uint32_t getWidth() const;
 };
 
 }

@@ -25,15 +25,15 @@ void BitmapDIBHeader::turn() {
 
 void BitmapDIBHeader::gray() {}
 
-uint16_t BitmapDIBHeader::getBitsPerPixel() {
+uint16_t BitmapDIBHeader::getBitsPerPixel() const {
     return _bpp;
 }
 
-uint32_t BitmapDIBHeader::getHeight() {
+uint32_t BitmapDIBHeader::getHeight() const {
     return _bitmapHeight; 
 }
 
-uint32_t BitmapDIBHeader::getWidth() {
+uint32_t BitmapDIBHeader::getWidth() const {
     return _bitmapWidth;
 }
 

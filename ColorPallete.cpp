@@ -29,7 +29,7 @@ void ColorPallete::addColor(int b, int g, int r) {
     _colors.push_back(color);
 }
 
-std::array<int, 3> ColorPallete::getColor(uint32_t index) {
+std::array<int, 3> ColorPallete::getColor(uint32_t index) const {
     return _colors.at(index);
 }
 

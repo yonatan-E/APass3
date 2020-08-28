@@ -101,7 +101,7 @@ class ColorPallete : public BitAdjuster {
          * @param index the given index
          * @return std::array<int, 3> the color in the given index
          */
-        std::array<int, 3> getColor(uint32_t index);
+        std::array<int, 3> getColor(uint32_t index) const;
 };
 
 }

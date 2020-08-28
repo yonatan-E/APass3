@@ -22,7 +22,7 @@ void BitmapHeader::turn() {}
 
 void BitmapHeader::gray() {}
 
-uint32_t BitmapHeader::getOffset() {
+uint32_t BitmapHeader::getOffset() const {
     return _offset;
 }
 

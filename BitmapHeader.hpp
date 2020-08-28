@@ -95,7 +95,7 @@ class BitmapHeader : public BitAdjuster {
          * 
          * @return uint32_t the offset of the bitmap array
          */
-        uint32_t getOffset();
+        uint32_t getOffset() const;
 };
 
 }
