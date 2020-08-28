@@ -1,7 +1,4 @@
 #include "BitmapArray.hpp"
-#include "ColorPallete.hpp"
-#include "Matrix.hpp"
-#include "ColorPallete.hpp"
 #include <string>
 #include <utility>
 #include <cstdint>
@@ -93,7 +90,11 @@ void BitmapArray::gray() {
     _colors.gray();
 }
 
-const ColorPallete& BitmapArray::getColorPallete() {
+std::array<int, 3> BitmapArray::getColorAt(uint32_t rowIndex, uint32_t colIndex) const {
+    return _colors.getColor(_pixels(rowIndex, colIndex));
+}
+
+const ColorPallete& BitmapArray::getColorPallete() const {
     return _colors;
 }
 
