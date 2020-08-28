@@ -6,6 +6,10 @@ namespace hash {
 
     CrcHash::CrcHash(std::string input) : _input(std::move(input)) {}
 
+    bool CrcHash::operator==(const CrcHash& other) const {
+        return _input == other._input;
+    }
+
     std::string CrcHash::applyAlgorithm() const {
         return std::move(calculate_crc32c(0, (char*)_input, _input.size()));
     }

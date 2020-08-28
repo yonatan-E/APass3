@@ -1,5 +1,6 @@
 #pragma once
-#include "string"
+
+#include <string>
 
 namespace hash {
 
@@ -10,6 +11,8 @@ namespace hash {
         public:
 
             CrcHash(std::string input);
+
+            bool operator==(const CrcHash& other) const;
 
             std::string applyAlgorithm() const;
 
