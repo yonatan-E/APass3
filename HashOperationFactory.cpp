@@ -6,7 +6,7 @@
 #include <fstream>
 #include <iterator>
 
-namespace operation{
+namespace operation {
 
     std::unique_ptr<Operation> HashOperationFactory::createOperation(const std::string command[]) const {
         // checking if the command is valid and throwing an exception if it isn't
@@ -14,7 +14,7 @@ namespace operation{
             throw exceptions::InvalidCommandException();
         }
 
-        return std::make_unique<Operation>(readHashFromFile(command[2]));
+        return std::make_unique<Operation>(std::move(readHashFromFile(command[2])));
     }
 
     bool HashOperationFactory::isValidCommand(const std::string command[]) const {
@@ -29,7 +29,7 @@ namespace operation{
         return true;
     }
 
-    const hash::CrcHash HashOperationFactory::readHashFromFile(const std::string& pathToFile) {
+    hash::CrcHash HashOperationFactory::readHashFromFile(const std::string& pathToFile) {
         // opening the file using ifstream
         std::ifstream hashFile(pathToFile, std::ios::binary);
 

@@ -15,6 +15,6 @@ namespace operation{
 
         private:
 
-            static const hash::CrcHash readHashFromFile(const std::string& pathToFile);
+            static hash::CrcHash readHashFromFile(const std::string& pathToFile);
     };
 }
