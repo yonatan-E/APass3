@@ -21,6 +21,8 @@ namespace operation {
 
             virtual void addOperationFileToCache() const override;
 
+            virtual bool operator==(Operation& other) const override;
+
         private:
 
             // the left argument matrix

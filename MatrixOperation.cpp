@@ -66,4 +66,15 @@ namespace operation {
         // closing the ofstream
         cacheFile.close();
     }
+
+    bool MatrixOperation::operator==(Operation& other) const {
+        try {
+            MatrixOperation& otherMatrix = dynamic_cast<MatrixOperation&>(other);
+            return this->_leftArg == otherMatrix._leftArg 
+            && this->_rightArg == otherMatrix._rightArg
+            && this->_type == otherMatrix._type;
+        } catch (...) {
+            return false;
+        }
+    }
 }

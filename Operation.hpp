@@ -17,6 +17,8 @@ namespace operation {
 
             virtual void addOperationFileToCache() const = 0;
 
+            virtual bool operator==(Operation& other) const = 0;
+
             virtual void deleteOperationFileFromCache() const final;
 
             virtual const std::string& getInfo() const final;
