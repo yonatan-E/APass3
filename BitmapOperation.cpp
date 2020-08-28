@@ -60,4 +60,14 @@ namespace operation {
         // closing the ofstream
         cacheFile.close();
     }
+
+    bool BitmapOperation::operator==(Operation& other) const {
+        try {
+            BitmapOperation& otherBitmap = dynamic_cast<BitmapOperation&>(other);
+            return this->_input == otherBitmap._input
+            && this->_type == otherBitmap._type;
+        } catch (...) {
+            return false;
+        }
+    }
 }

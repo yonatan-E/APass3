@@ -20,6 +20,8 @@ namespace operation {
 
             virtual void addOperationFileToCache() const override;
 
+            virtual bool operator==(Operation& other) const override;
+
         private:
 
             // the input bitmap file
