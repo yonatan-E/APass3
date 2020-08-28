@@ -20,7 +20,7 @@ namespace operation {
 
             virtual void addOperationFileToCache() const override;
 
-            virtual bool operator==(Operation& other) const override;
+            virtual bool operator==(const Operation& other) const override;
 
         private:
 

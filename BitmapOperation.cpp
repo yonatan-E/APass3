@@ -61,9 +61,9 @@ namespace operation {
         cacheFile.close();
     }
 
-    bool BitmapOperation::operator==(Operation& other) const {
+    bool BitmapOperation::operator==(const Operation& other) const {
         try {
-            BitmapOperation& otherBitmap = dynamic_cast<BitmapOperation&>(other);
+            const BitmapOperation& otherBitmap = dynamic_cast<const BitmapOperation&>(other);
             return this->_input == otherBitmap._input
             && this->_type == otherBitmap._type;
         } catch (...) {
