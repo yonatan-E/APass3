@@ -7,7 +7,6 @@
 #include "BitmapArray.hpp"
 #include <string>
 
-
 namespace bitmap {
 
 /**
@@ -102,7 +101,7 @@ class Bitmap: public BitAdjuster {
          * @param path the path to the file
          * @return std::string the content of the file
          */
-        std::string readFileContent(const std::string& path);
+        static std::string readFileContent(const std::string& path);
 };
 
 }

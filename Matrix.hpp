@@ -2,6 +2,7 @@
 
 #include "Matrix.h" 
 #include <cstdint>
+#include <fstream>
 
 namespace matrix {
     
@@ -97,12 +98,21 @@ namespace matrix {
             uint32_t getWidth() const;
 
             /**
+             * @brief The matrix compare operator
+             * 
+             * @param other the matrix which the current matrix is compared to
+             * @return true if the matrices are equal
+             * @return false if the matrices aren't equal
+             */
+            bool operator==(const Matrix& other) const;
+
+            /**
              * @brief The adding operator for matrices
              * 
              * @param other the matrix we add to the current marix
              * @return Matrix& the sum of the current matrix and the other matrix
              */
-            Matrix& operator+(const Matrix& other) const;
+            Matrix operator+(const Matrix& other) const;
 
             /**
              * @brief The substruction operator for matrices
@@ -110,7 +120,7 @@ namespace matrix {
              * @param other the matrix we substruct from the current marix
              * @return Matrix& the substruction of the current matrix and the other matrix
              */
-            Matrix& operator-(const Matrix& other) const;
+            Matrix operator-(const Matrix& other) const;
 
             /**
              * @brief The multiplying operator for matrices
@@ -118,7 +128,7 @@ namespace matrix {
              * @param other the matrix we multiply the current matrix with
              * @return Matrix& the multiplication of the current matrix and the other matrix
              */
-            Matrix& operator*(const Matrix& other) const;
+            Matrix operator*(const Matrix& other) const;
 
             /**
              * @brief The multiplying by scalar operator
@@ -126,7 +136,7 @@ namespace matrix {
              * @param scalar the scalar we multiply the matrix with
              * @return Matrix& the matrix after multiplying by scalar
              */
-            Matrix& operator*(double scalar) const;
+            Matrix operator*(double scalar) const;
 
             /**
              * @brief Method that turns the matrix by anti clockwise.
@@ -134,5 +144,14 @@ namespace matrix {
              * @return Matrix& the matrix after the turn
              */
             Matrix& turn();
+
+            /**
+             * @brief Operator that writes the matrix to an output stream
+             * 
+             * @param stream the given output stream
+             * @param Matrix the given Matrix
+             * @return std::ostream& the output stream, after writing the matrix
+             */
+            friend std::ostream& operator<<(std::ostream& stream, const Matrix& matrix);
     };
 }
