@@ -14,7 +14,10 @@ namespace operation {
             throw exceptions::InvalidCommandException();
         }
 
-        return std::make_unique<Operation>(std::move(readHashFromFile(command[2])));
+        // getting the input crcHash
+        hash::CrcHash input(std::move(readHashFromFile(command[2])));
+
+        return std::make_unique<Operation>(input);
     }
 
     bool HashOperationFactory::isValidCommand(const std::string command[]) const {
