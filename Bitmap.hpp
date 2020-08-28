@@ -68,6 +68,15 @@ class Bitmap: public BitAdjuster {
         ~Bitmap() = default;
 
         /**
+         * @brief The bitmap compare operator
+         * 
+         * @param other the bitmap which the current bitmap is compared to
+         * @return true if the bitmaps are equal
+         * @return false if the bitmaps aren't equal
+         */
+        bool operator==(const Bitmap& other) const;
+
+        /**
          * @brief Method that writes the content of the object into the string
          * 
          */

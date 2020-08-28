@@ -3,6 +3,7 @@
 #include <iterator>
 #include <utility>
 #include <stdexcept>
+#include <cstdint>
 
 namespace bitmap {
 
@@ -11,6 +12,23 @@ namespace bitmap {
         _header(getData().substr(0,14)), _dibHeader(getData().substr(14,40)), 
         _bitmapArray(getData().substr(_header.getOffset()), getData().substr(54 , _header.getOffset() - 54),
         _dibHeader.getBitsPerPixel(), _dibHeader.getHeight(), _dibHeader.getWidth()) {}
+
+    bool Bitmap::operator==(const Bitmap& other) const {
+        // if the bitmaps don't have the same sizes, they are,t equal
+        if (_dibHeader.getHeight() != other._dibHeader.getHeight() || _dibHeader.getWidth() != other._dibHeader.getWidth()) {
+            return false;
+        }
+
+        // comparing the colors at every pixel
+        for (uint i = 0; i < _dibHeader.getHeight(); i++) {
+            for (uint32_t j = 0; j < _dibHeader.getWidth(); j++) {
+                if (_bitmapArray.getColorAt(i, j) != other._bitmapArray.getColorAt(i, j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     void Bitmap::write() {
         // activing write() for all of the parts of the bitmap
