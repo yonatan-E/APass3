@@ -59,4 +59,13 @@ namespace operation {
         // closing the ofstream
         cacheFile.close();
     }
+
+    bool HashOperation::operator==(const Operation& other) const {
+        try {
+            const HashOperation& otherHash = dynamic_cast<const HashOperation&>(other);
+            return this->_input == otherHash._input;
+        } catch (...) {
+            return false;
+        }
+    }
 }
