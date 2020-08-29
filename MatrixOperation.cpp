@@ -12,12 +12,12 @@ namespace operation {
     void MatrixOperation::writeOperationToFile(const std::string& filePath) const {
         // if the filePath is "stdout", writing to the screen
         if (filePath == "stdout") {
-            std::cout << _result;
+            std::cout << _result << std::endl;
             // else, writing to the file in filePath
         } else {
             // opening the file using ofstream
             std::ofstream file(filePath, std::ios::trunc);
-            
+
             // checking if an error has occured while opening the file
             if (!file.is_open()) {
                 throw exceptions::FileOpenException();
