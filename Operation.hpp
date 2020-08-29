@@ -20,8 +20,6 @@ namespace operation {
 
             virtual void addOperationFileToCache() const final;
 
-            virtual void deleteOperationFileFromCache() const final;
-
             virtual uint32_t getHashCode() const final;
     };
 }
