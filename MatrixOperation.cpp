@@ -9,25 +9,25 @@ namespace operation {
     : Operation(hashCode), 
     _result(result) {}
 
-    void MatrixOperation::writeOperationToFile(const std::string& outputPath) const {
-        // if the outputPath is "stdout", writing to the screen
-        if (outputPath == "stdout") {
+    void MatrixOperation::writeOperationToFile(const std::string& filePath) const {
+        // if the filePath is "stdout", writing to the screen
+        if (filePath == "stdout") {
             std::cout << _result;
-            // else, writing to the file in outputPath
+            // else, writing to the file in filePath
         } else {
-            // opening the output file using ofstream
-            std::ofstream outputFile(outputPath);
+            // opening the file using ofstream
+            std::ofstream file(filePath, std::ios::trunc);
             
             // checking if an error has occured while opening the file
-            if (!outputFile.is_open()) {
+            if (!file.is_open()) {
                 throw exceptions::FileOpenException();
             }
 
-            // writing the result matrix into the output file
-            outputFile << _result;
+            // writing the result matrix into the file
+            file << _result;
 
             // closing the ofstream
-            outputFile.close();
+            file.close();
         }
     }
 }
