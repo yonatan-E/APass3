@@ -7,16 +7,14 @@ namespace operation {
 
     class HashOperation : public Operation {
 
-            HashOperation(const hash::CrcHash& input);
+            HashOperation(uint32_t hashCode, uint32_t result);
 
             virtual void writeOperationToOutputFile(const std::string& outputPath) const override;
 
             virtual void addOperationFileToCache() const override;
 
-            virtual bool operator==(const Operation& other) const;
-
         private:
 
-            hash::CrcHash _input;
+            uint32_t _result;
     };
 }
