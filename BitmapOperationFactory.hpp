@@ -19,5 +19,7 @@ namespace operation {
         private:
 
             static uint32_t getOperationHashCode(const bitmap::Bitmap& arg, const std::string& operationType);
+
+            static bitmap::Bitmap readBitmapFromFile(const std::string& pathToFile);
     };
 }

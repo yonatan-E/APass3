@@ -12,39 +12,31 @@ namespace operation {
             throw exceptions::InvalidCommandException();
         }
 
-        // putting this code in a try block to catch the exception which can be thrown 
-        // while creating the bitmap object, and convert it to another exception
-        try {
-            // getting the input bitmap
-            bitmap::Bitmap input(command[2]);
+        // getting the input bitmap
+        bitmap::Bitmap input(std::move(readBitmapFromFile(command[2])));
 
-            // getting the hash code of the operation
-            uint32_t hashCode = getOperationHashCode(input, command[1]);
+        // getting the hash code of the operation
+        uint32_t hashCode = getOperationHashCode(input, command[1]);
 
-            // if the operation is already exist on the cache, we will take the result of the operation
-            // from the cache, so we don't have to calculate it again
-            if (cache.contains(hashCode)) {
-                // getting the result bitmap from the cache
-                bitmap::Bitmap result("cache/" + hashCode);
-                // returning a unique pointer to the matrix operation
-                return std::make_unique<BitmapOperation>(hashCode, result);
-            }
-
-            // if the operation isn't on the cache, we will add it to the cache.
-            // first, calculating the result bitmap
-            bitmap::Bitmap result(input);
-            command[1] == "rotate" ? result.turn() : result.gray();
-            // getting the operation object
-            BitmapOperation operation(hashCode, result);
-            // adding the operation object to the cache
-            cache.add(operation);
-            // returning a smart pointer to the operation
-            return std::make_unique<BitmapOperation>(operation);
-        } catch (...) {
-            // "converting" the exception which was thrown at the ctor of Bitmap while reading from the output file
-            // to out FileReadException
-            throw exceptions::FileReadException();
+        // if the operation is already exist on the cache, we will take the result of the operation
+        // from the cache, so we don't have to calculate it again
+        if (cache.contains(hashCode)) {
+            // getting the result bitmap from the cache
+            bitmap::Bitmap result(std::move(readBitmapFromFile("cache/" + hashCode)));
+            // returning a unique pointer to the matrix operation
+            return std::make_unique<BitmapOperation>(hashCode, result);
         }
+
+        // if the operation isn't on the cache, we will add it to the cache.
+        // first, calculating the result bitmap
+        bitmap::Bitmap result(input);
+        command[1] == "rotate" ? result.turn() : result.gray();
+        // getting the operation object
+        BitmapOperation operation(hashCode, result);
+        // adding the operation object to the cache
+        cache.add(operation);
+        // returning a smart pointer to the operation
+        return std::make_unique<BitmapOperation>(operation);        
     }
 
     bool BitmapOperationFactory::isValidCommand(const std::vector<std::string>& command) const {
@@ -59,7 +51,18 @@ namespace operation {
         return true;
     }
 
-    uint32_t getOperationHashCode(const bitmap::Bitmap& arg, const std::string& operationType) {
+    uint32_t BitmapOperationFactory::getOperationHashCode(const bitmap::Bitmap& arg, const std::string& operationType) {
 
+    }
+
+    bitmap::Bitmap BitmapOperationFactory::readBitmapFromFile(const std::string& pathToFile) {
+        try {
+            bitmap::Bitmap bitmap(pathToFile);
+            return bitmap;
+        } catch (...) {
+            // catching the exception which was thrown at the ctor of Bitmap while reading from the file,
+            // and converting it to FileReadException.
+            throw exceptions::FileReadException();
+        }
     }
 }
