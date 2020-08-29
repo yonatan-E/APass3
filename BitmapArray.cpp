@@ -90,10 +90,6 @@ void BitmapArray::gray() {
     _colors.gray();
 }
 
-std::array<int, 3> BitmapArray::getColorAt(uint32_t rowIndex, uint32_t colIndex) const {
-    return _colors.getColor(_pixels(rowIndex, colIndex));
-}
-
 const ColorPallete& BitmapArray::getColorPallete() const {
     return _colors;
 }

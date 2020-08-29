@@ -100,15 +100,6 @@ class BitmapArray : public BitAdjuster {
         virtual void gray() override;
 
         /**
-         * @brief Get the Color at the specified location in the pixels matrix
-         * 
-         * @param rowIndex the row index of the color
-         * @param colIndex the column index of the color
-         * @return std::array<int, 3> the color at the specified location (rowIndex, colIndex)
-         */
-        std::array<int, 3> getColorAt(uint32_t rowIndex, uint32_t colIndex) const;
-
-        /**
          * @brief Get the Color Pallete of the object
          * 
          * @return const ColorPallete& the color pallete
