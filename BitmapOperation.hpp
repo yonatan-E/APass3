@@ -9,24 +9,15 @@ namespace operation {
 
         public:
 
-            enum class OperationType {
-                rotate,
-                convert
-            };
-
-            BitmapOperation(const bitmap::Bitmap& input, OperationType type);
+            BitmapOperation(uint32_t hashCode, const bitmap::Bitmap& result);
 
             virtual void writeOperationToOutputFile(const std::string& outputPath) const override;
 
             virtual void addOperationFileToCache() const override;
 
-            virtual bool operator==(const Operation& other) const override;
-
         private:
 
-            // the input bitmap file
-            bitmap::Bitmap _input;
-            // the operation type
-            OperationType _type;
+            // the result bitmap of the operation
+            bitmap::Bitmap _result;
     };
 }
