@@ -14,7 +14,7 @@ namespace operation {
 
             Operation(uint32_t hashCode);
 
-            virtual void writeOperationToOutputFile(const std::string& outputPath) const = 0;
+            virtual void writeOperationToFile(const std::string& filePath) const = 0;
 
             virtual void addOperationFileToCache() const = 0;
 
