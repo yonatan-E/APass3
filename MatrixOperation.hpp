@@ -13,9 +13,7 @@ namespace operation {
 
             MatrixOperation(uint32_t hashCode, const matrix::Matrix& result);
 
-            virtual void writeOperationToOutputFile(const std::string& outputPath) const override;
-
-            virtual void addOperationFileToCache() const override;
+            virtual void writeOperationToFile(const std::string& filePath) const override;
 
         private:
 
