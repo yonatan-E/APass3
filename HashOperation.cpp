@@ -10,18 +10,18 @@ namespace operation {
 
     void HashOperation::writeOperationToFile(const std::string& filePath) const {
         // opening the file using ofstream
-        std::ofstream outputFile(filePath, std::ios::trunc);
+        std::ofstream file(filePath, std::ios::trunc);
         
         // checking if an error has occured while opening the file
-        if (!outputFile.is_open()) {
+        if (!file.is_open()) {
             throw exceptions::FileOpenException();
         }
 
-        // writing the result to the file in the cache
-        outputFile << _result;
+        // writing the result to the file
+        file << _result;
 
         // closing the ofstream
-        outputFile.close();
+        file.close();
 
     }
 }
