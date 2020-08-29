@@ -8,9 +8,9 @@ namespace operation {
     : Operation(hashCode),
     _result(result) {}
 
-    void HashOperation::writeOperationToOutputFile(const std::string& outputPath) const {
-        // opening the output file using ofstream
-        std::ofstream outputFile(outputPath, std::ios::out | std::ios::trunc);
+    void HashOperation::writeOperationToFile(const std::string& filePath) const {
+        // opening the file using ofstream
+        std::ofstream outputFile(filePath, std::ios::trunc);
         
         // checking if an error has occured while opening the file
         if (!outputFile.is_open()) {
@@ -23,21 +23,5 @@ namespace operation {
         // closing the ofstream
         outputFile.close();
 
-    }
-
-    void HashOperation::addOperationFileToCache() const {
-        // opening the cache file using ofstream
-        std::ofstream cacheFile("cache/" + getHashCode(), std::ios::out | std::ios::trunc);
-
-        // checking if an error has occured while opening the file
-        if (!cacheFile.is_open()) {
-            throw exceptions::FileOpenException();
-        }
-
-        // writing the result to the file in the cache
-        cacheFile << _result;
-
-        // closing the ofstream
-        cacheFile.close();
     }
 }
