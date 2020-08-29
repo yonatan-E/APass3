@@ -3,29 +3,48 @@
 #include <string>
 #include <fstream>
 #include <algorithm>
-#include <cstdint> 
+
 namespace operation {
 
-    std::unique_ptr<Operation> MatrixOperationFactory::createOperation(const std::string command[]) const {
+    std::unique_ptr<Operation> MatrixOperationFactory::createOperation(const std::vector<std::string>& command,
+        cache::CacheManager& cache) const {
         // checking if the command is valid
         if (!isValidCommand(command)) {
             throw exceptions::InvalidCommandException();
         }
 
-        // getting the operation type
-        MatrixOperation::OperationType type = command[1] == "add" ? 
-            MatrixOperation::OperationType::add : MatrixOperation::OperationType::multiply;
         // getting the left argument matrix
         matrix::Matrix leftArg(std::move(readMatrixFromFile(command[2])));
         // getting the right argument matrix
         matrix::Matrix rightArg(std::move(readMatrixFromFile(command[3])));
 
-        return std::make_unique<MatrixOperation>(leftArg, rightArg, type);
+        // getting the hash code of the operation
+        uint32_t hashCode = getOperationHashCode(leftArg, rightArg, command[1]);
+
+        // if the operation is already exist on the cache, we will take the result of the operation
+        // from the cache, so we don't have to calculate it again
+        if (cache.contains(hashCode)) {
+            // getting the result matrix from the cache
+            matrix::Matrix result(std::move(readMatrixFromFile("cache/" + hashCode)));
+            // returning a unique pointer to the matrix operation
+            return std::make_unique<MatrixOperation>(hashCode, result);
+        }
+
+        // if the operation isn't on the cache, we will add it to the cache.
+        // first, calculating the result matrix
+        matrix::Matrix result = command[1] == "add" ? leftArg + rightArg : leftArg * rightArg;
+        // getting the operation object
+        MatrixOperation operation(hashCode, result);
+        // adding the operation object to the cache
+        cache.add(operation);
+        // returning a smart pointer to the operation
+        return std::make_unique<MatrixOperation>(operation);
     }
 
-    bool MatrixOperationFactory::isValidCommand(const std::string command[]) const {
+    bool MatrixOperationFactory::isValidCommand(const std::vector<std::string>& command) const {
         // checking if the command is valid
-        if (command[0] != "matrix"
+        if (command.size() != 5
+        || command[0] != "matrix"
         || (command[1] != "add" && command[1] != "multiply")
         || command[2].substr(command[2].size() - 4, 4) != ".txt"
         || command[3].substr(command[3].size() - 4, 4) != ".txt"
@@ -34,6 +53,11 @@ namespace operation {
         }
         return true;
     }
+
+    uint32_t getOperationHashCode(const matrix::Matrix& leftArg, const matrix::Matrix& rightArg,
+        const std::string& operationType) {
+            
+        }
 
     matrix::Matrix MatrixOperationFactory::readMatrixFromFile(const std::string& pathToFile) {
         // opening the matrix file using ifstream
@@ -101,6 +125,7 @@ namespace operation {
         // closing the ifstream
         matrixFile.close();
 
+        // returning the matrix
         return matrix;
     }
 }
