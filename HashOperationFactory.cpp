@@ -63,7 +63,8 @@ namespace operation {
     }
 
     uint32_t HashOperationFactory::getOperationHashCode(const hash::CrcHash& arg) {
-
+        hash::CrcHash hashTemp(arg.getInput() + arg.getInput());
+        return hashTemp.applyAlgorithm();
     }
 
     hash::CrcHash HashOperationFactory::readHashFromFile(const std::string& pathToFile) {
