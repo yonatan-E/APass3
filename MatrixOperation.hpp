@@ -11,7 +11,7 @@ namespace operation {
 
         public:
 
-            MatrixOperation(const matrix::Matrix& result, uint32_t hashCode);
+            MatrixOperation(uint32_t hashCode, const matrix::Matrix& result);
 
             virtual void writeOperationToOutputFile(const std::string& outputPath) const override;
 

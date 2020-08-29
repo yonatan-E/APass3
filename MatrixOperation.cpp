@@ -5,7 +5,7 @@
 
 namespace operation {
     
-    MatrixOperation::MatrixOperation(const matrix::Matrix& result, uint32_t hashCode)
+    MatrixOperation::MatrixOperation(uint32_t hashCode, const matrix::Matrix& result)
     : Operation(hashCode), 
     _result(result) {}
 
