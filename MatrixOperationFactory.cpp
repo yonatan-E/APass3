@@ -26,7 +26,11 @@ namespace operation {
         // from the cache, so we don't have to calculate it again
         if (cache.contains(hashCode)) {
             // getting the result matrix from the cache
-            matrix::Matrix result(std::move(readMatrixFromFile("cache/" + hashCode)));
+            matrix::Matrix result(std::move(readMatrixFromFile("cache/" + std::to_string(hashCode) + ".txt")));
+            // getting the operation object
+            MatrixOperation operation(hashCode, result);
+            // adding the operation object to the cache
+            cache.add(operation);
             // returning a unique pointer to the matrix operation
             return std::make_unique<MatrixOperation>(hashCode, result);
         }
@@ -52,7 +56,7 @@ namespace operation {
         return true;
     }
 
-    uint32_t getOperationHashCode(const matrix::Matrix& leftArg, const matrix::Matrix& rightArg,
+    uint32_t MatrixOperationFactory::getOperationHashCode(const matrix::Matrix& leftArg, const matrix::Matrix& rightArg,
         const std::string& operationType) {
             // creating a string to create the hash code from it
             std::string forHash = "";
