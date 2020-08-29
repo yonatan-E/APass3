@@ -2,6 +2,7 @@
 
 #include "Operation.hpp"
 #include <string>
+#include <vector>
 #include <memory>
 
 namespace operation {
@@ -10,10 +11,10 @@ namespace operation {
 
         public:
 
-            virtual std::unique_ptr<Operation> createOperation(const std::string command[]) const = 0;
+            virtual std::unique_ptr<Operation> createOperation(const std::vector<std::string>& command) const = 0;
 
         protected:
 
-            virtual bool isValidCommand(const std::string command[]) const = 0;
+            virtual bool isValidCommand(const std::vector<std::string>& command) const = 0;
     };
 }
