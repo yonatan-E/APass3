@@ -6,6 +6,8 @@
 namespace operation {
 
     class HashOperation : public Operation {
+        
+        public:
 
             HashOperation(uint32_t hashCode, uint32_t result);
 
