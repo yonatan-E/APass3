@@ -2,9 +2,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-
-#include <sys/param.h>
-#include <sys/systm.h>
+#endif
 
 uint32_t
 calculate_crc32c(uint32_t crc32c,
