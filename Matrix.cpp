@@ -117,7 +117,7 @@ namespace matrix {
          if (!error_isSuccess(error)) {
             throw Exception(error);
         }
-        return std::move(mult);
+        return mult;
     }
 
     Matrix Matrix::operator*(double scalar) const {
@@ -126,7 +126,7 @@ namespace matrix {
          if (!error_isSuccess(error)) {
             throw Exception(error);
         }
-        return std::move(multByScalar);
+        return multByScalar;
     }
 
     Matrix& Matrix::turn() {

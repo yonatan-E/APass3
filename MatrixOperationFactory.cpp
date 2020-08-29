@@ -3,8 +3,7 @@
 #include <string>
 #include <fstream>
 #include <algorithm>
-#include <cstdint>
-
+#include <cstdint> 
 namespace operation {
 
     std::unique_ptr<Operation> MatrixOperationFactory::createOperation(const std::string command[]) const {
@@ -26,8 +25,7 @@ namespace operation {
 
     bool MatrixOperationFactory::isValidCommand(const std::string command[]) const {
         // checking if the command is valid
-        if (sizeof(command) / sizeof(std::string) != 5 
-        || command[0] != "matrix" 
+        if (command[0] != "matrix"
         || (command[1] != "add" && command[1] != "multiply")
         || command[2].substr(command[2].size() - 4, 4) != ".txt"
         || command[3].substr(command[3].size() - 4, 4) != ".txt"
@@ -87,7 +85,7 @@ namespace operation {
             uint32_t j = 0, colIndex = 0;
             // iterating over the line string and initializing the matrix
             while (j < line.size()) {
-                int k = line.find(',', j);
+                size_t k = line.find(',', j);
                 // if k == npos, it means that there aren't more ',' in the line, so the current number
                 // is the last number in the line
                 if (k == std::string::npos) {
@@ -103,6 +101,6 @@ namespace operation {
         // closing the ifstream
         matrixFile.close();
 
-        return std::move(matrix);
+        return matrix;
     }
 }
