@@ -153,7 +153,9 @@ namespace matrix {
                     stream << ",";
                 }
             }
-            stream << '\n';
+            if (i < matrix.getHeight() - 1) {
+                stream << '\n';
+            }
         }
         return stream;
     }
