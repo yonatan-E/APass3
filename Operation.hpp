@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <cstdint>
 
@@ -7,8 +9,6 @@ namespace operation {
 
         // the hash code of the operation
         uint32_t _hashCode;
-        // the time and the date when the operation happened
-        std::string _info;
 
         public:
 
@@ -21,7 +21,5 @@ namespace operation {
             virtual void deleteOperationFileFromCache() const final;
 
             virtual uint32_t getHashCode() const final;
-
-            virtual const std::string& getInfo() const final; 
     };
 }
