@@ -56,9 +56,7 @@ namespace operation {
         // checking if the command is valid
         if (command.size() != 4 
         || command[0] != "hash" 
-        || command[1] != "crc32"
-        || command[2].substr(command[2].size() - 4, 4) != ".bin"
-        || (command[3].substr(command[3].size() - 4, 4) != ".bin" && command[3] != "stdout")) {
+        || command[1] != "crc32") {
             return false;
         }
         return true;
