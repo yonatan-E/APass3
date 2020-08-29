@@ -16,7 +16,7 @@ namespace operation {
 
             virtual void writeOperationToFile(const std::string& filePath) const = 0;
 
-            virtual void addOperationFileToCache() const = 0;
+            virtual void addOperationFileToCache() const final;
 
             virtual void deleteOperationFileFromCache() const final;
 
