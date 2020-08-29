@@ -43,9 +43,7 @@ namespace operation {
         // checking if the command is valid
         if (command.size() != 4 
         || command[0] != "image" 
-        || (command[1] != "rotate" && command[1] != "convert")
-        || command[2].substr(command[2].size() - 4, 4) != ".bmp"
-        || command[3].substr(command[3].size() - 4, 4) != ".bmp") {
+        || (command[1] != "rotate" && command[1] != "convert")) {
             return false;
         }
         return true;
