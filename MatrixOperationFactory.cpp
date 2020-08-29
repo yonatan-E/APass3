@@ -45,10 +45,7 @@ namespace operation {
         // checking if the command is valid
         if (command.size() != 5
         || command[0] != "matrix"
-        || (command[1] != "add" && command[1] != "multiply")
-        || command[2].substr(command[2].size() - 4, 4) != ".txt"
-        || command[3].substr(command[3].size() - 4, 4) != ".txt"
-        || (command[4].substr(command[4].size() - 4, 4) != ".txt" && command[4] != "stdout")) {
+        || (command[1] != "add" && command[1] != "multiply")) {
             return false;
         }
         return true;
