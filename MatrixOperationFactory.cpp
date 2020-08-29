@@ -1,5 +1,6 @@
 #include "MatrixOperationFactory.hpp"
 #include "OperationExceptions.hpp"
+#include "CrcHash.hpp"
 #include <string>
 #include <fstream>
 #include <algorithm>
@@ -53,7 +54,24 @@ namespace operation {
 
     uint32_t getOperationHashCode(const matrix::Matrix& leftArg, const matrix::Matrix& rightArg,
         const std::string& operationType) {
+            // creating a string to create the hash code from it
+            std::string forHash = "";
+            for (uint32_t i = 0; i < leftArg.getHeight(); i++) {
+                for (uint32_t j = 0; j < leftArg.getWidth(); j++) {
+                    forHash += leftArg(i, j);
+                }
+            }
+            for (uint32_t i = 0; i < rightArg.getHeight(); i++) {
+                for (uint32_t j = 0; j < rightArg.getWidth(); j++) {
+                    forHash += rightArg(i, j);
+                }
+            }
+            forHash += operationType;
             
+            // creating crc hash object
+            hash::CrcHash hashTemp(forHash);
+            // creating the hash code using the crc32 algorithm
+            return hashTemp.applyAlgorithm();
         }
 
     matrix::Matrix MatrixOperationFactory::readMatrixFromFile(const std::string& pathToFile) {
