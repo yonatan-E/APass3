@@ -1,5 +1,6 @@
 #include "BitmapOperationFactory.hpp"
 #include "OperationExceptions.hpp"
+#include "CrcHash.hpp"
 #include <string>
 #include <fstream>
 
@@ -50,7 +51,13 @@ namespace operation {
     }
 
     uint32_t BitmapOperationFactory::getOperationHashCode(const bitmap::Bitmap& arg, const std::string& operationType) {
-
+        // creating a string to create the hash code from it
+        std::string forHash = arg.getData() + operationType;
+        
+        // creating crc hash object
+        hash::CrcHash hashTemp(forHash);
+        // calculating the hash using the crc32 algorithm
+        return hashTemp.applyAlgorithm();
     }
 
     bitmap::Bitmap BitmapOperationFactory::readBitmapFromFile(const std::string& pathToFile) {
