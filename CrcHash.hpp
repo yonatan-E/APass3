@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <cstdint>
 
 namespace hash {
 
@@ -12,7 +13,7 @@ namespace hash {
 
             CrcHash(std::string input);
 
-            std::string applyAlgorithm() const;
+            uint32_t applyAlgorithm() const;
 
             const std::string& getInput() const;
     };
