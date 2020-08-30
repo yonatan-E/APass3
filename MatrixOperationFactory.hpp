@@ -15,7 +15,7 @@ namespace operation {
         public:
 
             /**
-             * @brief Create an operation object
+             * @brief Create an operation object according to a command
              * 
              * @param command the command to create the operation object from
              * @param cache a cache manager
