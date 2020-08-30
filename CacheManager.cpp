@@ -87,7 +87,7 @@ namespace cache {
         });
 
         // finally, adding the file of the new operation to the cache
-        operation.addOperationFileToCache();
+        operation.addOperationFileToCache(*this);
     }
 
     std::string CacheManager::getOperationFilePath(uint32_t hashCode) const {
