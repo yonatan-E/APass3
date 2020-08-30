@@ -82,15 +82,29 @@ namespace cache {
         }
 
         // writing the vector into the info file
-        std::for_each(_hashCodes.begin(), _hashCodes.end(), [&info](uint32_t hash) {
-            info << hash << '\n';
-        });
+        for (auto hashCode : _hashCodes) {
+            info << hashCode << '\n';
+        }
 
         // finally, adding the file of the new operation to the cache
-        operation.addOperationFileToCache();
+        operation.writeOperationToFile(getOperationFilePath(operation.getHashCode()));
     }
 
-    std::string CacheManager::getOperationFilePath(uint32_t hashCode) {
+    void CacheManager::clear() {
+        // removing all of the files from the cache and all of the hashCodes from the vector
+        for (auto it = _hashCodes.begin(); it != _hashCodes.end(); it++) {
+            // removing the file of the operation from the cache directory,
+            // and checking if an error has occured while removing the file
+            if (remove(getOperationFilePath(*it).c_str()) != 0) {
+                throw operation::exceptions::FileDeleteException();
+            }
+
+            // removing the hashCode from the vector
+            _hashCodes.erase(it);
+        }
+    }
+
+    std::string CacheManager::getOperationFilePath(uint32_t hashCode) const {
         // returning the path to the file of the operation with the given hashCode
         return _directoryPath + "/" + std::to_string(hashCode) + ".txt";
     }

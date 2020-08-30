@@ -9,15 +9,16 @@ namespace operation {
 
     std::unique_ptr<Operation> MatrixOperationFactory::createOperation(const std::vector<std::string>& command,
         cache::CacheManager& cache) const {
+        
         // checking if the command is valid
-        if (!isValidCommand(command)) {
+        if (command.size() != 5 || command[0] != "matrix" || (command[1] != "add" && command[1] != "multiply")) {
             throw exceptions::InvalidCommandException();
         }
 
         // getting the left argument matrix
-        matrix::Matrix leftArg(std::move(readMatrixFromFile(command[2])));
+        matrix::Matrix leftArg = std::move(readMatrixFromFile(command[2]));
         // getting the right argument matrix
-        matrix::Matrix rightArg(std::move(readMatrixFromFile(command[3])));
+        matrix::Matrix rightArg = std::move(readMatrixFromFile(command[3]));
 
         // getting the hash code of the operation
         uint32_t hashCode = getOperationHashCode(leftArg, rightArg, command[1]);
@@ -26,25 +27,15 @@ namespace operation {
         // from the cache, so we don't have to calculate it again.
         // if the operation isn't on the cache, we will calculate it and add it to the cache.
         matrix::Matrix result = cache.contains(hashCode) ?
-        matrix::Matrix(std::move(readMatrixFromFile(cache.getOperationFilePath(hashCode)))) :
-        (command[1] == "add" ? leftArg + rightArg : leftArg * rightArg);
+        std::move(readMatrixFromFile(cache.getOperationFilePath(hashCode)))
+        : (command[1] == "add" ? leftArg + rightArg : leftArg * rightArg);
 
         // getting the operation object
         MatrixOperation operation(hashCode, result);
-        // adding the operation object to the cache
+        // loading the operation object into the cache
         cache.load(operation);
         // returning a smart pointer to the operation
         return std::make_unique<MatrixOperation>(operation);
-    }
-
-    bool MatrixOperationFactory::isValidCommand(const std::vector<std::string>& command) const {
-        // checking if the command is valid
-        if (command.size() != 5
-        || command[0] != "matrix"
-        || (command[1] != "add" && command[1] != "multiply")) {
-            return false;
-        }
-        return true;
     }
 
     uint32_t MatrixOperationFactory::getOperationHashCode(const matrix::Matrix& leftArg, const matrix::Matrix& rightArg,

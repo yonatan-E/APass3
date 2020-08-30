@@ -45,14 +45,20 @@
         "typeinfo": "cpp",
         "cstring": "cpp",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cache_manager
         "iostream": "cpp",
         "chrono": "cpp",
         "codecvt": "cpp",
         "ctime": "cpp",
         "ratio": "cpp",
         "iomanip": "cpp"
+<<<<<<< HEAD
 =======
         "iostream": "cpp"
 >>>>>>> 7b0aac6730283e10bb18854ea0382947f145d2d1
+=======
+>>>>>>> cache_manager
     }
 }

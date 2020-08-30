@@ -1,13 +1,15 @@
+#pragma once
+
 #include "OperationFactory.hpp"
-#include "HashOperation.hpp"
+#include "BitmapOperation.hpp"
 
 namespace operation {
 
     /**
-     * @brief This class is in charge of creating HashOperation objects.
+     * @brief This class is in charge of creating BitmapOperation objects.
      * 
      */
-    class HashOperationFactory : public OperationFactory {
+    class BitmapOperationFactory : public OperationFactory {
 
         public:
 
@@ -24,19 +26,20 @@ namespace operation {
         private:
 
             /**
-             * @brief Get the hashCode of the hash operation
+             * @brief Get the hashCode of the bitmap operation
              * 
-             * @param arg the CrcHash argument
+             * @param arg the bitmap argument
+             * @param operationType the operation type ("rotate" or "convert")
              * @return uint32_t the hashCode of the operation
              */
-            static uint32_t getOperationHashCode(const hash::CrcHash& arg);
+            static uint32_t getOperationHashCode(const bitmap::Bitmap& arg, const std::string& operationType);
 
             /**
-             * @brief Read a CrcHash object from a file
+             * @brief Read a bitmap object from a file
              * 
              * @param pathToFile the file path
-             * @return hash::CrcHash the CrcHash which was read from the file
+             * @return bitmap::Bitmap the bitmap which was read from the file
              */
-            static hash::CrcHash readHashFromFile(const std::string& pathToFile);
+            static bitmap::Bitmap readBitmapFromFile(const std::string& pathToFile);
     };
 }
