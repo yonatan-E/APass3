@@ -31,7 +31,7 @@ namespace operation {
 
         // getting the operation object
         MatrixOperation operation(hashCode, result);
-        // adding the operation object to the cache
+        // loading the operation object into the cache
         cache.load(operation);
         // returning a smart pointer to the operation
         return std::make_unique<MatrixOperation>(operation);

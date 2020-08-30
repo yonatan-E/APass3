@@ -39,13 +39,13 @@ namespace operation {
             // reading the result hash code into var result
             cacheFile >> result;
         } else {
+            // if the operation isn't on the cache, we will calculate it and add it to the cache.
             result = input.applyAlgorithm();
         }
 
-        // if the operation isn't on the cache, we will add it to the cache.
         // getting the operation object
         HashOperation operation(hashCode, result);
-        // adding the operation object to the cache
+        // loading the operation object into the cache
         cache.load(operation);
         // returning a smart pointer to the operation
         return std::make_unique<HashOperation>(operation);
@@ -79,7 +79,7 @@ namespace operation {
         auto content = std::string{std::istreambuf_iterator<char>{hashFile}, std::istreambuf_iterator<char>{}};
 
         // checking if an error has occured while reading from file
-        if (!hashFile.eof()) {
+        if (!hashFile) {
             throw exceptions::FileReadException();
         }
         
