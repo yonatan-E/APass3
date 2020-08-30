@@ -22,14 +22,14 @@ namespace operation {
         // getting the hash code of the operation
         uint32_t hashCode = getOperationHashCode(input);
 
+        // getting the result of the operation
+        uint32_t result;
+
         // if the operation is already exist on the cache, we will take the result of the operation
         // from the cache, so we don't have to calculate it again
         if (cache.contains(hashCode)) {
-            // getting the result hash code from the cache
-            uint32_t result;
-
             // opening the cache file using ifstream
-            std::ifstream cacheFile("cache/" + hashCode);
+            std::ifstream cacheFile(cache.getOperationFilePath(hashCode));
 
             // checking if an error has occured while opening the file
             if (!cacheFile.is_open()) {
@@ -38,16 +38,15 @@ namespace operation {
 
             // reading the result hash code into var result
             cacheFile >> result;
-
-            // returning a unique pointer to the hash operation
-            return std::make_unique<HashOperation>(hashCode, result);
+        } else {
+            result = input.applyAlgorithm();
         }
 
         // if the operation isn't on the cache, we will add it to the cache.
         // getting the operation object
-        HashOperation operation(hashCode, input.applyAlgorithm());
+        HashOperation operation(hashCode, result);
         // adding the operation object to the cache
-        cache.add(operation);
+        cache.load(operation);
         // returning a smart pointer to the operation
         return std::make_unique<HashOperation>(operation);
     }
