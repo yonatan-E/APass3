@@ -3,7 +3,6 @@
 #include <fstream>
 #include <algorithm>
 #include <iterator>
-#include <filesystem>
 #include <sys/stat.h>
 
 namespace cache {
@@ -15,13 +14,13 @@ namespace cache {
         struct stat buffer;
         if (stat(_directoryPath.c_str(), &buffer) != 0) {
             // if the directory doesn't exist, creating a new one
-            if (mkdir(_directoryPath.c_str(), 0) != 0) {
+            if (mkdir(_directoryPath.c_str(), 0777) != 0) {
                 throw operation::exceptions::FileOpenException();
             }
         }
 
         // opening the info file using ifstream
-        std::ifstream info(_directoryPath);
+        std::ifstream info(_directoryPath + "/info.txt");
 
         // if the file isn't exist, creating the file using ofstream
         if (!info.is_open()) {
