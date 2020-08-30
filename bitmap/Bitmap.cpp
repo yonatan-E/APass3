@@ -74,7 +74,7 @@ namespace bitmap {
         auto content = std::string{std::istreambuf_iterator<char>{in}, std::istreambuf_iterator<char>{}};
 
         // checking if an error has occured while reading from the file
-        if (!in.eof()) {
+        if (!in) {
             throw std::runtime_error("An error has occured while reading from the file");
         }
 
