@@ -1,9 +1,11 @@
+#pragma once
+
 #include "OperationFactory.hpp"
-#include "HashOperation.hpp"
+#include "BitmapOperation.hpp"
 
 namespace operation {
 
-    class HashOperationFactory : public OperationFactory{
+    class BitmapOperationFactory : public OperationFactory {
 
         public:
 
@@ -16,8 +18,8 @@ namespace operation {
 
         private:
 
-            static uint32_t getOperationHashCode(const hash::CrcHash& arg);
+            static uint32_t getOperationHashCode(const bitmap::Bitmap& arg, const std::string& operationType);
 
-            static hash::CrcHash readHashFromFile(const std::string& pathToFile);
+            static bitmap::Bitmap readBitmapFromFile(const std::string& pathToFile);
     };
 }

@@ -1,8 +1,8 @@
 #include "CacheManager.hpp"
 #include "MatrixOperationFactory.hpp"
+#include "BitmapOperationFactory.hpp"
 #include "HashOperationFactory.hpp"
 #include <iostream>
-#include <errno.h>
 
 using namespace operation;
 
