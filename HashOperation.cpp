@@ -12,7 +12,7 @@ namespace operation {
     void HashOperation::writeOperationToFile(const std::string& filePath) const {
         // if the given file path is "stdout", writing to the screen
         if (filePath == "stdout") {
-            std::cout << _result;
+            std::cout << _result << '\n';
             // else, writing to the file
         } else {
             // opening the file using ofstream
