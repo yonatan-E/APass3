@@ -25,14 +25,14 @@ namespace operation {
         // if the operation is already exist on the cache, we will take the result of the operation
         // from the cache, so we don't have to calculate it again.
         // if the operation isn't on the cache, we will calculate it and add it to the cache.
-        matrix::Matrix result = cache.contains(hashCode) ? 
-        matrix::Matrix(std::move(readMatrixFromFile("cache/" + std::to_string(hashCode) + ".txt"))) :
+        matrix::Matrix result = cache.contains(hashCode) ?
+        matrix::Matrix(std::move(readMatrixFromFile(cache.getOperationFilePath(hashCode)))) :
         (command[1] == "add" ? leftArg + rightArg : leftArg * rightArg);
 
         // getting the operation object
         MatrixOperation operation(hashCode, result);
         // adding the operation object to the cache
-        cache.add(operation);
+        cache.load(operation);
         // returning a smart pointer to the operation
         return std::make_unique<MatrixOperation>(operation);
     }
