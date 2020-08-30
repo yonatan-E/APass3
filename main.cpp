@@ -8,7 +8,7 @@ int main() {
 
     cache::CacheManager cache(3, "cache");
 
-    std::vector<std::string> command = {"hash", "crc32", "hash1.txt", "stdout"};
+    std::vector<std::string> command = {"hash", "crc32", "hash1.txt", "hashResult.txt"};
     HashOperationFactory factory = HashOperationFactory();
     std::unique_ptr<Operation> operation = factory.createOperation(command, cache);
     operation->writeOperationToFile(command[command.size() - 1]);

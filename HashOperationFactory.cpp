@@ -5,6 +5,7 @@
 #include "CrcHash.hpp"
 #include <fstream>
 #include <iterator>
+#include <string>
 
 namespace operation {
 
@@ -24,32 +25,17 @@ namespace operation {
 
         // if the operation is already exist on the cache, we will take the result of the operation
         // from the cache, so we don't have to calculate it again
-        if (cache.contains(hashCode)) {
-            // getting the result hash code from the cache
-            uint32_t result;
+        uint32_t result = cache.contains(hashCode) ?
+        std::stoi(readHashFromFile(cache.getOperationFilePath(hashCode)).getInput()) :
+        (input.applyAlgorithm());
+        
+        HashOperation operation(hashCode, result);
 
-            // opening the cache file using ifstream
-            std::ifstream cacheFile("cache/" + hashCode);
-
-            // checking if an error has occured while opening the file
-            if (!cacheFile.is_open()) {
-                throw exceptions::FileOpenException();
-            }
-
-            // reading the result hash code into var result
-            cacheFile >> result;
-
-            // returning a unique pointer to the hash operation
-            return std::make_unique<HashOperation>(hashCode, result);
-        }
-
-        // if the operation isn't on the cache, we will add it to the cache.
-        // getting the operation object
-        HashOperation operation(hashCode, input.applyAlgorithm());
-        // adding the operation object to the cache
-        cache.add(operation);
+         // adding the operation object to the cache
+        cache.load(operation);
         // returning a smart pointer to the operation
         return std::make_unique<HashOperation>(operation);
+        
     }
 
     bool HashOperationFactory::isValidCommand(const std::vector<std::string>& command) const {
@@ -78,11 +64,6 @@ namespace operation {
 
         // reading the content of the file using iterators
         auto content = std::string{std::istreambuf_iterator<char>{hashFile}, std::istreambuf_iterator<char>{}};
-
-        // checking if an error has occured while reading from file
-        if (!hashFile.eof()) {
-            throw exceptions::FileReadException();
-        }
         
         // creating an hash object from the content of the file
         hash::CrcHash hash(content);

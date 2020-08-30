@@ -10,7 +10,7 @@ enable_testing()
 include_directories(${CMAKE_SOURCE_DIR})
 link_directories(${CMAKE_SOURCE_DIR})
 add_executable(cache_tester main.cpp CacheManager.cpp crc32.c CrcHash.cpp ErrorCode.cpp Matrix.cpp 
-MatrixOperation.cpp Operation.cpp MatrixOperationFactory.cpp OperationExceptions.cpp)
+MatrixOperation.cpp Operation.cpp MatrixOperationFactory.cpp HashOperation.cpp HashOperationFactory.cpp OperationExceptions.cpp)
 target_link_libraries(cache_tester matrix)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
