@@ -48,6 +48,12 @@ namespace cache {
             void load(const operation::Operation& operation);
 
             /**
+             * @brief Clear the cache
+             * 
+             */
+            void clear();
+
+            /**
              * @brief Get the path of the operation file of the operation with the given hashCode
              * 
              * @param hashCode the given hashCode
