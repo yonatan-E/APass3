@@ -90,7 +90,7 @@ namespace cache {
         operation.addOperationFileToCache();
     }
 
-    std::string CacheManager::getOperationFilePath(uint32_t hashCode) {
+    std::string CacheManager::getOperationFilePath(uint32_t hashCode) const {
         // returning the path to the file of the operation with the given hashCode
         return _directoryPath + "/" + std::to_string(hashCode) + ".txt";
     }

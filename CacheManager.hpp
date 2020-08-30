@@ -53,6 +53,6 @@ namespace cache {
              * @param hashCode the given hashCode
              * @return std::string the path to the operation file of the operation with the given hashCode
              */
-            std::string getOperationFilePath(uint32_t hashCode);
+            std::string getOperationFilePath(uint32_t hashCode) const;
     };
 }
