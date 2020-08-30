@@ -2,6 +2,7 @@
 
 #include "Operation.hpp"
 #include <vector>
+#include <memory>
 
 namespace cache {
 
@@ -15,6 +16,7 @@ namespace cache {
 
             CacheManager(uint32_t maxSize, std::string pathToInfoFile);
             bool contains(uint32_t hashCode) const;
-            void add(const operation::Operation& operation);
+            void load(const operation::Operation& operation);
+            
     };
 }

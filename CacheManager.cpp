@@ -25,7 +25,7 @@ namespace cache {
         return std::find(_hashCodes.begin(), _hashCodes.end(), hashCode) != _hashCodes.end();
     }
 
-    void CacheManager::add(const operation::Operation& operation) {
+    void CacheManager::load(const operation::Operation& operation) {
 
         if (!contains(operation.getHashCode())) {
 
