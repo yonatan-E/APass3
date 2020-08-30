@@ -13,6 +13,8 @@ namespace operation {
         try {
             _result.writeToFile(filePath);
         } catch (...) {
+            // catching the exception which was thrown at the writeToFile() method,
+            // and converting it to FileWriteException.
             throw exceptions::FileWriteException();
         }
     }

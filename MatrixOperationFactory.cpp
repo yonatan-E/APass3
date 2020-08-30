@@ -15,9 +15,9 @@ namespace operation {
         }
 
         // getting the left argument matrix
-        matrix::Matrix leftArg(std::move(readMatrixFromFile(command[2])));
+        matrix::Matrix leftArg = std::move(readMatrixFromFile(command[2]));
         // getting the right argument matrix
-        matrix::Matrix rightArg(std::move(readMatrixFromFile(command[3])));
+        matrix::Matrix rightArg = std::move(readMatrixFromFile(command[3]));
 
         // getting the hash code of the operation
         uint32_t hashCode = getOperationHashCode(leftArg, rightArg, command[1]);
