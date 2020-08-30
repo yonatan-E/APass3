@@ -23,7 +23,7 @@ namespace operation {
         // from the cache, so we don't have to calculate it again.
         // if the operation isn't on the cache, we will calculate it and add it to the cache.
         bitmap::Bitmap result = cache.contains(hashCode) ?
-        bitmap::Bitmap(std::move(readBitmapFromFile(cache.getOperationFilePath(hashCode))))
+        std::move(readBitmapFromFile(cache.getOperationFilePath(hashCode)))
         : bitmap::Bitmap(input);
         // calculating the operation in case that it doesn't exist on the cache
         if (!cache.contains(hashCode)) {

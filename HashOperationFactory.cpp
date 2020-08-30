@@ -38,8 +38,9 @@ namespace operation {
 
             // reading the result hash code into var result
             cacheFile >> result;
-        } else {
+
             // if the operation isn't on the cache, we will calculate it and add it to the cache.
+        } else {
             result = input.applyAlgorithm();
         }
 

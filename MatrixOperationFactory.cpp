@@ -26,8 +26,8 @@ namespace operation {
         // from the cache, so we don't have to calculate it again.
         // if the operation isn't on the cache, we will calculate it and add it to the cache.
         matrix::Matrix result = cache.contains(hashCode) ?
-        matrix::Matrix(std::move(readMatrixFromFile(cache.getOperationFilePath(hashCode)))) :
-        (command[1] == "add" ? leftArg + rightArg : leftArg * rightArg);
+        std::move(readMatrixFromFile(cache.getOperationFilePath(hashCode)))
+        : (command[1] == "add" ? leftArg + rightArg : leftArg * rightArg);
 
         // getting the operation object
         MatrixOperation operation(hashCode, result);
