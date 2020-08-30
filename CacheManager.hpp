@@ -6,6 +6,10 @@
 
 namespace cache {
 
+    /**
+     * @brief This class represents a cache manager
+     * 
+     */
     class CacheManager {
 
         // a vector with the hashCodes of all of the operations in the cache
@@ -33,7 +37,22 @@ namespace cache {
              * @return false if the given hashCode doesn't exist in the cache
              */
             bool contains(uint32_t hashCode) const;
+
+            /**
+             * @brief Load the operation into the cache:
+                    If the operation doesn't exist on the cache, add it to the cache.
+                    If the operation exists on the cache, make it more relevant on the cache.
+             * 
+             * @param operation the operation to load into the cache
+             */
             void load(const operation::Operation& operation);
+
+            /**
+             * @brief Get the path of the operation file of the operation with the given hashCode
+             * 
+             * @param hashCode the given hashCode
+             * @return std::string the path to the operation file of the operation with the given hashCode
+             */
             std::string getOperationFilePath(uint32_t hashCode);
     };
 }
