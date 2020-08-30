@@ -12,7 +12,7 @@ namespace operation {
             cache::CacheManager& cache) const {
 
         // checking if the command is valid
-        if (!isValidCommand(command)) {
+        if (command.size() != 4 || command[0] != "hash" || command[1] != "crc32") {
             throw exceptions::InvalidCommandException();
         }
 
@@ -24,7 +24,6 @@ namespace operation {
 
         // getting the result of the operation
         uint32_t result;
-
         // if the operation is already exist on the cache, we will take the result of the operation
         // from the cache, so we don't have to calculate it again
         if (cache.contains(hashCode)) {
@@ -50,16 +49,6 @@ namespace operation {
         cache.load(operation);
         // returning a smart pointer to the operation
         return std::make_unique<HashOperation>(operation);
-    }
-
-    bool HashOperationFactory::isValidCommand(const std::vector<std::string>& command) const {
-        // checking if the command is valid
-        if (command.size() != 4 
-        || command[0] != "hash" 
-        || command[1] != "crc32") {
-            return false;
-        }
-        return true;
     }
 
     uint32_t HashOperationFactory::getOperationHashCode(const hash::CrcHash& arg) {
@@ -90,5 +79,4 @@ namespace operation {
         // returning the hash object
         return hash;   
     }
-
 }

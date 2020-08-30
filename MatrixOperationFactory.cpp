@@ -9,8 +9,9 @@ namespace operation {
 
     std::unique_ptr<Operation> MatrixOperationFactory::createOperation(const std::vector<std::string>& command,
         cache::CacheManager& cache) const {
+        
         // checking if the command is valid
-        if (!isValidCommand(command)) {
+        if (command.size() != 5 || command[0] != "matrix" || (command[1] != "add" && command[1] != "multiply")) {
             throw exceptions::InvalidCommandException();
         }
 
@@ -35,16 +36,6 @@ namespace operation {
         cache.load(operation);
         // returning a smart pointer to the operation
         return std::make_unique<MatrixOperation>(operation);
-    }
-
-    bool MatrixOperationFactory::isValidCommand(const std::vector<std::string>& command) const {
-        // checking if the command is valid
-        if (command.size() != 5
-        || command[0] != "matrix"
-        || (command[1] != "add" && command[1] != "multiply")) {
-            return false;
-        }
-        return true;
     }
 
     uint32_t MatrixOperationFactory::getOperationHashCode(const matrix::Matrix& leftArg, const matrix::Matrix& rightArg,

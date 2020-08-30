@@ -8,8 +8,9 @@ namespace operation {
 
     std::unique_ptr<Operation> BitmapOperationFactory::createOperation(const std::vector<std::string>& command,
         cache::CacheManager& cache) const {
+            
         // checking if the command is valid
-        if (!isValidCommand(command)) {
+        if (command.size() != 4 || command[0] != "image" || (command[1] != "rotate" && command[1] != "convert")) {
             throw exceptions::InvalidCommandException();
         }
 
@@ -36,16 +37,6 @@ namespace operation {
         cache.load(operation);
         // returning a smart pointer to the operation
         return std::make_unique<BitmapOperation>(operation);        
-    }
-
-    bool BitmapOperationFactory::isValidCommand(const std::vector<std::string>& command) const {
-        // checking if the command is valid
-        if (command.size() != 4 
-        || command[0] != "image" 
-        || (command[1] != "rotate" && command[1] != "convert")) {
-            return false;
-        }
-        return true;
     }
 
     uint32_t BitmapOperationFactory::getOperationHashCode(const bitmap::Bitmap& arg, const std::string& operationType) {

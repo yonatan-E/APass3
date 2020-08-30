@@ -21,17 +21,6 @@ namespace operation {
             virtual std::unique_ptr<Operation> createOperation(const std::vector<std::string>& command,
                 cache::CacheManager& cache) const override;
 
-        protected:
-
-            /**
-             * @brief Check if a command is valid
-             * 
-             * @param command the given command
-             * @return true if the command is valid
-             * @return false if the command is invalid
-             */
-            virtual bool isValidCommand(const std::vector<std::string>& command) const override;
-
         private:
 
             /**
