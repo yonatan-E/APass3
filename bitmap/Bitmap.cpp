@@ -78,7 +78,7 @@ namespace bitmap {
             throw std::runtime_error("An error has occured while reading from the file");
         }
 
-        return std::move(content);
+        return content;
     }
 
 }
