@@ -6,6 +6,10 @@
 
 namespace cache {
 
+    /**
+     * @brief This class represents a cache manager
+     * 
+     */
     class CacheManager {
 
         // a vector with the hashCodes of all of the operations in the cache
