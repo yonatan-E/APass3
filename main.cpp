@@ -5,7 +5,7 @@ using namespace operation;
 
 int main() {
 
-    cache::CacheManager cache(3, "cache/info.txt");
+    cache::CacheManager cache(3, "cache");
 
     std::vector<std::string> command = {"matrix", "add", "matrix1.txt", "matrix2.txt", "stdout"};
     MatrixOperationFactory factory = MatrixOperationFactory();
