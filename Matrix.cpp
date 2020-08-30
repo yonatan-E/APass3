@@ -6,14 +6,22 @@
 namespace matrix {
     
     Matrix::Matrix(uint32_t height, uint32_t width) {
+<<<<<<< HEAD
         ErrorCode error = matrix_create(&_decorated, height, width);
+=======
+        ErrorCode error = matrix_create(&this->_decorated, height, width);
+>>>>>>> c_bitmap_factory
         if (!error_isSuccess(error)) {
             throw Exception(error);
         }
     }
 
     Matrix::Matrix(const Matrix& other) {
+<<<<<<< HEAD
         ErrorCode error = matrix_copy(&_decorated, other._decorated);
+=======
+        ErrorCode error = matrix_copy(&this->_decorated, other._decorated);
+>>>>>>> c_bitmap_factory
         if (!error_isSuccess(error)) {
             throw Exception(error);
         }
@@ -30,7 +38,11 @@ namespace matrix {
     }
 
     Matrix::Matrix(Matrix&& other) noexcept {
+<<<<<<< HEAD
         _decorated = std::exchange(other._decorated, nullptr);
+=======
+        this->_decorated = std::exchange(other._decorated, nullptr);
+>>>>>>> c_bitmap_factory
     }
 
     Matrix& Matrix::operator=(Matrix&& other) noexcept {
@@ -38,18 +50,31 @@ namespace matrix {
             return *this;
         }
 
+<<<<<<< HEAD
         matrix_destroy(_decorated);
 	    _decorated = std::exchange(other._decorated, nullptr);
+=======
+        matrix_destroy(this->_decorated);
+	    this->_decorated = std::exchange(other._decorated, nullptr);
+>>>>>>> c_bitmap_factory
 	    return *this;
     }   
 
     Matrix::~Matrix() {
+<<<<<<< HEAD
         matrix_destroy(_decorated);
+=======
+        matrix_destroy(this->_decorated);
+>>>>>>> c_bitmap_factory
     }
 
     double Matrix::operator()(uint32_t rowIndex, uint32_t colIndex) const {
         double val;
+<<<<<<< HEAD
         ErrorCode error = matrix_getValue(_decorated, rowIndex, colIndex, &val);
+=======
+        ErrorCode error = matrix_getValue(this->_decorated, rowIndex, colIndex, &val);
+>>>>>>> c_bitmap_factory
         if (!error_isSuccess(error)) {
             throw Exception(error);
         }
@@ -57,7 +82,11 @@ namespace matrix {
     }
 
     void Matrix::setAt(uint32_t rowIndex, uint32_t colIndex, double val) {
+<<<<<<< HEAD
         ErrorCode error = matrix_setValue(_decorated, rowIndex, colIndex, val);
+=======
+        ErrorCode error = matrix_setValue(this->_decorated, rowIndex, colIndex, val);
+>>>>>>> c_bitmap_factory
         if (!error_isSuccess(error)) {
             throw Exception(error);
         }
@@ -65,7 +94,11 @@ namespace matrix {
 
     uint32_t Matrix::getHeight() const {
         uint32_t height;
+<<<<<<< HEAD
         ErrorCode error = matrix_getHeight(_decorated, &height);
+=======
+        ErrorCode error = matrix_getHeight(this->_decorated, &height);
+>>>>>>> c_bitmap_factory
         if (!error_isSuccess(error)) {
             throw Exception(error);
         }
@@ -74,7 +107,11 @@ namespace matrix {
 
     uint32_t Matrix::getWidth() const {
         uint32_t width;
+<<<<<<< HEAD
         ErrorCode error = matrix_getWidth(_decorated, &width);
+=======
+        ErrorCode error = matrix_getWidth(this->_decorated, &width);
+>>>>>>> c_bitmap_factory
         if (!error_isSuccess(error)) {
             throw Exception(error);
         }
