@@ -9,7 +9,8 @@ The abstract class **OperationFactory** is a base class for all of the *operatio
 The *operation factory* classes are in charge of creating *operation* objects from a given command, using the createOperation() method. Those classes create *operation* objects without revealing the implementation and the structure of the specific *operation* class. The purpose of the *operation factory* classes is to optimize the complex initialize of the *operation* objects.    
 *Operation* objects are created using commands, like the command ```ex3.out matrix multiply matrix1.txt matrix2.txt mult_result.txt```, which gets the result of the multiplication of the given matrices, and writes it into a *MatrixOperation* object, using a *MatrixOperationFactory* object.  
 
-# Performing the SOLID principals: 
+Performing the SOLID principals:
+------------------------------------------------------------------------------------------------------------------------- 
 ***Single responsibility:*** All of the *operation* classes have a responsibility just on their own, and they are not depending on other classes like the *operation factory* classes or the *Cache Manager* class, because those classes are not in the responsibility of the *operation* classes.  
 All of the *operation factory* classes do just what in their responsibility, according to the design pattern **Abstract Factory**, which is performing creation of the specific *operation* objects, and more actions which are related to that. 
 The *Cache Manager* class does just what in its responsibility, which is managing the cache, and not doing things like create *operation* objects or another things which are outside of the classes respobsibility.  
