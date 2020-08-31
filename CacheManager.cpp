@@ -146,7 +146,7 @@ namespace cache {
             if (contains(hashCode)) {
                 std::cout << "Result was found on cache" << std::endl;
             } else {
-                std::cout << "Result wasn't found on cache" << std::endl;
+                std::cout << "Result was not found on cache" << std::endl;
             }
         }
     }
