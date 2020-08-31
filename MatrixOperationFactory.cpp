@@ -29,8 +29,8 @@ namespace operation {
             result = std::make_unique<matrix::Matrix>(readMatrixFromFile(cache.getOperationFilePath(hashCode)));
 
             // if the operation isn't on the cache, we will calculate it and add it to the cache.
-            // getting the left argument matrix
         } else {
+            // getting the left argument matrix
             auto leftArg = readMatrixFromFile(command[2]);
             // getting the right argument matrix
             auto rightArg = readMatrixFromFile(command[3]);

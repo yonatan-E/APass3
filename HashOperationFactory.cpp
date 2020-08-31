@@ -16,9 +16,6 @@ namespace operation {
             throw exceptions::InvalidCommandException();
         }
 
-        // getting the input crcHash
-        hash::CrcHash input(std::move(readHashFromFile(command[2])));
-
         // creating a vector with the operation args, which are only the path to the input bin file
         std::vector<std::string> operationArgs(command.begin() + 1, command.begin() + 4);
         // getting the hash code of the operation
@@ -42,6 +39,9 @@ namespace operation {
 
             // if the operation isn't on the cache, we will calculate it and add it to the cache.
         } else {
+            // getting the input CrcHash
+            auto input = readCrcHashFromFile(command[2]);
+            // calculating the result hashCode
             result = input.applyAlgorithm();
         }
 
@@ -55,7 +55,7 @@ namespace operation {
 
     uint32_t HashOperationFactory::calculateOperationHashCode(const std::vector<std::string>& operationArgs) const {
         // getting the input crcHash
-        auto input = readHashFromFile(operationArgs[1]);
+        auto input = readCrcHashFromFile(operationArgs[1]);
         
         // creating a CrcHash object for creating the hashCode
         hash::CrcHash hashTemp(input.getInput() + operationArgs[0]);
@@ -63,7 +63,7 @@ namespace operation {
         return hashTemp.applyAlgorithm();
     }
 
-    hash::CrcHash HashOperationFactory::readHashFromFile(const std::string& pathToFile) {
+    hash::CrcHash HashOperationFactory::readCrcHashFromFile(const std::string& pathToFile) {
         // opening the file using ifstream
         std::ifstream hashFile(pathToFile, std::ios::binary);
 

@@ -28,8 +28,8 @@ namespace operation {
             result = std::make_unique<bitmap::Bitmap>(readBitmapFromFile(cache.getOperationFilePath(hashCode)));
 
             // if the operation isn't on the cache, we will calculate it and add it to the cache.
-            // getting the input bitmap
         } else {
+            // getting the input bitmap
             result = std::make_unique<bitmap::Bitmap>(readBitmapFromFile(command[2]));
             // calculating the result bitmap
             command[1] == "rotate" ? result->turn() : result->gray();

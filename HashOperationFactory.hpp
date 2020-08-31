@@ -39,6 +39,6 @@ namespace operation {
              * @param pathToFile the file path
              * @return hash::CrcHash the CrcHash which was read from the file
              */
-            static hash::CrcHash readHashFromFile(const std::string& pathToFile);
+            static hash::CrcHash readCrcHashFromFile(const std::string& pathToFile);
     };
 }
