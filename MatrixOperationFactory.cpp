@@ -117,7 +117,12 @@ namespace operation {
                     k = line.size();
                 }
                 // setting the value in the matrix
-                matrix.setAt(i, colIndex, std::stoi(line.substr(j, k - j + 1)));
+                try {
+                    matrix.setAt(i, colIndex, std::stoi(line.substr(j, k - j + 1)));
+                } catch (...) {
+                    // throwing a file format exception in case that the stoi function hasn't succeeded
+                    throw exceptions::FileFormatException();
+                }
                 j = k + 1;
                 colIndex++;
             }
