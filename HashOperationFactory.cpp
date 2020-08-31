@@ -20,7 +20,7 @@ namespace operation {
         hash::CrcHash input(std::move(readHashFromFile(command[2])));
 
         // creating a vector with the operation args, which are only the path to the input bin file
-        std::vector<std::string> operationArgs(&command[2], &command[2]);
+        std::vector<std::string> operationArgs(&command[1], &command[2]);
         // getting the hash code of the operation
         uint32_t hashCode = calculateOperationHashCode(operationArgs);
 
@@ -55,10 +55,10 @@ namespace operation {
 
     uint32_t HashOperationFactory::calculateOperationHashCode(const std::vector<std::string>& operationArgs) const {
         // getting the input crcHash
-        auto input = readHashFromFile(operationArgs[0]);
+        auto input = readHashFromFile(operationArgs[1]);
         
         // creating a CrcHash object for creating the hashCode
-        hash::CrcHash hashTemp(input.getInput() + input.getInput());
+        hash::CrcHash hashTemp(input.getInput() + operationArgs[0]);
         // creating the hashCode using the crc32 algorithm
         return hashTemp.applyAlgorithm();
     }

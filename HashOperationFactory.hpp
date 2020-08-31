@@ -25,7 +25,8 @@ namespace operation {
              * @brief Get the hashCode of an operation
              * 
              * @param operationArgs the operation args:
-             *                      operationArgs[0] - the path to the input bin file
+             *                      operationArgs[0] - the operation type, which can be only crc32 (open to extensions)
+             *                      operationArgs[1] - the path to the input bin file
              * @return uint32_t the hashCode of the operation
              */
             virtual uint32_t calculateOperationHashCode(const std::vector<std::string>& operationArgs) const override;
