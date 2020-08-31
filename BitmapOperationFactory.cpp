@@ -14,38 +14,45 @@ namespace operation {
             throw exceptions::InvalidCommandException();
         }
 
-        // getting the input bitmap
-        bitmap::Bitmap input(std::move(readBitmapFromFile(command[2])));
-
+        // creating a vector with the operation args, which are the operation type and the path to the input bitmap file
+        std::vector<std::string> operationArgs(command.begin() + 1, command.begin() + 3);
         // getting the hash code of the operation
-        uint32_t hashCode = getOperationHashCode(input, command[1]);
+        uint32_t hashCode = calculateOperationHashCode(operationArgs);
 
+        // getting the result bitmap
+        std::unique_ptr<bitmap::Bitmap> result;
         // if the operation is already exist on the cache, we will take the result of the operation
         // from the cache, so we don't have to calculate it again.
-        // if the operation isn't on the cache, we will calculate it and add it to the cache.
-        bitmap::Bitmap result = cache.contains(hashCode) ?
-        std::move(readBitmapFromFile(cache.getOperationFilePath(hashCode)))
-        : bitmap::Bitmap(input);
-        // calculating the operation in case that it doesn't exist on the cache
-        if (!cache.contains(hashCode)) {
-            command[1] == "rotate" ? result.turn() : result.gray();
+        if (cache.contains(hashCode)) {
+            // getting the result bitmap from the cache
+            result = std::make_unique<bitmap::Bitmap>(readBitmapFromFile(cache.getOperationFilePath(hashCode)));
+
+            // if the operation isn't on the cache, we will calculate it and add it to the cache.
+        } else {
+            // getting the input bitmap
+            result = std::make_unique<bitmap::Bitmap>(readBitmapFromFile(command[2]));
+            // calculating the result bitmap
+            command[1] == "rotate" ? result->turn() : result->gray();
         }
 
         // getting the operation object
-        BitmapOperation operation(hashCode, result);
+        BitmapOperation operation(hashCode, *result);
         // adding the operation object to the cache
         cache.load(operation);
         // returning a smart pointer to the operation
         return std::make_unique<BitmapOperation>(operation);        
     }
 
-    uint32_t BitmapOperationFactory::getOperationHashCode(const bitmap::Bitmap& arg, const std::string& operationType) {
-        // creating a string to create the hash code from it
-        std::string forHash = arg.getData() + operationType;
+    uint32_t BitmapOperationFactory::calculateOperationHashCode(const std::vector<std::string>& operationArgs) const {
+        // getting the input bitmap
+        auto input = readBitmapFromFile(operationArgs[1]);
         
-        // creating crc hash object
+        // creating a string to create the hash code from it
+        std::string forHash = input.getData() + operationArgs[0];
+        
+        // creating a CrcHash hash object for creating the hashCode
         hash::CrcHash hashTemp(forHash);
-        // calculating the hash using the crc32 algorithm
+        // calculating the hashCode using the crc32 algorithm
         return hashTemp.applyAlgorithm();
     }
 

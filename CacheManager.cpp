@@ -1,9 +1,15 @@
 #include "CacheManager.hpp"
 #include "OperationExceptions.hpp"
+#include "MatrixOperationFactory.hpp"
+#include "BitmapOperationFactory.hpp"
+#include "HashOperationFactory.hpp"
 #include <fstream>
+#include <iostream>
 #include <algorithm>
 #include <iterator>
 #include <sys/stat.h>
+
+using namespace operation;
 
 namespace cache {
 
@@ -15,7 +21,7 @@ namespace cache {
         if (stat(_directoryPath.c_str(), &buffer) != 0) {
             // if the directory doesn't exist, creating a new one
             if (mkdir(_directoryPath.c_str(), 0777) != 0) {
-                throw operation::exceptions::FileOpenException();
+                throw exceptions::FileOpenException();
             }
         }
 
@@ -35,12 +41,7 @@ namespace cache {
         info.close();
     }
 
-    bool CacheManager::contains(uint32_t hashCode) const {
-        // trying to find the hash code in the vector
-        return std::find(_hashCodes.begin(), _hashCodes.end(), hashCode) != _hashCodes.end();
-    }
-
-    void CacheManager::load(const operation::Operation& operation) {
+    void CacheManager::load(const Operation& operation) {
         // if the cache doesn't contain the hash code of the operation, adding the operation to the cache
         if (!contains(operation.getHashCode())) {
 
@@ -51,7 +52,7 @@ namespace cache {
                 // removing the file of the operation from the cache directory,
                 // and checking if an error has occured while removing the file
                 if (remove(getOperationFilePath(*(_hashCodes.begin())).c_str()) != 0) {
-                    throw operation::exceptions::FileDeleteException();
+                    throw exceptions::FileDeleteException();
                 }
 
                 // removing the hash code of the operation from the vector
@@ -78,7 +79,7 @@ namespace cache {
 
         // checking is an error has occured while opening the file
         if (!info.is_open()) {
-            throw operation::exceptions::FileOpenException();
+            throw exceptions::FileOpenException();
         }
 
         // writing the vector into the info file
@@ -90,17 +91,63 @@ namespace cache {
         operation.writeOperationToFile(getOperationFilePath(operation.getHashCode()));
     }
 
+    bool CacheManager::contains(uint32_t hashCode) const {
+        // trying to find the hash code in the vector
+        return std::find(_hashCodes.begin(), _hashCodes.end(), hashCode) != _hashCodes.end();
+    }
+
     void CacheManager::clear() {
         // removing all of the files from the cache and all of the hashCodes from the vector
         for (auto it = _hashCodes.begin(); it != _hashCodes.end(); it++) {
             // removing the file of the operation from the cache directory,
             // and checking if an error has occured while removing the file
             if (remove(getOperationFilePath(*it).c_str()) != 0) {
-                throw operation::exceptions::FileDeleteException();
+                throw exceptions::FileDeleteException();
             }
 
             // removing the hashCode from the vector
             _hashCodes.erase(it);
+        }
+    }
+
+    void CacheManager::doCommand(const std::vector<std::string>& command) {
+
+        // checking if the command is valid
+        if (command[0] != "cache" || (command[1] != "search" && command[1] != "clear")) {
+            throw exceptions::InvalidCommandException();
+        }
+
+        // if the given command is "clear", making the cache empty
+        if (command[1] == "clear") {
+            // clearing the cache
+            clear();
+            // printing a message about clearing the cache
+            std::cout << "Cache was cleared";
+
+            // if the given command is "search", searching for the specified operation
+        } else {
+            // creating a unique pointer to an operation factory object, which will be initialized
+            // according to the specified operation
+            std::unique_ptr<OperationFactory> factory;
+            // initializing the pointer according to command line arguments
+            if (command[2] == "matrix") {
+                factory = std::make_unique<MatrixOperationFactory>();
+            } else if (command[2] == "image") {
+                factory = std::make_unique<BitmapOperationFactory>();
+            } else if (command[2] == "hash") {
+                factory = std::make_unique<HashOperationFactory>();
+            }
+
+            // creating a vector with the operation args
+            std::vector<std::string> operationArgs(command.begin() + 3, command.begin() + command.size());
+            // getting the hashCode of the specified operation
+            uint32_t hashCode = factory->calculateOperationHashCode(operationArgs);
+            // checking if the cache contains the specified operation, and printing a message according to that
+            if (contains(hashCode)) {
+                std::cout << "Result was found on cache" << std::endl;
+            } else {
+                std::cout << "Result was not found on cache" << std::endl;
+            }
         }
     }
 

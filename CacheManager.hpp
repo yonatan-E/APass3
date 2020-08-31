@@ -30,15 +30,6 @@ namespace cache {
             CacheManager(uint32_t maxSize, std::string directoryPath);
 
             /**
-             * @brief Check if the given hashCode exists in the cache
-             * 
-             * @param hashCode the given hashCode
-             * @return true if the given hashCode exists in the cache
-             * @return false if the given hashCode doesn't exist in the cache
-             */
-            bool contains(uint32_t hashCode) const;
-
-            /**
              * @brief Load the operation into the cache:
                     If the operation doesn't exist on the cache, add it to the cache.
                     If the operation exists on the cache, make it more relevant on the cache.
@@ -48,10 +39,26 @@ namespace cache {
             void load(const operation::Operation& operation);
 
             /**
+             * @brief Check if the given hashCode exists in the cache
+             * 
+             * @param hashCode the given hashCode
+             * @return true if the given hashCode exists in the cache
+             * @return false if the given hashCode doesn't exist in the cache
+             */
+            bool contains(uint32_t hashCode) const;
+
+            /**
              * @brief Clear the cache
              * 
              */
             void clear();
+
+            /**
+             * @brief Do a cache command, which can be search or clear
+             * 
+             * @param command the given command
+             */
+            void doCommand(const std::vector<std::string>& command);
 
             /**
              * @brief Get the path of the operation file of the operation with the given hashCode

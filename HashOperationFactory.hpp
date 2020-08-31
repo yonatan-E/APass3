@@ -21,15 +21,17 @@ namespace operation {
             virtual std::unique_ptr<Operation> createOperation(const std::vector<std::string>& command,
                 cache::CacheManager& cache) const override;
 
-        private:
-
             /**
-             * @brief Get the hashCode of the hash operation
+             * @brief Get the hashCode of an operation
              * 
-             * @param arg the CrcHash argument
+             * @param operationArgs the operation args:
+             *                      operationArgs[0] - the operation type, which can be only crc32 (open to extensions)
+             *                      operationArgs[1] - the path to the input bin file
              * @return uint32_t the hashCode of the operation
              */
-            static uint32_t getOperationHashCode(const hash::CrcHash& arg);
+            virtual uint32_t calculateOperationHashCode(const std::vector<std::string>& operationArgs) const override;
+
+        private:
 
             /**
              * @brief Read a CrcHash object from a file
@@ -37,6 +39,6 @@ namespace operation {
              * @param pathToFile the file path
              * @return hash::CrcHash the CrcHash which was read from the file
              */
-            static hash::CrcHash readHashFromFile(const std::string& pathToFile);
+            static hash::CrcHash readCrcHashFromFile(const std::string& pathToFile);
     };
 }

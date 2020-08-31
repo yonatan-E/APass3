@@ -24,18 +24,18 @@ namespace operation {
             virtual std::unique_ptr<Operation> createOperation(const std::vector<std::string>& command,
                 cache::CacheManager& cache) const override;
 
-        private:
-
             /**
-             * @brief Get the hashCode of a matrix operation
+             * @brief Get the hashCode of an operation
              * 
-             * @param leftArg the left matrix argument
-             * @param rightArg the right matrix argument
-             * @param operationType the operation type ("add" or "multiply")
+             * @param operationArgs the operation args:
+             *                      operationArgs[0] - the operation type, can be "add" or "multiply"
+             *                      operationArgs[1] - the path to the left argument matrix file
+             *                      operationArgs[2] - the path to the right argument matrix file
              * @return uint32_t the hashCode of the operation
              */
-            static uint32_t getOperationHashCode(const matrix::Matrix& leftArg, const matrix::Matrix& rightArg,
-                const std::string& operationType);
+            virtual uint32_t calculateOperationHashCode(const std::vector<std::string>& operationArgs) const override;
+
+        private:
 
             /**
              * @brief Read a matrix from a file
