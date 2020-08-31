@@ -14,4 +14,7 @@ The cache *Info* file contains a list of cache files in an order according to th
 We designed the project using the **abstract factory** design pattern. The objects that are handeled are *Operations*, objects of a class implementing the 
 *Operation* interface.
 
-An operation is a command, for example ```ex3.out matrix multiply matrix1.txt matrix2.txt mult_result.txt```
+An *operation* is a command, for example ```ex3.out matrix multiply matrix1.txt matrix2.txt mult_result.txt```, written into an object. The object contains
+the input/s, and the hash code of the input. in that way, we can compare between operations using the hash codes, and calculating the result only if neccesary.
+The *OperationFactory* abstract factory is the base factory class, which is implemented by all of the operation classes implementing the 
+*Operation* interface. Each of these classes has a ```CreateOperation``` method, which returns a new *operation* object from the class type.
