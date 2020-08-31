@@ -14,7 +14,7 @@ If we do not find a matching file in the cache, then we have to perform a calcul
 The cache *Info* file contains a list of cache files in an order according to the LRU cache algorithm; when a new file is added 
 it is added to the top and the last file is removed from the cache, and if we perform a calculation and it exists in the cache then the cache file is moved to the top.
 
-## The Structure
+## The Design
 We designed the project using the **abstract factory** design pattern. The objects that are handeled are *Operations*, objects of a class implementing the 
 *Operation* interface.
 
