@@ -122,7 +122,7 @@ namespace cache {
             // clearing the cache
             clear();
             // printing a message about clearing the cache
-            std::cout << "Cache was cleared";
+            std::cout << "Cache was cleared" << std::endl;
 
             // if the given command is "search", searching for the specified operation
         } else {
