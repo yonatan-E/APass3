@@ -15,50 +15,64 @@ namespace operation {
             throw exceptions::InvalidCommandException();
         }
 
-        // getting the left argument matrix
-        matrix::Matrix leftArg = std::move(readMatrixFromFile(command[2]));
-        // getting the right argument matrix
-        matrix::Matrix rightArg = std::move(readMatrixFromFile(command[3]));
-
+        // creating a vector with the operation args, which are the operation type and the pathes to the input matrices files
+        std::vector<std::string> operationArgs(&command[1], &command[3]);
         // getting the hash code of the operation
-        uint32_t hashCode = getOperationHashCode(leftArg, rightArg, command[1]);
+        uint32_t hashCode = calculateOperationHashCode(operationArgs);
 
+        // getting the result matrix
+        std::unique_ptr<matrix::Matrix> result;
         // if the operation is already exist on the cache, we will take the result of the operation
         // from the cache, so we don't have to calculate it again.
-        // if the operation isn't on the cache, we will calculate it and add it to the cache.
-        matrix::Matrix result = cache.contains(hashCode) ?
-        std::move(readMatrixFromFile(cache.getOperationFilePath(hashCode)))
-        : (command[1] == "add" ? leftArg + rightArg : leftArg * rightArg);
+        if (cache.contains(hashCode)) {
+            // getting the result matrix from the cache
+            result = std::make_unique<matrix::Matrix>(readMatrixFromFile(cache.getOperationFilePath(hashCode)));
+
+            // if the operation isn't on the cache, we will calculate it and add it to the cache.
+            // getting the left argument matrix
+        } else {
+            auto leftArg = readMatrixFromFile(command[2]);
+            // getting the right argument matrix
+            auto rightArg = readMatrixFromFile(command[3]);
+            // calculating the result matrix
+            result = std::make_unique<matrix::Matrix>(command[1] == "add" ? leftArg + rightArg : leftArg * rightArg);
+        }
 
         // getting the operation object
-        MatrixOperation operation(hashCode, result);
+        MatrixOperation operation(hashCode, *result);
         // loading the operation object into the cache
         cache.load(operation);
         // returning a smart pointer to the operation
         return std::make_unique<MatrixOperation>(operation);
     }
 
-    uint32_t MatrixOperationFactory::getOperationHashCode(const matrix::Matrix& leftArg, const matrix::Matrix& rightArg,
-        const std::string& operationType) {
-            // creating a string to create the hash code from it
-            std::string forHash = "";
-            for (uint32_t i = 0; i < leftArg.getHeight(); i++) {
-                for (uint32_t j = 0; j < leftArg.getWidth(); j++) {
-                    forHash += leftArg(i, j);
-                }
+    uint32_t MatrixOperationFactory::calculateOperationHashCode(const std::vector<std::string>& operationArgs) const {
+        // getting the left argument matrix
+        auto leftArg = readMatrixFromFile(operationArgs[1]);
+        // getting the right argument matrix
+        auto rightArg = readMatrixFromFile(operationArgs[2]);
+
+        // creating a string to create the hash code from it
+        std::string forHash = "";
+        for (uint32_t i = 0; i < leftArg.getHeight(); i++) {
+            for (uint32_t j = 0; j < leftArg.getWidth(); j++) {
+                forHash += leftArg(i, j);
             }
-            for (uint32_t i = 0; i < rightArg.getHeight(); i++) {
-                for (uint32_t j = 0; j < rightArg.getWidth(); j++) {
-                    forHash += rightArg(i, j);
-                }
-            }
-            forHash += operationType;
-            
-            // creating crc hash object
-            hash::CrcHash hashTemp(forHash);
-            // creating the hash code using the crc32 algorithm
-            return hashTemp.applyAlgorithm();
         }
+        for (uint32_t i = 0; i < rightArg.getHeight(); i++) {
+            for (uint32_t j = 0; j < rightArg.getWidth(); j++) {
+                forHash += rightArg(i, j);
+            }
+        }
+
+        // adding the operation type to the string
+        forHash += operationArgs[0];
+            
+        // creating a CrcHash object for creating the hashCode
+        hash::CrcHash hashTemp(forHash);
+        // creating the hashCode code using the crc32 algorithm
+        return hashTemp.applyAlgorithm();
+    }
 
     matrix::Matrix MatrixOperationFactory::readMatrixFromFile(const std::string& pathToFile) {
         // opening the matrix file using ifstream

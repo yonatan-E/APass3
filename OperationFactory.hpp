@@ -25,5 +25,13 @@ namespace operation {
              */
             virtual std::unique_ptr<Operation> createOperation(const std::vector<std::string>& command,
                 cache::CacheManager& cache) const = 0;
+
+            /**
+             * @brief Get the hashCode of an operation
+             * 
+             * @param operationArgs the operation args, specific for the operation
+             * @return uint32_t the hashCode of the operation
+             */
+            virtual uint32_t calculateOperationHashCode(const std::vector<std::string>& operationArgs) const = 0;
     };
 }

@@ -23,16 +23,17 @@ namespace operation {
             virtual std::unique_ptr<Operation> createOperation(const std::vector<std::string>& command,
                 cache::CacheManager& cache) const override;
 
-        private:
-
             /**
-             * @brief Get the hashCode of the bitmap operation
+             * @brief Get the hashCode of an operation
              * 
-             * @param arg the bitmap argument
-             * @param operationType the operation type ("rotate" or "convert")
+             * @param operationArgs the operation args:
+             *                      operationArgs[0] - the operation type, can be "rotate" or "convert"
+             *                      operationArgs[1] - the path to the input bitmap file
              * @return uint32_t the hashCode of the operation
              */
-            static uint32_t getOperationHashCode(const bitmap::Bitmap& arg, const std::string& operationType);
+            virtual uint32_t calculateOperationHashCode(const std::vector<std::string>& operationArgs) const override;
+
+        private:
 
             /**
              * @brief Read a bitmap object from a file
