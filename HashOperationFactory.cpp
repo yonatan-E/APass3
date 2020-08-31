@@ -69,14 +69,11 @@ namespace operation {
 
         // reading the content of the file using iterators
         auto content = std::string{std::istreambuf_iterator<char>{hashFile}, std::istreambuf_iterator<char>{}};
-<<<<<<< HEAD
-=======
 
         // checking if an error has occured while reading from file
         if (!hashFile) {
             throw exceptions::FileReadException();
         }
->>>>>>> 70296e3e4a8ef02b40866fc417a0a9de47a3d593
         
         // creating an hash object from the content of the file
         hash::CrcHash hash(content);

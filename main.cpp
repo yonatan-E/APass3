@@ -11,12 +11,6 @@ int main(int argc, char *argv[]) {
     // converting the command line arguments into a vector
     std::vector<std::string> command(argv + 1, argv + argc);
 
-<<<<<<< HEAD
-    std::vector<std::string> command = {"hash", "crc32", "hash1.txt", "hashResult.txt"};
-    HashOperationFactory factory = HashOperationFactory();
-    std::unique_ptr<Operation> operation = factory.createOperation(command, cache);
-    operation->writeOperationToFile(command[command.size() - 1]);
-=======
     try {
 
         // creating a new cache manager in size 5, which its data will be saved at the directory "cache"
@@ -43,5 +37,4 @@ int main(int argc, char *argv[]) {
     }
 
     return 0;
->>>>>>> 70296e3e4a8ef02b40866fc417a0a9de47a3d593
 }
