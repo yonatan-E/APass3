@@ -26,7 +26,7 @@ The *OperationFactory* abstract factory is the base factory class, which is impl
 The code designed this way makes the cache management in the main function simple and readble.
 for each caculation command, a new suitable *operation* object is created, and can managed easily .
 A list of hash codes, which is initialized at every run of the program with the *Info* file, 
-is kept in the hash manager, and every new *operation* its hash code is added to the list. 
+is kept in the hash manager, and every new *operation*'s hash code is added to the list. 
 This enables us to easy and simple *search* and *clear* methods on the cache manager.
 
 
