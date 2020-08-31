@@ -1,20 +1,17 @@
 # Assignment 3 - cache manager
 ## Overview
-In this project we wrote a program which solves different types of problems, and uses chach management to enable faster 
-calculations based on calculations which have been previously made.
+In this project we wrote a program which supports different kinds of operations, and uses cache management to enable faster calculations based on calculations which have been previously made.
 
-## The Cache Manager
-to achieve faster calculations based on calculations which have been previously made, we implemented a cache manager structure which manages calculation files
-and makes sure no uneccesary calculations are made. First of all, a "cache" folder is created. That folder includes 2 types of files; The *Info* file, and the result 
-files. The *info* file, contains a list of the names of the hash result files, each name representing the hash of the input files of the calculation, 
-In a specific order. Once a new calculation is made, the input hash is calculated and a search on the *Info* file is initiated. 
-if we found a file with the same hash - that means we found the file in the cache and we return the content of the file, so no caculation is needed.
-If we do not find a matching file in the cache, then we have to perform a calculation, and then add the new file to the cache. 
+## About the Cache Manager
+To achieve faster calculations based on calculations which have been previously made, we implemented a cache manager module that manages the calculations and saves the five most relevant results, so no uneccesary calculations are made.
+The cache saves the files in a folder named *cache*. That folder contains files which holds the recent relevant results.
+That folder also saves the file *info.txt*, which contains meta data about the files, and will hold it through the different runs of the program. The *info.txt* file contains the ID's of all of the files in the *cache* folder, and will hold information about the relevance of each file. The relevance of each file will be according to the LRU algorithm, which works actually like a priority queue:  
+If a result is not exist on the cache, it will be inserted to the end of the queue, and if the result is already exist on the cache, its place will be changed to the end of the queue. If the queue is full (the cache is full), popping the result which is placed at the start of the queue.  
+**About the way the result are saved in the cache**: Every operation has a *hashCode*, which is designed in a very specific way, according to the operation, and is calculated using the *crc32* algorithm.  
+The cache saves an operation by a *hashCode* and a *result file*, in a way that the name of the result file is the hashCode of the operation, to make it more comfortable. When a new operation is added to the cache, we can easily check if the operation is already exist in the cache, by just calculating the *hashCode* of the new operation and compare it with all of the *hashCodes* in the cache. That thing allows us to get the result of an operation in O(1) time, if the operation is already exist in the cache.  
+This hashing cache technique is very safe, because the chance that there will be two different operations with the same *hashCode* is almost zero, due of the specific way that the hash is designed and calculated in which promises us that collisions are almost not possible, and due to the fact that the number of possible *hashCodes* that can be created that way is **2^32**, while the maximun capacity of the cache is only **five**.
 
-The cache *Info* file contains a list of cache files in an order according to the LRU cache algorithm; when a new file is added 
-it is added to the top and the last file is removed from the cache, and if we perform a calculation and it exists in the cache then the cache file is moved to the top.
-
-## The Design
+## About the Design
 We designed the project using the **abstract factory** design pattern. The objects that are handeled are *Operations*, objects of a class implementing the 
 *Operation* interface.
 
