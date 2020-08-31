@@ -3,13 +3,13 @@
 In this project we wrote a program which supports different kinds of operations, and uses cache management to enable faster calculations based on calculations which have been previously made.
 
 About the Design
-==========================================================================================================================
+--------------------------------------------------------------------------------------------------------------------------
 The project is designed according to the **Abstract Factory** design pattern. The objects that are created by the factories are *operation* objects, which are objects from classes that inherit from the abstract class **Operation**, like *MatrixOperation*, *BitmapOperation*, and more. All of the *operation* objects holds at least their *hashCode* and the result of the specific *operation*. The use of the *hashCode* is explained at the part of the *Cache Manager*.  
 The abstract class **OperationFactory** is a base class for all of the *operation factory* classes, like *MatrixOperationFactory*, *BitmapOperationFactory*, and more.   
 The *operation factory* classes are in charge of creating *operation* objects from a given command, using the createOperation() method. Those classes create *operation* objects without revealing the implementation and the structure of the specific *operation* class. The purpose of the *operation factory* classes is to optimize the complex initialize of the *operation* objects.    
 *Operation* objects are created using commands, like the command ```ex3.out matrix multiply matrix1.txt matrix2.txt mult_result.txt```, which gets the result of the multiplication of the given matrices, and writes it into a *MatrixOperation* object, using a *MatrixOperationFactory* object.  
 
-## Performing the SOLID principals:  
+# **Performing the SOLID principals:**  
 ***Single responsibility:*** All of the *operation* classes have a responsibility just on their own, and they are not depending on other classes like the *operation factory* classes or the *Cache Manager* class, because those classes are not in the responsibility of the *operation* classes.  
 All of the *operation factory* classes do just what in their responsibility, according to the design pattern **Abstract Factory**, which is performing creation of the specific *operation* objects, and more actions which are related to that. 
 The *Cache Manager* class does just what in its responsibility, which is managing the cache, and not doing things like create *operation* objects or another things which are outside of the classes respobsibility.  
@@ -17,9 +17,9 @@ The *Cache Manager* class does just what in its responsibility, which is managin
 On the other hand, the system is very tough and close for changes because the *CacheManager* class uses and based on the structure and the behavior of the *operation* and the *operation factory* classes, so if the structure or the behavior of those classes will be changed, there is a big chance that the *CacheManager* will not work correctly.  
 
 About the Cache Manager
-==========================================================================================================================
-To achieve faster calculations based on calculations which have been previously made, we implemented a cache manager module that manages the calculations and saves the five most relevant results, so no uneccesary calculations are made.  
-The cache saves the result files in a folder named *cache*. That folder contains files which holds the recent relevant results.      
+--------------------------------------------------------------------------------------------------------------------------
+To achieve faster calculations based on calculations which have been previously made, we implemented a cache manager module that manages the calculations and saves the five most relevant results, so no uneccesary calculations are made.
+The cache saves the result files in a folder named *cache*. That folder contains files which holds the recent relevant results.
 That folder also saves the file *info.txt*, which contains meta data about the result files, and will hold it through the different runs of the program. The *info.txt* file contains the *hashCodes* of all of the results in the *cache* folder, and holds information about the relevance of each result. The relevance of each result will be according to the LRU algorithm, which works actually like a priority queue:  
 When loading a new result into the cache, if the result is not exist on the cache, it will be inserted to the end of the queue, and if the result is already exist on the cache, its place will be changed to the end of the queue. If the queue is already full (the cache is full), popping the result which is placed at the start of the queue, which is the most unrelevant result.  
 The meta data that the *info.txt* file saves is about the current order of the results in the priority queue, according to the LRU algorithm.      
