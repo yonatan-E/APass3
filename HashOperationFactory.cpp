@@ -5,7 +5,6 @@
 #include "CrcHash.hpp"
 #include <fstream>
 #include <iterator>
-#include <string>
 
 namespace operation {
 
@@ -52,7 +51,6 @@ namespace operation {
         cache.load(operation);
         // returning a smart pointer to the operation
         return std::make_unique<HashOperation>(operation);
-        
     }
 
     uint32_t HashOperationFactory::calculateOperationHashCode(const std::vector<std::string>& operationArgs) const {

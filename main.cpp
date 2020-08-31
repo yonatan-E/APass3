@@ -14,12 +14,13 @@ int main(int argc, char *argv[]) {
 
     try {
 
-        if(argc < 2){
+        // checking if the command length is valid
+        if (argc < 2) {
             throw exceptions::InvalidCommandException();
         }
 
-        // creating a new cache manager in size 3, which its data will be saved at the directory "cache"
-        cache::CacheManager cache(3, "cache");
+        // creating a new cache manager in size 5, which its data will be saved at the directory "cache"
+        cache::CacheManager cache(5, "cache");
 
         // if the first argument is "cache", the command is a cache command
         if (command[0] == "cache") {
