@@ -14,7 +14,11 @@ int main(int argc, char *argv[]) {
 
     try {
 
-        // creating a new cache manager in size 5, which its data will be saved at the directory "cache"
+        if(argc < 2){
+            throw exceptions::InvalidCommandException();
+        }
+
+        // creating a new cache manager in size 3, which its data will be saved at the directory "cache"
         cache::CacheManager cache(3, "cache");
 
         // if the first argument is "cache", the command is a cache command
