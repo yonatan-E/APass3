@@ -16,7 +16,7 @@ namespace operation {
         }
 
         // creating a vector with the operation args, which are the operation type and the pathes to the input matrices files
-        std::vector<std::string> operationArgs(&command[1], &command[3]);
+        std::vector<std::string> operationArgs(command.begin() + 1, command.begin() + 4);
         // getting the hash code of the operation
         uint32_t hashCode = calculateOperationHashCode(operationArgs);
 

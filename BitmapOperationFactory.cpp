@@ -15,7 +15,7 @@ namespace operation {
         }
 
         // creating a vector with the operation args, which are the operation type and the path to the input bitmap file
-        std::vector<std::string> operationArgs(&command[1], &command[2]);
+        std::vector<std::string> operationArgs(command.begin() + 1, command.begin() + 3);
         // getting the hash code of the operation
         uint32_t hashCode = calculateOperationHashCode(operationArgs);
 

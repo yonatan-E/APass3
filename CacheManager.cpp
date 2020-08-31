@@ -138,8 +138,10 @@ namespace cache {
                 factory = std::make_unique<HashOperationFactory>();
             }
 
+            // creating a vector with the operation args
+            std::vector<std::string> operationArgs(command.begin() + 3, command.begin() + command.size());
             // getting the hashCode of the specified operation
-            uint32_t hashCode = factory->calculateOperationHashCode(std::vector<std::string>());
+            uint32_t hashCode = factory->calculateOperationHashCode(operationArgs);
             // checking if the cache contains the specified operation, and printing a message according to that
             if (contains(hashCode)) {
                 std::cout << "Result was found on cache" << std::endl;
