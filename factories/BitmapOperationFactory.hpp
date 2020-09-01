@@ -1,7 +1,7 @@
 #pragma once
 
 #include "OperationFactory.hpp"
-#include "../operations/BitmapOperation.hpp"
+#include "BitmapOperation.hpp"
 
 namespace operation {
 

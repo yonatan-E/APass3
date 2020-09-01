@@ -8,11 +8,13 @@ add_compile_options(-Wall -Wextra -pedantic -Werror)
 enable_testing()
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../bin")
-include_directories(${CMAKE_SOURCE_DIR}/matrix ${CMAKE_SOURCE_DIR}/bitmap ${CMAKE_SOURCE_DIR}/hash)
+include_directories(${CMAKE_SOURCE_DIR}/matrix ${CMAKE_SOURCE_DIR}/bitmap ${CMAKE_SOURCE_DIR}/hash
+${CMAKE_SOURCE_DIR}/operation ${CMAKE_SOURCE_DIR}/factories ${CMAKE_SOURCE_DIR}/cachemanager)
 link_directories(${CMAKE_SOURCE_DIR}/matrix)
-add_executable(ex3 main.cpp manager/CacheManager.cpp hash/crc32.c hash/CrcHash.cpp matrix/Matrix.cpp matrix/ErrorCode.cpp
+add_executable(ex3 main.cpp cachemanager/CacheManager.cpp hash/crc32.c hash/CrcHash.cpp matrix/Matrix.cpp matrix/ErrorCode.cpp
 bitmap/BitAdjuster.cpp bitmap/Bitmap.cpp bitmap/BitmapHeader.cpp bitmap/BitmapDIBHeader.cpp bitmap/BitmapArray.cpp bitmap/ColorPallete.cpp
-operations/Operation.cpp operations/MatrixOperation.cpp operations/BitmapOperation.cpp operations/HashOperation.cpp factories/MatrixOperationFactory.cpp factories/BitmapOperationFactory.cpp factories/HashOperationFactory.cpp 
+operations/Operation.cpp operations/MatrixOperation.cpp operations/BitmapOperation.cpp operations/HashOperation.cpp 
+factories/MatrixOperationFactory.cpp factories/BitmapOperationFactory.cpp factories/HashOperationFactory.cpp 
 exceptions/OperationExceptions.cpp)
 target_link_libraries(ex3 matrix)
 

@@ -1,5 +1,5 @@
 #include "MatrixOperation.hpp"
-#include "../exceptions/OperationExceptions.hpp"
+#include "OperationExceptions.hpp"
 #include <fstream>
 #include <iostream>
 
