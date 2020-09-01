@@ -14,7 +14,7 @@ using namespace operation;
 
 namespace cache {
 
-    CacheManager::CacheManager(uint32_t maxSize, std::string directoryPath)
+    CacheManager::CacheManager(const uint32_t maxSize,std::string directoryPath)
     : _maxSize(maxSize), _directoryPath(std::move(directoryPath)) {
         
         // checking if the directory exists

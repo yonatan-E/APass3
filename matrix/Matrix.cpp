@@ -88,8 +88,8 @@ namespace matrix {
         }
 
         // comparing every element of the matrices
-        for (uint32_t i = 0; i < getHeight(); i++) {
-            for (uint32_t j = 0; j < getWidth(); j++) {
+        for (uint32_t i = 0; i < getHeight(); ++i) {
+            for (uint32_t j = 0; j < getWidth(); ++j) {
                 if ((*this)(i, j) != other(i, j)) {
                     return false;
                 }
@@ -146,8 +146,8 @@ namespace matrix {
 
     std::ostream& operator<<(std::ostream& stream, const Matrix& matrix) {
         // writing the matrix with the stream
-        for (uint32_t i = 0; i < matrix.getHeight(); i++) {
-            for (uint32_t j = 0; j < matrix.getWidth(); j++) {
+        for (uint32_t i = 0; i < matrix.getHeight(); ++i) {
+            for (uint32_t j = 0; j < matrix.getWidth(); ++j) {
                 stream << matrix(i, j);
                 if (j != matrix.getWidth() - 1) {
                     stream << ",";

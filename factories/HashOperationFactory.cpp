@@ -1,7 +1,5 @@
 #include "HashOperationFactory.hpp"
 #include "OperationExceptions.hpp"
-#include "Operation.hpp"
-#include "HashOperation.hpp"
 #include "CrcHash.hpp"
 #include <fstream>
 #include <iterator>
@@ -12,7 +10,8 @@ namespace operation {
             cache::CacheManager& cache) const {
 
         // checking if the command is valid
-        if (command.size() != 4 || command[0] != "hash" || command[1] != "crc32") {
+        if (command.size() != 4 || command[0] != "hash" || command[1] != "crc32"
+        || command[2].find(".bin") == std::string::npos || command[3].find(".bin") == std::string::npos) {
             throw exceptions::InvalidCommandException();
         }
 
