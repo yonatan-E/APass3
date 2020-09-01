@@ -54,13 +54,13 @@ namespace operation {
 
         // creating a string to create the hash code from it
         std::string forHash = "";
-        for (uint32_t i = 0; i < leftArg.getHeight(); i++) {
-            for (uint32_t j = 0; j < leftArg.getWidth(); j++) {
+        for (uint32_t i = 0; i < leftArg.getHeight(); ++i) {
+            for (uint32_t j = 0; j < leftArg.getWidth(); ++j) {
                 forHash += leftArg(i, j);
             }
         }
-        for (uint32_t i = 0; i < rightArg.getHeight(); i++) {
-            for (uint32_t j = 0; j < rightArg.getWidth(); j++) {
+        for (uint32_t i = 0; i < rightArg.getHeight(); ++i) {
+            for (uint32_t j = 0; j < rightArg.getWidth(); ++j) {
                 forHash += rightArg(i, j);
             }
         }
@@ -110,7 +110,7 @@ namespace operation {
         // creating a new matrix with sizes numRows * numColumns
         matrix::Matrix matrix(numRows, numColumns);
         // reading from the file and filling the matrix
-        for (uint32_t i = 0; i < numRows; i++) {
+        for (uint32_t i = 0; i < numRows; ++i) {
             std::string line;
             if (!getline(matrixFile, line)) {
                 // throwing an exception in case that the current line of the file isn't proper,
