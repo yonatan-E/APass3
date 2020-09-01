@@ -15,7 +15,7 @@ namespace operation {
         }
 
         // creating a vector with the operation args, which are only the path to the input bin file
-        std::vector<std::string> operationArgs(command.begin() + 1, command.begin() + 4);
+        std::vector<std::string> operationArgs(command.begin() + 1, command.begin() + 3);
         // getting the hash code of the operation
         uint32_t hashCode = calculateOperationHashCode(operationArgs);
 
