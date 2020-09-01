@@ -23,7 +23,7 @@ namespace cache {
             // if the directory doesn't exist, creating a new one
             // the mode of the directory, always 0777 in our case
             uint32_t mode = 0777;
-            if (mkdir(m_directoryPath.c_str(), 0777) != 0) {
+            if (mkdir(m_directoryPath.c_str(), mode) != 0) {
                 // throwing an exception in case that the directory creation failed
                 throw std::system_error(errno, std::system_category());
             }
