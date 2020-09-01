@@ -121,20 +121,20 @@ namespace cache {
 
     void CacheManager::doCommand(const std::vector<std::string>& command) {
 
-        // checking if the command is valid
-        if (command[0] != "cache" || (command[1] != "search" && command[1] != "clear")) {
+        // the cache command must start with "cache"
+        if (command[0] != "cache") {
             throw exceptions::InvalidCommandException();
         }
 
         // if the given command is "clear", making the cache empty
-        if (command[1] == "clear") {
+        if (command[1] == "clear" && command.size() == 2) {
             // clearing the cache
             clear();
             // printing a message about clearing the cache
             std::cout << "Cache was cleared" << std::endl;
 
             // if the given command is "search", searching for the specified operation
-        } else {
+        } else if (command[1] == "search" && (command.size() == 4 || command.size() == 5)) {
             // creating a unique pointer to an operation factory object, which will be initialized
             // according to the specified operation
             std::unique_ptr<OperationFactory> factory;
@@ -150,13 +150,29 @@ namespace cache {
             // creating a vector with the operation args
             std::vector<std::string> operationArgs(command.begin() + 3, command.begin() + command.size());
             // getting the hashCode of the specified operation
-            uint32_t hashCode = factory->calculateOperationHashCode(operationArgs);
-            // checking if the cache contains the specified operation, and printing a message according to that
+            uint32_t hashCode;
+            try {
+                hashCode = factory->calculateOperationHashCode(operationArgs);
+            } catch (const exceptions::InvalidCommandException& e) {
+                // if catching an invalid command exception, it means that the command is invalid
+                throw e;
+                return;
+            } catch (...) {
+                // if catching an another exception, it means that the result of the operation is not in the cache
+                std::cout << "Result was not found on cache" << std::endl;
+                return;
+            }
+
+            // finally checking if the cache contains the specified operation, and printing a message according to that
             if (contains(hashCode)) {
                 std::cout << "Result was found on cache" << std::endl;
             } else {
                 std::cout << "Result was not found on cache" << std::endl;
             }
+
+            // if the command doesn't uphold anyone of the terms above, it isn't valid
+        } else {
+            throw exceptions::InvalidCommandException();
         }
     }
 
