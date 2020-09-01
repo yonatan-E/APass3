@@ -21,7 +21,8 @@ namespace cache {
         if (stat(_directoryPath.c_str(), &buffer) != 0) {
             // if the directory doesn't exist, creating a new one
             if (mkdir(_directoryPath.c_str(), 0777) != 0) {
-                throw exceptions::FileOpenException();
+                // throwing an exception in case that the directory creation failed
+                throw std::system_error(errno, std::system_category());
             }
         }
 
@@ -97,17 +98,24 @@ namespace cache {
     }
 
     void CacheManager::clear() {
-        // removing all of the files from the cache and all of the hashCodes from the vector
-        for (auto it = _hashCodes.begin(); it != _hashCodes.end(); it++) {
+        // removing all of the result files from the cache directory using for_each
+        for_each(_hashCodes.begin(), _hashCodes.end(), [this](uint32_t hashCode) {
             // removing the file of the operation from the cache directory,
             // and checking if an error has occured while removing the file
-            if (remove(getOperationFilePath(*it).c_str()) != 0) {
-                throw exceptions::FileDeleteException();
+            if (remove(getOperationFilePath(hashCode).c_str()) != 0) {
+                // throwing an exception in case that the directory deletion filed
+                throw std::system_error(errno, std::system_category());
             }
+        });
 
-            // removing the hashCode from the vector
-            _hashCodes.erase(it);
+        // removing the info.txt file
+        if (remove((_directoryPath + "/info.txt").c_str()) != 0) {
+            // throwing an exception in case that the directory deletion filed
+            throw std::system_error(errno, std::system_category());
         }
+
+        // making the vector empty
+        _hashCodes.clear();
     }
 
     void CacheManager::doCommand(const std::vector<std::string>& command) {
