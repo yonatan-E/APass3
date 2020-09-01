@@ -25,12 +25,6 @@ namespace bitmap {
 
     public:
 
-          /**
-           * @brief Construct a new Bit Adjuster object
-           * 
-           */
-          BitAdjuster() = default;
-
          /**
           * @brief The constrtuctor, that creates an object with the given string
           * 

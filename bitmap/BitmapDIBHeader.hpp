@@ -39,12 +39,6 @@ class BitmapDIBHeader : public BitAdjuster {
         BitmapDIBHeader(std::string data);
 
         /**
-         * @brief Construct a new Bitmap DIB Header object
-         * 
-         */
-        BitmapDIBHeader() = default;
-
-        /**
          * @brief Method that writes the content of the object into the string
          * 
          */

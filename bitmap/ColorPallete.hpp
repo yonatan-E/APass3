@@ -26,12 +26,6 @@ class ColorPallete : public BitAdjuster {
         ColorPallete(std::string data);
 
         /**
-         * @brief Construct a new Color Pallete object
-         * 
-         */
-        ColorPallete() = default;
-
-        /**
          * @brief Method that writes the content of the object into the string
          * 
          */

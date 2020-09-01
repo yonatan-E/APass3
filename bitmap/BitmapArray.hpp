@@ -39,12 +39,6 @@ class BitmapArray : public BitAdjuster {
         BitmapArray(std::string array_data, std::string color_data, uint32_t bpp, uint32_t height, uint32_t width);
 
         /**
-         * @brief Construct a new Bitmap Array object
-         * 
-         */
-        BitmapArray() = default;
-
-        /**
          * @brief Method that writes the content of the object into the string
          * 
          */

@@ -30,12 +30,6 @@ class BitmapHeader : public BitAdjuster {
         BitmapHeader(std::string data);
 
         /**
-         * @brief Construct a new Bitmap Header object
-         * 
-         */
-        BitmapHeader() = default;
-
-        /**
          * @brief Method that writes the content of the object into the string
          * 
          */
