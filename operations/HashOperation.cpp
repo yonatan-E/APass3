@@ -1,5 +1,5 @@
 #include "HashOperation.hpp"
-#include "OperationExceptions.hpp"
+#include "../exceptions/OperationExceptions.hpp"
 #include <fstream>
 #include <iostream>
 

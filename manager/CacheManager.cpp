@@ -1,8 +1,8 @@
 #include "CacheManager.hpp"
-#include "OperationExceptions.hpp"
-#include "MatrixOperationFactory.hpp"
-#include "BitmapOperationFactory.hpp"
-#include "HashOperationFactory.hpp"
+#include "../exceptions/OperationExceptions.hpp"
+#include "../factories/MatrixOperationFactory.hpp"
+#include "../factories/BitmapOperationFactory.hpp"
+#include "../factories/HashOperationFactory.hpp"
 #include <fstream>
 #include <iostream>
 #include <algorithm>

@@ -1,5 +1,5 @@
 #include "OperationFactory.hpp"
-#include "HashOperation.hpp"
+#include "../operations/HashOperation.hpp"
 
 namespace operation {
 

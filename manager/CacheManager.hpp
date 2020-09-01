@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Operation.hpp"
+#include "../operations/Operation.hpp"
 #include <vector>
 #include <memory>
 
