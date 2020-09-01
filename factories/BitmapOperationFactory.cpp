@@ -1,5 +1,5 @@
 #include "BitmapOperationFactory.hpp"
-#include "../exceptions/OperationExceptions.hpp"
+#include "OperationExceptions.hpp"
 #include "CrcHash.hpp"
 #include <string>
 #include <fstream>

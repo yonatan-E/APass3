@@ -1,8 +1,8 @@
-#include "manager/CacheManager.hpp"
-#include "factories/MatrixOperationFactory.hpp"
-#include "factories/BitmapOperationFactory.hpp"
-#include "factories/HashOperationFactory.hpp"
-#include "exceptions/OperationExceptions.hpp"
+#include "CacheManager.hpp"
+#include "MatrixOperationFactory.hpp"
+#include "BitmapOperationFactory.hpp"
+#include "HashOperationFactory.hpp"
+#include "OperationExceptions.hpp"
 #include <iostream>
 
 using namespace operation;

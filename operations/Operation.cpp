@@ -1,5 +1,5 @@
 #include "Operation.hpp"
-#include "../exceptions/OperationExceptions.hpp"
+#include "OperationExceptions.hpp"
 #include <string>
 #include <cstdio>
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "OperationFactory.hpp"
-#include "../operations/MatrixOperation.hpp"
+#include "MatrixOperation.hpp"
 #include <cstdint>
 
 namespace operation {

@@ -1,5 +1,5 @@
 #include "MatrixOperationFactory.hpp"
-#include "../exceptions/OperationExceptions.hpp"
+#include "OperationExceptions.hpp"
 #include "CrcHash.hpp"
 #include <string>
 #include <fstream>

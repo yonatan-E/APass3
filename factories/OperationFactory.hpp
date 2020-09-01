@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../operations/Operation.hpp"
-#include "../manager/CacheManager.hpp"
+#include "Operation.hpp"
+#include "CacheManager.hpp"
 #include <string>
 #include <vector>
 #include <memory>

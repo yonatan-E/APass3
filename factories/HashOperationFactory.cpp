@@ -1,6 +1,5 @@
 #include "HashOperationFactory.hpp"
-#include "../exceptions/OperationExceptions.hpp"
-#include "../operations/HashOperation.hpp"
+#include "OperationExceptions.hpp"
 #include "CrcHash.hpp"
 #include <fstream>
 #include <iterator>

@@ -1,5 +1,5 @@
 #include "BitmapOperation.hpp"
-#include "../exceptions/OperationExceptions.hpp"
+#include "OperationExceptions.hpp"
 #include <fstream>
 
 namespace operation {
