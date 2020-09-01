@@ -10,10 +10,10 @@ enable_testing()
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../bin")
 include_directories(${CMAKE_SOURCE_DIR}/matrix ${CMAKE_SOURCE_DIR}/bitmap ${CMAKE_SOURCE_DIR}/hash)
 link_directories(${CMAKE_SOURCE_DIR}/matrix)
-add_executable(ex3 main.cpp CacheManager.cpp hash/crc32.c hash/CrcHash.cpp matrix/Matrix.cpp matrix/ErrorCode.cpp
+add_executable(ex3 main.cpp manager/CacheManager.cpp hash/crc32.c hash/CrcHash.cpp matrix/Matrix.cpp matrix/ErrorCode.cpp
 bitmap/BitAdjuster.cpp bitmap/Bitmap.cpp bitmap/BitmapHeader.cpp bitmap/BitmapDIBHeader.cpp bitmap/BitmapArray.cpp bitmap/ColorPallete.cpp
-Operation.cpp MatrixOperation.cpp BitmapOperation.cpp HashOperation.cpp MatrixOperationFactory.cpp BitmapOperationFactory.cpp HashOperationFactory.cpp 
-OperationExceptions.cpp)
+operations/Operation.cpp operations/MatrixOperation.cpp operations/BitmapOperation.cpp operations/HashOperation.cpp factories/MatrixOperationFactory.cpp factories/BitmapOperationFactory.cpp factories/HashOperationFactory.cpp 
+exceptions/OperationExceptions.cpp)
 target_link_libraries(ex3 matrix)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
