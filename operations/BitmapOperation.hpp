@@ -20,7 +20,7 @@ namespace operation {
              * @param hashCode the hashCode of the operation
              * @param result the result bitmap of the operation
              */
-            BitmapOperation(uint32_t hashCode, const bitmap::Bitmap& result);
+            BitmapOperation(const uint32_t hashCode, const bitmap::Bitmap& result);
 
             /**
              * @brief Write the result of the operation to a file

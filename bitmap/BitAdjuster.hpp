@@ -79,7 +79,7 @@ namespace bitmap {
           * @return std::string the byte sequence represented by a string
           */
           template <typename IntType> 
-          std::string integerToBytes(unsigned int n) const {
+          std::string integerToBytes(IntType n) const {
                const char* st = reinterpret_cast<const char*>(&n);
                std::string str = "";
                for (long unsigned int i = 0; i < sizeof(IntType) ; i++) {

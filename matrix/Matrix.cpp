@@ -5,7 +5,7 @@
 
 namespace matrix {
     
-    Matrix::Matrix(uint32_t height, uint32_t width) {
+    Matrix::Matrix(const uint32_t height, const uint32_t width) {
         ErrorCode error = matrix_create(&m_delegated, height, width);
         if (!error_isSuccess(error)) {
             throw Exception(error);
@@ -47,7 +47,7 @@ namespace matrix {
         matrix_destroy(m_delegated);
     }
 
-    double Matrix::operator()(uint32_t rowIndex, uint32_t colIndex) const {
+    double Matrix::operator()(const uint32_t rowIndex, const uint32_t colIndex) const {
         double val;
         ErrorCode error = matrix_getValue(m_delegated, rowIndex, colIndex, &val);
         if (!error_isSuccess(error)) {
@@ -56,7 +56,7 @@ namespace matrix {
         return val;
     }
 
-    void Matrix::setAt(uint32_t rowIndex, uint32_t colIndex, double val) {
+    void Matrix::setAt(const uint32_t rowIndex, const uint32_t colIndex, double val) {
         ErrorCode error = matrix_setValue(m_delegated, rowIndex, colIndex, val);
         if (!error_isSuccess(error)) {
             throw Exception(error);
@@ -120,7 +120,7 @@ namespace matrix {
         return mult;
     }
 
-    Matrix Matrix::operator*(double scalar) const {
+    Matrix Matrix::operator*(const double scalar) const {
         Matrix multByScalar(*this);
         ErrorCode error = matrix_multiplyWithScalar(multByScalar.m_delegated, scalar);
          if (!error_isSuccess(error)) {
@@ -129,7 +129,7 @@ namespace matrix {
         return multByScalar;
     }
 
-    Matrix operator*(double scalar, const Matrix& matrix) {
+    Matrix operator*(const double scalar, const Matrix& matrix) {
         return matrix * scalar;
     }
 

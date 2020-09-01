@@ -17,6 +17,6 @@ namespace matrix {
              * 
              * @param error the given error code
              */
-            Exception(ErrorCode error);
+            Exception(const ErrorCode error);
     };
 }

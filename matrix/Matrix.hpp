@@ -22,7 +22,7 @@ namespace matrix {
              * @param height the height of the new matrix
              * @param width the width of the new matrix
              */
-            Matrix(uint32_t height, uint32_t width);    
+            Matrix(const uint32_t height, const uint32_t width);    
             
             /**
              * @brief The copy constructor
@@ -66,7 +66,7 @@ namespace matrix {
              * @param colIndex the column of the item we want to get
              * @return double the value of the item placed in (rowIndex, colIndex)
              */
-            double operator()(uint32_t rowIndex, uint32_t colIndex) const;
+            double operator()(const uint32_t rowIndex, const uint32_t colIndex) const;
 
             /**
              * @brief The setter method
@@ -75,7 +75,7 @@ namespace matrix {
              * @param rowIndex the row of the item we want to set
              * @param colIndex the column of the item we want to set
              */
-            void setAt(uint32_t rowIndex, uint32_t colIndex, double val);
+            void setAt(const uint32_t rowIndex, const uint32_t colIndex, const double val);
 
             /**
              * @brief Getter to the matrix height
@@ -130,7 +130,7 @@ namespace matrix {
              * @param scalar the scalar we multiply the matrix with
              * @return Matrix the matrix after multiplying by scalar
              */
-            Matrix operator*(double scalar) const;
+            Matrix operator*(const double scalar) const;
 
             /**
              * @brief The left multiplying matrix by scalar operator
@@ -139,7 +139,7 @@ namespace matrix {
              * @param matrix the matrix to multiply by the scalar
              * @return Matrix the result matrix after multiplying by scalar
              */
-            friend Matrix operator*(double scalar, const Matrix& matrix);
+            friend Matrix operator*(const double scalar, const Matrix& matrix);
 
             /**
              * @brief Method that turns the matrix by anti clockwise.

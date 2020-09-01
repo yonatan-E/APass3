@@ -21,7 +21,7 @@ namespace operation {
              * 
              * @param hashCode the hashCode of the operation
              */
-            Operation(uint32_t hashCode);
+            Operation(const uint32_t hashCode);
 
             /**
              * @brief Destroy the Operation object

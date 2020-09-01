@@ -5,7 +5,7 @@
 
 namespace operation {
 
-    HashOperation::HashOperation(uint32_t hashCode, uint32_t result)
+    HashOperation::HashOperation(const uint32_t hashCode, const uint32_t result)
     : Operation(hashCode),
     m_result(result) {}
 

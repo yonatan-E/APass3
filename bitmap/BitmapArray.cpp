@@ -5,8 +5,8 @@
 
 namespace bitmap {
 
-BitmapArray::BitmapArray(std::string array_data, std::string color_data, uint32_t bpp, uint32_t height, uint32_t width) 
-        : BitAdjuster(std::move(array_data)), m_colors(color_data), m_pixels(height, width),
+BitmapArray::BitmapArray(std::string array_data, std::string color_data, const uint32_t bpp, const uint32_t height, const uint32_t width) 
+        : BitAdjuster(std::move(array_data)), m_colors(std::move(color_data)), m_pixels(height, width),
         m_bitsPerPixel(bpp), m_height(height), m_width(width) {
     // initializing the matrix and the collor pallete, according to the specific case:
     // in case that pixel size is 8 bit 

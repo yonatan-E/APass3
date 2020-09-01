@@ -14,9 +14,9 @@ using namespace operation;
 
 namespace cache {
 
-    CacheManager::CacheManager(const uint32_t maxSize,std::string directoryPath)
+    CacheManager::CacheManager(const uint32_t maxSize, std::string directoryPath)
     : m_maxSize(maxSize), m_directoryPath(std::move(directoryPath)) {
-        
+
         // checking if the directory exists
         struct stat buffer;
         if (stat(m_directoryPath.c_str(), &buffer) != 0) {
@@ -93,7 +93,7 @@ namespace cache {
         operation.writeOperationToFile(getOperationFilePath(operation.getHashCode()));
     }
 
-    bool CacheManager::contains(uint32_t hashCode) const {
+    bool CacheManager::contains(const uint32_t hashCode) const {
         // trying to find the hash code in the vector
         return std::find(m_hashCodes.begin(), m_hashCodes.end(), hashCode) != m_hashCodes.end();
     }
@@ -176,7 +176,7 @@ namespace cache {
         }
     }
 
-    std::string CacheManager::getOperationFilePath(uint32_t hashCode) const {
+    std::string CacheManager::getOperationFilePath(const uint32_t hashCode) const {
         // returning the path to the file of the operation with the given hashCode
         return m_directoryPath + "/" + std::to_string(hashCode) + ".txt";
     }

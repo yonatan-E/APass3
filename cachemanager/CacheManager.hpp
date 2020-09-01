@@ -27,7 +27,7 @@ namespace cache {
              * @param maxSize the maximum size of the cache
              * @param directoryPath the path to the directory where the cache files will be saved
              */
-            CacheManager(uint32_t maxSize, std::string directoryPath);
+            CacheManager(const uint32_t maxSize, std::string directoryPath);
 
             /**
              * @brief Load the operation into the cache:
@@ -45,7 +45,7 @@ namespace cache {
              * @return true if the given hashCode exists in the cache
              * @return false if the given hashCode doesn't exist in the cache
              */
-            bool contains(uint32_t hashCode) const;
+            bool contains(const uint32_t hashCode) const;
 
             /**
              * @brief Clear the cache
@@ -66,6 +66,6 @@ namespace cache {
              * @param hashCode the given hashCode
              * @return std::string the path to the operation file of the operation with the given hashCode
              */
-            std::string getOperationFilePath(uint32_t hashCode) const;
+            std::string getOperationFilePath(const uint32_t hashCode) const;
     };
 }

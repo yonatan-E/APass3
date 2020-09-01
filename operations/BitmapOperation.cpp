@@ -4,7 +4,7 @@
 
 namespace operation {
 
-    BitmapOperation::BitmapOperation(uint32_t hashCode, const bitmap::Bitmap& result)
+    BitmapOperation::BitmapOperation(const uint32_t hashCode, const bitmap::Bitmap& result)
         : Operation(hashCode),
         m_result(result) {}
 
