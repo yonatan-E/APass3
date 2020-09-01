@@ -11,7 +11,9 @@ namespace operation {
         cache::CacheManager& cache) const {
         
         // checking if the command is valid
-        if (command.size() != 5 || command[0] != "matrix" || (command[1] != "add" && command[1] != "multiply")) {
+        if (command.size() != 5 || command[0] != "matrix" || (command[1] != "add" && command[1] != "multiply")
+        || command[2].find(".txt") == std::string::npos || command[3].find(".txt") == std::string::npos
+        || command[4].find(".txt") == std::string::npos) {
             throw exceptions::InvalidCommandException();
         }
 

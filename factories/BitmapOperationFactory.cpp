@@ -10,8 +10,8 @@ namespace operation {
         cache::CacheManager& cache) const {
             
         // checking if the command is valid
-        if (command.size() != 4 || command[0] != "image" || (command[1] != "rotate" && command[1] != "convert") || 
-        command[2].find(".bmp") == std::string::npos || command[3].find(".bmp") == std::string::npos) {
+        if (command.size() != 4 || command[0] != "image" || (command[1] != "rotate" && command[1] != "convert") 
+        || command[2].find(".bmp") == std::string::npos || command[3].find(".bmp") == std::string::npos) {
             throw exceptions::InvalidCommandException();
         }
 
