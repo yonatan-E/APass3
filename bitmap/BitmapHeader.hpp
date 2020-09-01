@@ -11,14 +11,14 @@ namespace bitmap {
 class BitmapHeader : public BitAdjuster {
     
     // the file type, which is always 0x4D42
-    uint16_t m_fileType = 0x4D42; 
+    const uint16_t m_fileType = 0x4D42; 
     // file size in bytes
-    uint32_t m_fileSize = 0;
+    const uint32_t m_fileSize;
     // reserved 
-    uint16_t m_reserved1 = 0;
-    uint16_t m_reserved2 = 0;
+    const uint16_t m_reserved1;
+    const uint16_t m_reserved2;
     // offset
-    uint32_t m_offset = 0;
+    const uint32_t m_offset;
 
     public:
 

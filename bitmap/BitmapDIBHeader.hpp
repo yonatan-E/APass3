@@ -13,21 +13,21 @@ namespace bitmap {
 class BitmapDIBHeader : public BitAdjuster {
 
     // size of header
-    uint32_t m_hsize = 40; 
+    const uint32_t m_hsize = 40; 
     // width of bitmap
-    uint32_t m_bitmapWidth = 0;
+    uint32_t m_bitmapWidth;
     // height of bitmap
-    uint32_t m_bitmapHeight = 0; 
+    uint32_t m_bitmapHeight; 
     // constant(always 1)
-    uint16_t m_con = 1; 
+    const uint16_t m_con = 1; 
     // bits per pixel (8 or 24)
-    uint16_t m_bpp = 0; 
+    const uint16_t m_bpp; 
     // compression method (no compression, therfore 0)
-    uint32_t m_cm = 0; 
+    const uint32_t m_cm = 0; 
     // bitmap size;
-    uint32_t m_bmsize = 0; 
+    const uint32_t m_bmsize; 
     // number of colors in color
-    uint32_t m_numcolors = 0; 
+    const uint32_t m_numcolors; 
 
     public:
 

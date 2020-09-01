@@ -7,7 +7,8 @@ namespace hash {
 
     class CrcHash {
 
-        std::string m_input;
+        // the string to apply the crc32 on
+        const std::string m_input;
 
         public:
 

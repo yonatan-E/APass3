@@ -19,7 +19,7 @@ class BitmapArray : public BitAdjuster {
     // the pixels matrix
     matrix::Matrix m_pixels;
     // the number of bits per pixel
-    uint32_t m_bitsPerPixel;
+    const uint32_t m_bitsPerPixel;
     // the height of the bitmap array
     uint32_t m_height;
     // the width of the bitmap array

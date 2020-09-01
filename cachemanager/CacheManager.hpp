@@ -15,9 +15,9 @@ namespace cache {
         // a vector with the hashCodes of all of the operations in the cache
         std::vector<uint32_t> m_hashCodes;
         // the maximum size of the cache
-        uint32_t m_maxSize;
+        const uint32_t m_maxSize;
         // the path to the directory where the cache files will be saved
-        std::string m_directoryPath;
+        const std::string m_directoryPath;
 
         public:
 

@@ -32,6 +32,6 @@ namespace operation {
         private:
 
             // the result bitmap of the operation (rotate or convert to grayscale)
-            bitmap::Bitmap m_result;
+            const bitmap::Bitmap m_result;
     };
 }
