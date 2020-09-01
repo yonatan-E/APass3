@@ -104,7 +104,7 @@ namespace matrix {
              * @brief The adding operator for matrices
              * 
              * @param other the matrix we add to the current marix
-             * @return Matrix& the sum of the current matrix and the other matrix
+             * @return Matrix the sum of the current matrix and the other matrix
              */
             Matrix operator+(const Matrix& other) const;
 
@@ -112,7 +112,7 @@ namespace matrix {
              * @brief The substruction operator for matrices
              * 
              * @param other the matrix we substruct from the current marix
-             * @return Matrix& the substruction of the current matrix and the other matrix
+             * @return Matrix the substruction of the current matrix and the other matrix
              */
             Matrix operator-(const Matrix& other) const;
 
@@ -120,22 +120,31 @@ namespace matrix {
              * @brief The multiplying operator for matrices
              * 
              * @param other the matrix we multiply the current matrix with
-             * @return Matrix& the multiplication of the current matrix and the other matrix
+             * @return Matrix the multiplication of the current matrix and the other matrix
              */
             Matrix operator*(const Matrix& other) const;
 
             /**
-             * @brief The multiplying by scalar operator
+             * @brief The right multiplying matrix by scalar operator
              * 
              * @param scalar the scalar we multiply the matrix with
-             * @return Matrix& the matrix after multiplying by scalar
+             * @return Matrix the matrix after multiplying by scalar
              */
             Matrix operator*(double scalar) const;
 
             /**
+             * @brief The left multiplying matrix by scalar operator
+             * 
+             * @param scalar the scalar we multiply the matrix with
+             * @param matrix the matrix to multiply by the scalar
+             * @return Matrix the result matrix after multiplying by scalar
+             */
+            friend Matrix operator*(double scalar, const Matrix& matrix);
+
+            /**
              * @brief Method that turns the matrix by anti clockwise.
              * 
-             * @return Matrix& the matrix after the turn
+             * @return Matrix the matrix after the turn
              */
             Matrix& turn();
 

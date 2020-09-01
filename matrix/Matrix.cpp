@@ -129,6 +129,10 @@ namespace matrix {
         return multByScalar;
     }
 
+    Matrix operator*(double scalar, const Matrix& matrix) {
+        return matrix * scalar;
+    }
+
     Matrix& Matrix::turn() {
         Matrix turned(getWidth(), getHeight());
         uint32_t newColumn, newRow = 0;
