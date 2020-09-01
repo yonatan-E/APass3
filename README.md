@@ -1,4 +1,4 @@
-# Assignment 3 - cache manager
+# Assignment 3 - Cache Manager
 ## Overview
 In this project we wrote a program which supports different kinds of operations, and uses cache management to enable faster calculations based on calculations which have been previously made.
 
