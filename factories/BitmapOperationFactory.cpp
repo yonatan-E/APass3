@@ -45,6 +45,13 @@ namespace operation {
     }
 
     uint32_t BitmapOperationFactory::calculateOperationHashCode(const std::vector<std::string>& operationArgs) const {
+
+        // checking if the operation arguments are valid
+        if (operationArgs.size() != 2 || (operationArgs[0] != "rotate" && operationArgs[0] != "convert") 
+        || operationArgs[1].find(".bmp") == std::string::npos) {
+            throw exceptions::InvalidCommandException();
+        }
+
         // getting the input bitmap
         auto input = readBitmapFromFile(operationArgs[1]);
         

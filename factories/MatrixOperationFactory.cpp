@@ -49,6 +49,13 @@ namespace operation {
     }
 
     uint32_t MatrixOperationFactory::calculateOperationHashCode(const std::vector<std::string>& operationArgs) const {
+
+        // checking if the operation arguments are valid
+        if (operationArgs.size() != 3 || (operationArgs[0] != "add" && operationArgs[0] != "multiply")
+        || operationArgs[1].find(".txt") == std::string::npos || operationArgs[2].find(".txt") == std::string::npos) {
+            throw exceptions::InvalidCommandException();
+        }
+
         // getting the left argument matrix
         auto leftArg = readMatrixFromFile(operationArgs[1]);
         // getting the right argument matrix
