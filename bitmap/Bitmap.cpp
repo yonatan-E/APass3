@@ -9,26 +9,26 @@ namespace bitmap {
 
     Bitmap::Bitmap(const std::string& inputPath) 
         : BitAdjuster(std::move(readFileContent(inputPath))),
-        _header(getData().substr(0,14)), _dibHeader(getData().substr(14,40)), 
-        _bitmapArray(getData().substr(_header.getOffset()), getData().substr(54 , _header.getOffset() - 54),
-        _dibHeader.getBitsPerPixel(), _dibHeader.getHeight(), _dibHeader.getWidth()) {}
+        m_header(getData().substr(0,14)), m_dibHeader(getData().substr(14,40)), 
+        m_bitmapArray(getData().substr(m_header.getOffset()), getData().substr(54 , m_header.getOffset() - 54),
+        m_dibHeader.getBitsPerPixel(), m_dibHeader.getHeight(), m_dibHeader.getWidth()) {}
 
     void Bitmap::write() {
         // activing write() for all of the parts of the bitmap
-        _header.write();
-        _dibHeader.write();
-        _bitmapArray.write();
+        m_header.write();
+        m_dibHeader.write();
+        m_bitmapArray.write();
         
         // setting the new data string to be the data string of the bitmap
-        setData(_header.getData() + _dibHeader.getData()
-        + _bitmapArray.getColorPallete().getData() + _bitmapArray.getData());
+        setData(m_header.getData() + m_dibHeader.getData()
+        + m_bitmapArray.getColorPallete().getData() + m_bitmapArray.getData());
     }
 
     void Bitmap::turn() {
         // activing turn() for all of the parts of the bitmap
-        _header.turn();
-        _dibHeader.turn();
-        _bitmapArray.turn();
+        m_header.turn();
+        m_dibHeader.turn();
+        m_bitmapArray.turn();
 
         // writing the changes into the data string
         write();
@@ -37,7 +37,7 @@ namespace bitmap {
     void Bitmap::gray() {
         // activing gray() for bitmap array, because it is the only part
         // which is affected by the color changing to gray
-        _bitmapArray.gray();
+        m_bitmapArray.gray();
 
         // writing the changes into the data string
         write();

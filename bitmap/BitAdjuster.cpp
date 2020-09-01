@@ -5,14 +5,14 @@
 
 namespace bitmap {
 
-    BitAdjuster::BitAdjuster(std::string data) : _data(std::move(data)) {}
+    BitAdjuster::BitAdjuster(std::string data) : m_data(std::move(data)) {}
 
     const std::string& BitAdjuster::getData() const {
-        return this->_data;
+        return m_data;
     }
 
     void BitAdjuster::setData(std::string data) {
-        this->_data = std::move(data);
+        m_data = std::move(data);
     }
 
 }

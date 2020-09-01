@@ -6,12 +6,12 @@ namespace operation {
 
     BitmapOperation::BitmapOperation(uint32_t hashCode, const bitmap::Bitmap& result)
         : Operation(hashCode),
-        _result(result) {}
+        m_result(result) {}
 
     void BitmapOperation::writeOperationToFile(const std::string& filePath) const {
         // writing the result object to the output file
         try {
-            _result.writeToFile(filePath);
+            m_result.writeToFile(filePath);
         } catch (...) {
             // catching the exception which was thrown at the writeToFile() method,
             // and converting it to FileWriteException.

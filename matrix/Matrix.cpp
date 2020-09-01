@@ -6,14 +6,14 @@
 namespace matrix {
     
     Matrix::Matrix(uint32_t height, uint32_t width) {
-        ErrorCode error = matrix_create(&_decorated, height, width);
+        ErrorCode error = matrix_create(&m_delegated, height, width);
         if (!error_isSuccess(error)) {
             throw Exception(error);
         }
     }
 
     Matrix::Matrix(const Matrix& other) {
-        ErrorCode error = matrix_copy(&_decorated, other._decorated);
+        ErrorCode error = matrix_copy(&m_delegated, other.m_delegated);
         if (!error_isSuccess(error)) {
             throw Exception(error);
         }
@@ -30,7 +30,7 @@ namespace matrix {
     }
 
     Matrix::Matrix(Matrix&& other) noexcept {
-        _decorated = std::exchange(other._decorated, nullptr);
+        m_delegated = std::exchange(other.m_delegated, nullptr);
     }
 
     Matrix& Matrix::operator=(Matrix&& other) noexcept {
@@ -38,18 +38,18 @@ namespace matrix {
             return *this;
         }
 
-        matrix_destroy(_decorated);
-	    _decorated = std::exchange(other._decorated, nullptr);
+        matrix_destroy(m_delegated);
+	    m_delegated = std::exchange(other.m_delegated, nullptr);
 	    return *this;
     }   
 
     Matrix::~Matrix() {
-        matrix_destroy(_decorated);
+        matrix_destroy(m_delegated);
     }
 
     double Matrix::operator()(uint32_t rowIndex, uint32_t colIndex) const {
         double val;
-        ErrorCode error = matrix_getValue(_decorated, rowIndex, colIndex, &val);
+        ErrorCode error = matrix_getValue(m_delegated, rowIndex, colIndex, &val);
         if (!error_isSuccess(error)) {
             throw Exception(error);
         }
@@ -57,7 +57,7 @@ namespace matrix {
     }
 
     void Matrix::setAt(uint32_t rowIndex, uint32_t colIndex, double val) {
-        ErrorCode error = matrix_setValue(_decorated, rowIndex, colIndex, val);
+        ErrorCode error = matrix_setValue(m_delegated, rowIndex, colIndex, val);
         if (!error_isSuccess(error)) {
             throw Exception(error);
         }
@@ -65,7 +65,7 @@ namespace matrix {
 
     uint32_t Matrix::getHeight() const {
         uint32_t height;
-        ErrorCode error = matrix_getHeight(_decorated, &height);
+        ErrorCode error = matrix_getHeight(m_delegated, &height);
         if (!error_isSuccess(error)) {
             throw Exception(error);
         }
@@ -74,7 +74,7 @@ namespace matrix {
 
     uint32_t Matrix::getWidth() const {
         uint32_t width;
-        ErrorCode error = matrix_getWidth(_decorated, &width);
+        ErrorCode error = matrix_getWidth(m_delegated, &width);
         if (!error_isSuccess(error)) {
             throw Exception(error);
         }
@@ -100,7 +100,7 @@ namespace matrix {
 
     Matrix Matrix::operator+(const Matrix& other) const {
         Matrix sum(getHeight(), getWidth());
-        ErrorCode error = matrix_add(&sum._decorated, _decorated, other._decorated);
+        ErrorCode error = matrix_add(&sum.m_delegated, m_delegated, other.m_delegated);
          if (!error_isSuccess(error)) {
             throw Exception(error);
         }
@@ -113,7 +113,7 @@ namespace matrix {
 
     Matrix Matrix::operator*(const Matrix& other) const {
         Matrix mult(getHeight(), other.getWidth());
-        ErrorCode error = matrix_multiplyMatrices(&mult._decorated, _decorated, other._decorated);
+        ErrorCode error = matrix_multiplyMatrices(&mult.m_delegated, m_delegated, other.m_delegated);
          if (!error_isSuccess(error)) {
             throw Exception(error);
         }
@@ -122,7 +122,7 @@ namespace matrix {
 
     Matrix Matrix::operator*(double scalar) const {
         Matrix multByScalar(*this);
-        ErrorCode error = matrix_multiplyWithScalar(multByScalar._decorated, scalar);
+        ErrorCode error = matrix_multiplyWithScalar(multByScalar.m_delegated, scalar);
          if (!error_isSuccess(error)) {
             throw Exception(error);
         }

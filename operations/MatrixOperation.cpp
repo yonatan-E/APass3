@@ -7,12 +7,12 @@ namespace operation {
     
     MatrixOperation::MatrixOperation(uint32_t hashCode, const matrix::Matrix& result)
     : Operation(hashCode), 
-    _result(result) {}
+    m_result(result) {}
 
     void MatrixOperation::writeOperationToFile(const std::string& filePath) const {
         // if the filePath is "stdout", writing to the screen
         if (filePath == "stdout") {
-            std::cout << _result << std::endl;
+            std::cout << m_result << std::endl;
             // else, writing to the file in filePath
         } else {
             // opening the file using ofstream
@@ -24,7 +24,7 @@ namespace operation {
             }
 
             // writing the result matrix into the file
-            file << _result;
+            file << m_result;
 
             // closing the ofstream
             file.close();

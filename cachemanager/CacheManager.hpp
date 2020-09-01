@@ -13,11 +13,11 @@ namespace cache {
     class CacheManager {
 
         // a vector with the hashCodes of all of the operations in the cache
-        std::vector<uint32_t> _hashCodes;
+        std::vector<uint32_t> m_hashCodes;
         // the maximum size of the cache
-        uint32_t _maxSize;
+        uint32_t m_maxSize;
         // the path to the directory where the cache files will be saved
-        std::string _directoryPath;
+        std::string m_directoryPath;
 
         public:
 

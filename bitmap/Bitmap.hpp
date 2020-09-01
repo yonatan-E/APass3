@@ -16,11 +16,11 @@ namespace bitmap {
 class Bitmap: public BitAdjuster {
     
     // the header of the bitmap file
-    BitmapHeader _header;
+    BitmapHeader m_header;
     // the DIB header of the bitmap file
-    BitmapDIBHeader _dibHeader;
+    BitmapDIBHeader m_dibHeader;
     // the bitmap array
-    BitmapArray _bitmapArray;
+    BitmapArray m_bitmapArray;
 
     public:
 
@@ -29,43 +29,7 @@ class Bitmap: public BitAdjuster {
          * 
          * @param inputPath the path to the input file
          */
-        explicit Bitmap(const std::string& inputPath);
-
-        /**
-         * @brief The copy constructor
-         * 
-         * @param other the copied object
-         */
-        Bitmap(const Bitmap& other) = default;
-
-        /**
-         * @brief The copy assignment operator
-         * 
-         * @param other the copied object
-         * @return Bitmap& the current object
-         */
-        Bitmap& operator=(const Bitmap& other) = default;
- 
-        /**
-         * @brief The move constructor
-         * 
-         * @param other the moved object
-         */
-        Bitmap(Bitmap&& other) noexcept = default;
-
-        /**
-         * @brief The move assignment operator
-         * 
-         * @param other the moved object
-         * @return Bitmap& the current object
-         */
-        Bitmap& operator=(Bitmap&& other) noexcept = default;
-
-        /**
-         * @brief Destroy the Bitmap object
-         * 
-         */
-        ~Bitmap() = default;
+        Bitmap(const std::string& inputPath);
 
         /**
          * @brief Method that writes the content of the object into the string

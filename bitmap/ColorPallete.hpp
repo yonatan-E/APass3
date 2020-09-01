@@ -14,7 +14,7 @@ namespace bitmap {
 class ColorPallete : public BitAdjuster {
     
     // a vector with all of the colors
-    std::vector<std::array<int, 3>> _colors; 
+    std::vector<std::array<int, 3>> m_colors; 
 
     public:
 
@@ -23,49 +23,13 @@ class ColorPallete : public BitAdjuster {
          * 
          * @param data the given data string
          */
-        explicit ColorPallete(std::string data);
+        ColorPallete(std::string data);
 
         /**
          * @brief Construct a new Color Pallete object
          * 
          */
         ColorPallete() = default;
-
-        /**
-         * @brief The copy ctor
-         * 
-         * @param other the copied object
-         */
-        ColorPallete(const ColorPallete& other) = default;
-
-        /**
-         * @brief The copy assignment operator
-         * 
-         * @param other the copied object
-         * @return ColorPallete& the current object
-         */
-        ColorPallete& operator=(const ColorPallete& other) = default;
-
-        /**
-         * @brief The move ctor
-         * 
-         * @param other the moved object
-         */
-        ColorPallete(ColorPallete&& other) noexcept = default;
-
-        /**
-         * @brief The move assignment operator
-         * 
-         * @param other the moved object
-         * @return ColorPallete& the current object
-         */
-        ColorPallete& operator=(ColorPallete&& other) noexcept = default;
-
-        /**
-         * @brief Destroy the Color Pallete object
-         * 
-         */
-        ~ColorPallete() = default;
 
         /**
          * @brief Method that writes the content of the object into the string

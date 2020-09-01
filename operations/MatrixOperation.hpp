@@ -34,6 +34,6 @@ namespace operation {
         private:
 
             // the result matrix of the operation (add or multiply)
-            matrix::Matrix _result;
+            matrix::Matrix m_result;
     };
 }

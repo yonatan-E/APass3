@@ -7,12 +7,12 @@ namespace operation {
 
     HashOperation::HashOperation(uint32_t hashCode, uint32_t result)
     : Operation(hashCode),
-    _result(result) {}
+    m_result(result) {}
 
     void HashOperation::writeOperationToFile(const std::string& filePath) const {
         // if the given file path is "stdout", writing to the screen
         if (filePath == "stdout") {
-            std::cout << _result << '\n';
+            std::cout << m_result << '\n';
             // else, writing to the file
         } else {
             // opening the file using ofstream
@@ -24,7 +24,7 @@ namespace operation {
             }
 
             // writing the result to the file
-            file << _result;
+            file << m_result;
 
             // closing the ofstream
             file.close();

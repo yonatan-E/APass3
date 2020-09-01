@@ -5,9 +5,9 @@
 
 namespace operation {
 
-    Operation::Operation(uint32_t hashCode) : _hashCode(hashCode) {}
+    Operation::Operation(uint32_t hashCode) : m_hashCode(hashCode) {}
 
     uint32_t Operation::getHashCode() const {
-        return _hashCode;
+        return m_hashCode;
     }
 }

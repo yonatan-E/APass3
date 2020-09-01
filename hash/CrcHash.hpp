@@ -7,7 +7,7 @@ namespace hash {
 
     class CrcHash {
 
-        std::string _input;
+        std::string m_input;
 
         public:
 

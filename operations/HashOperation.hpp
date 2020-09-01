@@ -32,6 +32,6 @@ namespace operation {
         private:
 
             // the result hashCode of the operation (crc32 algorithm)
-            uint32_t _result;
+            uint32_t m_result;
     };
 }

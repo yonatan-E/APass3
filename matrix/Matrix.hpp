@@ -12,7 +12,7 @@ namespace matrix {
     class Matrix {
         
         // a pointer to struct matrix
-        PMatrix _decorated;
+        PMatrix m_delegated;
 
         public:   
 

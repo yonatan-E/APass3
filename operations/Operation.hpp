@@ -12,7 +12,7 @@ namespace operation {
     class Operation {
 
         // the hash code of the operation
-        uint32_t _hashCode;
+        uint32_t m_hashCode;
 
         public:
 

@@ -13,7 +13,7 @@ namespace bitmap {
     class BitAdjuster {
          
           // the data string
-          std::string _data;
+          std::string m_data;
 
     protected: 
 
@@ -72,8 +72,8 @@ namespace bitmap {
           * @return IntType the specific part, converted to the specific int type
           */
           template <typename IntType>
-          IntType bytesToInteger(int index) const {
-               IntType* result = (IntType*)(this->_data.substr(index, sizeof(IntType)).data());
+          IntType bytesToInteger(uint32_t index) const {
+               IntType* result = (IntType*)(m_data.substr(index, sizeof(IntType)).data());
                return *result;
           }
 
