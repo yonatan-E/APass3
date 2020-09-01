@@ -11,7 +11,8 @@ namespace operation {
 
         // checking if the command is valid
         if (command.size() != 4 || command[0] != "hash" || command[1] != "crc32"
-        || command[2].find(".bin") == std::string::npos || command[3].find(".bin") == std::string::npos) {
+        || command[2].find(".bin") == std::string::npos 
+        || (command[3].find(".bin") == std::string::npos && command[3] != "stdout")) {
             throw exceptions::InvalidCommandException();
         }
 
