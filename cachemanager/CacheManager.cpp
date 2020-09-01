@@ -134,7 +134,7 @@ namespace cache {
             std::cout << "Cache was cleared" << std::endl;
 
             // if the given command is "search", searching for the specified operation
-        } else if (command[1] == "search" && (command.size() == 4 || command.size() == 5)) {
+        } else if (command[1] == "search" && (command.size() == 5 || command.size() == 6)) {
             // creating a unique pointer to an operation factory object, which will be initialized
             // according to the specified operation
             std::unique_ptr<OperationFactory> factory;
