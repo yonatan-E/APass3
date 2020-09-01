@@ -12,7 +12,7 @@ BitmapArray::BitmapArray(std::string array_data, std::string color_data, uint32_
     // in case that pixel size is 8 bit 
     if (_bitsPerPixel == 8) {
         // iterating over the data string and itializing the matrix
-        int index = 0;
+        uint32_t index = 0;
         for (uint32_t i = 0; i < _height ; i++) {
             for (uint32_t j = 0; j < _width ; j++) {
                 _pixels.setAt(i, j, bytesToInteger<uint8_t>(index));
