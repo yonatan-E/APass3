@@ -33,20 +33,20 @@ class BitmapHeader : public BitAdjuster {
          * @brief Method that writes the content of the object into the string
          * 
          */
-        virtual void write() override;
+        void write() override;
 
         /**
          * @brief Method that changes the content of the current object according to the turn
          * 
          */
-        virtual void turn() override;
+        void turn() override;
 
         /**
          * @brief Method that changes the content of the current object according to the
                   color changing to gray
          * 
          */
-        virtual void gray() override;
+        void gray() override;
 
         /**
          * @brief Get the bitmap array Offset 
