@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 add_compile_options(-Wall -Wextra -pedantic -Werror)
 enable_testing()
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../bin")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
 
 set(HEADER_FILES cachemanager/CacheManager.hpp hash/crc32.h hash/CrcHash.hpp matrix/Matrix.hpp matrix/ErrorCode.hpp
 bitmap/BitAdjuster.hpp bitmap/Bitmap.hpp bitmap/BitmapHeader.hpp bitmap/BitmapDIBHeader.hpp bitmap/BitmapArray.hpp bitmap/ColorPallete.hpp
