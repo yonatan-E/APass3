@@ -21,7 +21,7 @@ namespace operation {
              * @param cache a cache manager
              * @return std::unique_ptr<Operation> a unique pointer to the operation
              */
-            virtual std::unique_ptr<Operation> createOperation(const std::vector<std::string>& command,
+            std::unique_ptr<Operation> createOperation(const std::vector<std::string>& command,
                 cache::CacheManager& cache) const override;
 
             /**
@@ -33,7 +33,7 @@ namespace operation {
              *                      operationArgs[2] - the path to the right argument matrix file
              * @return uint32_t the hashCode of the operation
              */
-            virtual uint32_t calculateOperationHashCode(const std::vector<std::string>& operationArgs) const override;
+            uint32_t calculateOperationHashCode(const std::vector<std::string>& operationArgs) const override;
 
         private:
 

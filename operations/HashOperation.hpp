@@ -27,7 +27,7 @@ namespace operation {
              * 
              * @param filePath the file path
              */
-            virtual void writeOperationToFile(const std::string& filePath) const override;
+            void writeOperationToFile(const std::string& filePath) const override;
 
         private:
 
