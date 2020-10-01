@@ -11,6 +11,13 @@ namespace operation {
      */
     class BitmapOperationFactory : public OperationFactory {
 
+        const uint32_t commandSize = 5;
+        const uint32_t operationSize = 2;
+        const std::string firstCommand = "image";
+        const std::string secondCommand = "rotate";
+        const std::string secondCommandSecond = "convert";
+        const std::string ext = ".bmp";
+
         public:
 
             /**

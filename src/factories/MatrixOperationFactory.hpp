@@ -12,6 +12,14 @@ namespace operation {
      */
     class MatrixOperationFactory : public OperationFactory {
 
+        const uint32_t commandSize = 5;
+        const uint32_t operationSize = 3;
+        const std::string firstCommand = "matrix";
+        const std::string secondCommand = "add";
+        const std::string secondCommandSecond = "multiply";
+        const std::string thirdCommand = "stdout";
+        const std::string ext = ".txt";
+
         public:
 
             /**

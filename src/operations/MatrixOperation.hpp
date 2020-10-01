@@ -22,7 +22,7 @@ namespace operation {
              * @param hashCode the hashCode of the operation
              * @param result the result matrix of the operation
              */
-            MatrixOperation(const uint32_t hashCode, const matrix::Matrix& result);
+            MatrixOperation(uint32_t hashCode, const matrix::Matrix& result);
 
             /**
              * @brief Write the result of the operation to a file
