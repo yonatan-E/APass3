@@ -9,7 +9,6 @@ namespace operation {
         m_result(result) {}
 
     void BitmapOperation::writeOperationToFile(const std::string& filePath) const {
-        // writing the result object to the output file
         try {
             m_result.writeToFile(filePath);
         } catch (...) {
