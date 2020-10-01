@@ -11,9 +11,9 @@ namespace operation {
         cache::CacheManager& cache) const {
         
         // checking if the command is valid
-        if (command.size() != 5 || command[0] != "matrix" || (command[1] != "add" && command[1] != "multiply")
-        || command[2].find(".txt") == std::string::npos || command[3].find(".txt") == std::string::npos
-        || (command[4].find(".txt") == std::string::npos && command[4] != "stdout")) {
+        if (command.size() != commandSize || command[0] != firstCommand || (command[1] != secondCommand && command[1] != secondCommandSecond)
+        || command[2].find(ext) == std::string::npos || command[3].find(ext) == std::string::npos
+        || (command[4].find(ext) == std::string::npos && command[4] != thirdCommand)) {
             throw exceptions::InvalidCommandException();
         }
 
@@ -37,7 +37,7 @@ namespace operation {
             // getting the right argument matrix
             auto rightArg = readMatrixFromFile(command[3]);
             // calculating the result matrix
-            result = std::make_unique<matrix::Matrix>(command[1] == "add" ? leftArg + rightArg : leftArg * rightArg);
+            result = std::make_unique<matrix::Matrix>(command[1] == secondCommand ? leftArg + rightArg : leftArg * rightArg);
         }
 
         // getting the operation object
@@ -51,8 +51,8 @@ namespace operation {
     uint32_t MatrixOperationFactory::calculateOperationHashCode(const std::vector<std::string>& operationArgs) const {
 
         // checking if the operation arguments are valid
-        if (operationArgs.size() != 3 || (operationArgs[0] != "add" && operationArgs[0] != "multiply")
-        || operationArgs[1].find(".txt") == std::string::npos || operationArgs[2].find(".txt") == std::string::npos) {
+        if (operationArgs.size() != operationSize || (operationArgs[0] != secondCommand && operationArgs[0] != secondCommandSecond)
+        || operationArgs[1].find(ext) == std::string::npos || operationArgs[2].find(ext) == std::string::npos) {
             throw exceptions::InvalidCommandException();
         }
 

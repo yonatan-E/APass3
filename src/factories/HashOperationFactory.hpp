@@ -9,6 +9,12 @@ namespace operation {
      */
     class HashOperationFactory : public OperationFactory {
 
+        const uint32_t commandSize = 4;
+        const uint32_t operationSize = 2;
+        const std::string firstCommand = "hash";
+        const std::string secondCommand = "crc32";
+
+
         public:
 
             /**

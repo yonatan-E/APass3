@@ -10,7 +10,7 @@ namespace operation {
             cache::CacheManager& cache) const {
 
         // checking if the command is valid
-        if (command.size() != 4 || command[0] != "hash" || command[1] != "crc32") {
+        if (command.size() != commandSize || command[0] != firstCommand || command[1] != secondCommand) {
             throw exceptions::InvalidCommandException();
         }
 
@@ -54,7 +54,7 @@ namespace operation {
     uint32_t HashOperationFactory::calculateOperationHashCode(const std::vector<std::string>& operationArgs) const {
 
         // checking if the operation arguments are valid
-        if (operationArgs.size() != 2 || operationArgs[0] != "crc32") {
+        if (operationArgs.size() != operationSize || operationArgs[0] != secondCommand) {
             throw exceptions::InvalidCommandException();
         }
 
