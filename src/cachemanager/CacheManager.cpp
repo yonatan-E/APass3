@@ -87,7 +87,7 @@ namespace cache {
         }
 
         // writing the vector into the info file
-        for (auto hashCode : m_hashCodes) {
+        for (const auto hashCode : m_hashCodes) {
             info << hashCode << '\n';
         }
 
@@ -158,7 +158,6 @@ namespace cache {
             } catch (const exceptions::InvalidCommandException& e) {
                 // if catching an invalid command exception, it means that the command is invalid
                 throw e;
-                return;
             } catch (...) {
                 // if catching an another exception, it means that the result of the operation is not in the cache
                 std::cout << "Result was not found on cache" << std::endl;

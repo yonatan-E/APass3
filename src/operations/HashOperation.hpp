@@ -20,7 +20,7 @@ namespace operation {
              * @param hashCode the hashCode of the operation
              * @param result the result hashCode of the operation
              */
-            HashOperation(const uint32_t hashCode, const uint32_t result);
+            HashOperation(uint32_t hashCode, const uint32_t result);
 
             /**
              * @brief Write the result of the operation to a file

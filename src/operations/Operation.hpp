@@ -21,7 +21,7 @@ namespace operation {
              * 
              * @param hashCode the hashCode of the operation
              */
-            Operation(const uint32_t hashCode);
+            explicit Operation(uint32_t hashCode);
 
             /**
              * @brief Destroy the Operation object
@@ -41,6 +41,6 @@ namespace operation {
              * 
              * @return uint32_t the hashCode of the operation
              */
-            virtual uint32_t getHashCode() const final;
+            virtual uint32_t getHashCode() const;
     };
 }
